@@ -1,0 +1,5 @@
+Esto se debe a que actualizamos los valores in situ, de arriba hacia la derecha
+la forma de arreglar esto es dejar todo en un arreglo temporal.
+Y luego intercambiar todo
+
+[] aplicar esto

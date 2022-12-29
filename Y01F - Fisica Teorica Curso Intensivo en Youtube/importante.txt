@@ -1,0 +1,9 @@
+1 #v
+2 #ea
+
+#v : que lo vi completo y entiendo todo
+#e : que lo vi completo, pero estoy entendiendolo
+#a : queda contenido por pasar a Anki en la carpeta anki
+
+de donde viene
+https://www.youtube.com/playlist?list=PLNbPNPgqTfs4sUtdAUJUiV2nS1kjIZMY-

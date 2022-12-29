@@ -1,0 +1,3 @@
+Error en la pagina 234, problema le falta un negativo
+z-z'
+No evaluo los nuevos limites teniendo en cuenta que el signo negativo de z' convertia a +inf en -inf y viceversa, invirtiendo en este caso los pi medios, el los dejo igual.

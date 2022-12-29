@@ -1,0 +1,51 @@
+Parte a) esta bien. En la parte b) hay varios problemas: primero, si imprimes los valores de kr y kv en el loop verás que solo k1v y k1r van cambiando (aqui solo imprimo para la partícula con índice 1):
+krs 1 0 -1.04414 0.466521 0.466522 0.46684
+kvs 1 0 -0.813197 1.21284 1.21284 1.21327
+krs 1 1 -0.0651924 0.432286 0.432286 0.432206
+kvs 1 1 -2.0269 -0.304364 -0.304364 -0.304904
+krs 1 2 0 0 0 0
+kvs 1 2 0 0 0 0
+krs 1 0 -1.04441 0.466521 0.466522 0.46684
+kvs 1 0 -0.811477 1.21284 1.21284 1.21327
+krs 1 1 -0.0658487 0.432286 0.432286 0.432206
+kvs 1 1 -2.02779 -0.304364 -0.304364 -0.304904
+krs 1 2 0 0 0 0
+kvs 1 2 0 0 0 0
+
+Que pasa porque en el loop solo llamas a ruk0 y no a ruk1 y ruk2. Incluyendo una llamada a ruk1 y ruk2 hace evolucionar los krs y kvs, pero hay problemas con los kvs:
+krs 1 0 -1.04414 -1.04427 -1.66114 -2.27814
+kvs 1 0 -0.813197 -3810.97 -3810.97 -3817.87
+krs 1 1 -0.0651924 -0.0655206 -0.283415 -0.501639
+kvs 1 1 -2.0269 -1347.88 -1347.88 -1352.53
+krs 1 2 0 0 0 0
+kvs 1 2 0 0 0 0
+
+como se ve, solo el kv1 da bien, los otros dan cualquier cosa. Esto es porque en las funciones  ruk1 y ruk2 no se inicializan en 0 los kv[k+3], kv[k+6] y kv[k+9], por lo tanto estos valores, que son aceleraciones le suman (correctamente) las contribuciones a la aceleración debido a cada partícula j a la aceleración acumulada anterior, en vez de partir cada vez de 0. Si inicializamos los kvs correctamente ya da harto mejor: 
+
+por ejemplo, con 
+./a.out -d 1e-5 -t 10 -c -o 1e-2 <figure8.in 
+
+da 
+
+Final total energy E_in = -1.2869362674
+absolute energy error: E_out - E_in = 0.00011057
+relative energy error: (E_out - E_in) / E_in =  -8.59102e-05
+number of steps= 2643924
+
+y sin hacer la corrección adicional de + (dt * dt * 0.5) * a[i][k].
+
+ahora hago lo mismo pero elimino el correct_step y da:
+
+Final total energy E_in = -1.2870468379
+absolute energy error: E_out - E_in = -5.19806e-12
+relative energy error: (E_out - E_in) / E_in =  4.03875e-12
+number of steps= 2644130
+
+harto mejor, pero todavía no excelente. Si corro mi versión del código con los mismos parámetros da:
+Final total energy E_in = -1.2870468378
+absolute energy error: E_out - E_in = -7.32747e-15
+relative energy error: (E_out - E_in) / E_in =  5.69324e-15
+number of steps= 2644129
+
+no se por qué da esta diferencia. En conclusión, revisa que las funciones que escribas estén bien antes de tratar de mejorar las fórmulas y siempre piensa si debes inicializar las variables en 0 (u otro  valor) cada vez que tengas loops donde solo se incrementen, pero no se les asigne un valor inicial (esto es una gran fuente de problemas). 
+Parte c) el informe está muy bonito, pero lamentablemenete trata con algunos problemas errados.
