@@ -1,0 +1,68 @@
+Prueba - Fabian Trigo 
+
+Ejercicio 1
+	touch ejercicio1 #crea el archivo, lo dejaremos en el escritorio para ser mas simples, ya que alli estamos trajando
+	chmod +x ejercicio1 #le da permiso de ejecucion para todos los grupos
+	ls - l #en el directorio creado (se asume que es el mismo) para revisar
+
+Ejercicio 2
+se edita usando un editor de texto de preferencia
+	vim ejercicio1
+El contenido de este script es el siguiente: (pd: el archivo script se encuentra adjunto en el correo si se desea visualizar mejor)
+======================================================
+
+#!/bin/bash
+
+#descarga el archivo
+wget http://example.com/files/data-XXXXYYZZ-AABB.tar.gz
+
+#descarga el hash
+wget http://example.com/files/data-XXXXYYZZ-AABB.tar.gz.md5
+
+#se guarda el hash teorico dentro de una variable (supsd = supuesto)
+supsd_hash=$(cat /tmp/ejercicio1XXXXYYZZAABB/data-XXXXYYZZ-AABB.tar.gz.md5)
+#'calculamos' el hash del archivo descargado
+true_hash=$(md5sum /tmp/ejercicio1XXXXYYZZAABB/data-XXXXYYZZ-AABB.tar.gz | awk '{ print $1 }') #se pasa por awk para solo guardar el hash y no el nombre del archivo, se asume que en el archivo.md5 solo viene escrito el hash
+
+#comprobacion de que son equivalentes
+if [[ $supsd_hash = $true_hash ]];
+then #en caso de ser iguales, osea if -> true
+	
+	#se descomprime en la ruta guardada en la variable de entorno DATA_DIR (se asume que existe esta ruta)
+	tar -xzvf /tmp/ejercicio1XXXXYYZZAABB/data-XXXXYYZZ-AABB.tar.gz -C $DATA_DIR || exit_on_error '1'
+	# || funciona para una accion corta que desea que suceda en caso de no funcionar el comando, en este caso, si no se puede extraer o no existe el directorio en la variable DATA_DIR, o si esta variable esta vacia
+	echo'0' #este comando se ejecuta en caso de que todo saliera bien. con exit_on_error en el comando anterior, en caso de error el programa se cierra antes de este echo poder ejecutarse
+else
+	echo'2' #"El archivo se ha descargado de manera incorrecta o se encuentra modificado. Compruebe su conexion a internet y re intente la descarga"
+fi #se finaliza el codigo if, de comparasion
+
+#se borran los archivos descargados
+rm -f /tmp/ejercicio1XXXXYYZZAABB/data-XXXXYYZZ-AABB.tar.gz
+rm -f /tmp/ejercicio1XXXXYYZZAABB/data-XXXXYYZZ-AABB.tar.gz.md5
+
+======================================================
+
+
+Ejercicio 3
+en la primera linea del script (dentro del archivo) se escribe:
+	#!/bin/bash
+esto le especifica al sistema como debe ejecutarse este programa, utilizando bash
+
+Ejercicio 4
+#la modificacion en wget seria la siguiente	
+	wget LINKDEDESCARGA 2>> '$HOME/.last_downlaod.log'
+#en donde 2>> quiere redir que redirecciona la salida de error a un archivo, en caso de existir lo sobreescribe (debido a >>), y en caso de no existir, lo crea.
+
+Ejercicio 5
+crontab es un archivo de texto que se encuentra en la carpeta etc y pertenece a root, posee listas de ejecuciones formateadas, para saber cuando ejecutar y que
+	crontab -e #comando para abrir la edicion de crontab
+	#nos preguntara que editor de texto deseamos usar, elegimos el de preferencia
+	
+una vez dentro del archivo, agregamos las lineas:
+	29 * * * * DATA_DIR=/home/usuario/data ./home/alumno/Escritorio/ejercicio1
+	59 * * * * DATA_DIR=/home/usuario/data ./home/alumno/Escritorio/ejercicio1
+
+notece que primero difinimos DATA_DIR antes del comando, esto resulta en que define esa variable al correr el comando pero no la define en el resto del sistema.
+En caso de dejar el archivo ejercicio1 en otro lugar, basta con cambiar el ultimo argumento de
+./home/alumno/Escritorio/ejercicio1 -> ./DIRECTORIO/ejercicio1
+

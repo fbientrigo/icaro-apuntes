@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)https://www.wolfram.com/language/elementary-introduction/2nd-ed/09-interactive-manipulation.es.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Interactive Manipulation: Elementary Introduction to the Wolfram Language</title>
+<meta name="description" content="Create an interactive slider to change between values of a variable. Deploy to the cloud for an immediate web app. Written by Stephen Wolfram.">
+
+<!-- gl-head-includes.es.html -->
+
+    
+    <link rel="stylesheet" href="./Basic Graphics Objects_ 8_files/global.css">
+    <link rel="stylesheet" href="./Basic Graphics Objects_ 8_files/gl-styles.es.css">
+    <script async="" src="./Basic Graphics Objects_ 8_files/analytics.js.descarga"></script><script async="" src="./Basic Graphics Objects_ 8_files/wal.js.descarga"></script><script src="./Basic Graphics Objects_ 8_files/cookie-consent.js.descarga"></script>
+    <script src="./Basic Graphics Objects_ 8_files/walLoad.js.descarga"></script>
+    <script src="./Basic Graphics Objects_ 8_files/jquery.min.js.descarga"></script>
+    <script src="./Basic Graphics Objects_ 8_files/jquery-migrate-1.2.1.min.js.descarga"></script>
+    <script src="./Basic Graphics Objects_ 8_files/hoverIntent.min.js.descarga"></script>
+    <script src="./Basic Graphics Objects_ 8_files/gl-head-scripts.es.js.descarga"></script>
+    <script src="./Basic Graphics Objects_ 8_files/analytics.js(1).descarga"></script>
+
+<!--/gl-head-includes.es.html -->
+
+<link rel="stylesheet" type="text/css" href="./Basic Graphics Objects_ 8_files/global(1).css">
+<link rel="stylesheet" type="text/css" href="./Basic Graphics Objects_ 8_files/eiwl.es.css">
+<link rel="stylesheet" type="text/css" href="./Basic Graphics Objects_ 8_files/clipboard.es.css">
+<link rel="stylesheet" type="text/css" href="./Basic Graphics Objects_ 8_files/chapter-cookie.es.css">
+<link rel="stylesheet" type="text/css" href="./Basic Graphics Objects_ 8_files/eiwl-check-answer-lightbox.css">
+<script type="text/javascript" src="./Basic Graphics Objects_ 8_files/eiwl.es.js.descarga"></script>
+<script type="text/javascript" src="./Basic Graphics Objects_ 8_files/eiwl-input-popup.js.descarga"></script>
+<script type="text/javascript" src="./Basic Graphics Objects_ 8_files/eiwl-check-answer-lightbox.js.descarga"></script>
+<script type="text/javascript" src="./Basic Graphics Objects_ 8_files/clipboard.es.js.descarga"></script>
+<script type="text/javascript">baselang='09-interactive-manipulation.es';</script>
+ 
+</head>
+<body id="eiwl" class="eiwl gl-header-always-compact-nofooter">
+
+<!-- gl-header.es.html -->
+
+<div id="gl-outer-wrapper" class="gl-es cf">
+    <div id="gl-header">
+        <div id="gl-header-top">
+            <ul class="cf">
+                <li><a href="http://www.wolframalpha.com/?source=nav">WolframAlpha.com</a></li>
+                <li><a href="https://www.wolframcloud.com/?source=nav">WolframCloud.com</a></li>
+                <li><a href="http://www.wolfram.com/resources/?source=nav">Todos los sitios y recursos públicos...</a></li>
+            </ul>
+        </div>
+        <div id="gl-header-bottom" class="cf">
+            <div id="gl-logo">
+               <a href="http://www.wolfram.com/?source=nav" class="cf">
+                    <img src="./Basic Graphics Objects_ 8_files/gl-logo-spikey.es.png" width="48" height="50" alt="" id="gl-logo-spikey">
+                    <img src="./Basic Graphics Objects_ 8_files/gl-logo-wolfram.es.png" width="160" height="22" alt="Wolfram" id="gl-logo-wolfram">
+                    <img src="./Basic Graphics Objects_ 8_files/gl-logo-computation-meets-knowledge.es.png" width="160" height="7" alt="Computation Meets Knowledge" id="gl-logo-slogan">
+                </a>
+            </div>
+            <ul id="gl-menu" class="cf">
+
+                <li id="gl-menu-products" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/products/?source=nav">Productos y servicios<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper cf">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><a href="http://www.wolfram.com/wolfram-one/?source=nav"><i class="gl-icon gl-r2-c11"></i>Wolfram|One</a></li>
+                                <li><a href="http://www.wolfram.com/mathematica/?source=nav"><i class="gl-icon gl-r1-c2"></i>Mathematica</a></li>
+                                <li><a href="http://www.wolfram.com/development-platform/?source=nav"><i class="gl-icon gl-r1-c1"></i>Development Platform</a></li>
+                                <li><a href="http://www.wolfram.com/programming-lab/?source=nav"><i class="gl-icon gl-r1-c10"></i>Programming Lab</a></li>
+                                <li><a href="http://www.wolfram.com/data-science-platform/?source=nav"><i class="gl-icon gl-r1-c4"></i>Data Science Platform</a></li>
+                                <li><a href="http://www.wolfram.com/finance-platform/?source=nav"><i class="gl-icon gl-r1-c5"></i>Finance Platform</a></li>
+                                <li><a href="http://www.wolfram.com/system-modeler/?source=nav"><i class="gl-icon gl-r1-c6"></i>SystemModeler</a></li>
+                            </ul>
+                            <ul class="gl-col gl-col2">
+                                <li class="gl-hover gl-lines">
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/enterprise-private-cloud/?source=nav"><i class="gl-icon gl-r1-c12"></i>Enterprise Private Cloud</a></li>
+                                        <li><a href="http://www.wolfram.com/mathematica-enterprise-edition/?source=nav"><i class="gl-icon gl-r1-c13"></i>Enterprise Mathematica</a></li>
+                                        <li><a href="http://products.wolframalpha.com/appliance/?source=nav"><i class="gl-icon gl-r1-c14"></i>Wolfram|Alpha Appliance</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c7"></i>Soluciones empresariales
+                                    <ul>
+                                        <li><a href="http://www.wolframsolutions.com/?source=nav">Consultorías corporativas</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Servicios técnicos</a></li>
+                                        <li><a href="http://products.wolframalpha.com/business/?source=nav">Soluciones empresariales de Wolfram|Alpha</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><a href="http://www.wolfram.com/education/?source=nav"><i class="gl-icon gl-r3-c2"></i>Productos para la educación</a></li>
+                                <li class="gl-hover"><a href="http://www.wolframalpha.com/?source=nav"><i class="gl-icon gl-r1-c7"></i>Wolfram|Alpha</a>
+                                    <ul>
+                                        <li><a href="http://www.wolframalpha.com/pro/?source=nav">Wolfram|Alpha Pro</a></li>
+                                        <li><a href="http://www.wolframalpha.com/pro/problem-generator/?source=nav">Generador de problemas</a></li>
+                                        <li><a href="http://products.wolframalpha.com/api/?source=nav">API</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><a href="https://datadrop.wolframcloud.com/?source=nav"><i class="gl-icon gl-r2-c10"></i>Data Drop</a></li>
+                                <li class="gl-hover"><a href="https://datarepository.wolframcloud.com/?source=nav"><i class="gl-icon gl-r3-c8"></i>Data Repository</a></li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><i class="gl-icon gl-r1-c8"></i>Aplicaciones para celulares
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/player-app/?source=nav">Wolfram Player</a></li>
+                                        <li><a href="http://www.wolfram.com/cloud-app/?source=nav" target="_blank">Applicación de Wolfram Cloud</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav">Wolfram|Alpha para celulares</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav#wapowered">Aplicaciones potenciadas por Wolfram|Alpha</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r1-c9"></i>Servicios
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Soporte a proyectos por pago</a></li>
+                                        <li><a href="http://www.wolfram.com/training/?source=nav">Capacitación</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/products/?source=nav">Todos los productos y servicios »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-products -->
+
+                <li id="gl-menu-technologies" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/technologies/?source=nav">Tecnologías<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <div class="gl-col gl-col1">
+                                <a href="http://www.wolfram.com/language/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c1"></i>Wolfram Language</span>
+                                    <span>Revolucionario lenguaje de programación basado en el conocimiento.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/cloud/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c2"></i>Wolfram Cloud</span>
+                                    <span>Infraestructura central para los productos y servicios de la nube Wolfram.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/wolfram-science/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c8"></i>Wolfram Science</span>
+                                    <span>Tecnología que permite el acceso a la ciencia del universo computacional.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col2">
+                                <a href="http://www.wolfram.com/notebooks/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c3"></i>Cuadernos Wolfram</span>
+                                    <span>El entorno preeminente para cualquier flujo de trabajo técnico.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/engine/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c4"></i>Wolfram Engine</span>
+                                    <span>Motor de software que implementa el Wolfram Language.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/natural-language-understanding/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c9"></i>Wolfram Natural Language Understanding System</span>
+                                    <span>Lenguaje natural basado en el conocimiento y ampliamente implementado.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col3">
+                                <a href="http://www.wolfram.com/data-framework/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c5"></i>Wolfram Data Framework</span>
+                                    <span>Marco semántico para datos del mundo real.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/universal-deployment-system/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c6"></i>Wolfram Universal Deployment System</span>
+                                    <span>Implementación instantánea a través de la nube, escritorio, celular y más.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/knowledgebase/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c7"></i>Wolfram Knowledgebase</span>
+                                    <span>Conocimiento computable curado potenciando a Wolfram|Alpha.</span>
+                                </a>
+                            </div>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/technologies/?source=nav">Todas las tecnologías »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-technologies -->
+
+                <li id="gl-menu-solutions" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/solutions/?source=nav">Soluciones<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><i class="gl-icon gl-r3-c1"></i>Ingeniería, I&amp;D
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/aerospace-engineering/?source=nav">Aeroespacial y defensa</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemical-engineering/?source=nav">Ingeniería química</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/control-systems/?source=nav">Sistemas de control</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electrical-engineering/?source=nav">Ingeniería eléctrica</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/image-processing/?source=nav">Procesamiento de imágenes</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/industrial-engineering/?source=nav">Ingeniería industrial</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/mechanical-engineering/?source=nav">Ingeniería mecánica</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/operations-research/?source=nav">Investigación de operaciones</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-rtall gl-r3-c4"></i>Finanzas, estadística y análisis de negocios
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/actuarial-sciences/?source=nav">Ciencias actuariales</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/bioinformatics/?source=nav">Bioinformática</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/data-science/?source=nav">Ciencia de datos</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/econometrics/?source=nav">Econometría</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/financial-risk-management/?source=nav">Administración de riesgos financieros</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/statistics/?source=nav">Estadística</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c2"></i>Educación
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/education/?source=nav">Todas las soluciones para la educación</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c6"></i>Tendiencias
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/featureset/machine-learning/?source=nav">Aprendizaje automático</a></li>
+                                        <li><a href="http://www.mpdatascience.com/?source=nav">Ciencia de datos multiparadigma</a></li>
+                                        <li><a href="http://www.wolfram.com/internet-of-things/?source=nav">Internet de las cosas</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/hpc/?source=nav">Computación de alto rendimiento</a></li>
+                                        <li><a href="http://www.wolfram.com/hackathons/?source=nav">Hackathones</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c3"></i>Web y software
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electronic-publishing/?source=nav">Autoría y publicación</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/interface-development/?source=nav">Desarrollo de interfaz</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/software-engineering/?source=nav">Desarrollo web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c5"></i>Ciencias
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/astronomy/?source=nav">Astronomía</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/biological-sciences/?source=nav">Biología</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemistry/?source=nav">Química</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/solutions/?source=nav">Todas las soluciones »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-solutions -->
+
+                <li id="gl-menu-support" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/support/?source=nav">Soporte y aprendizaje<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover cf">
+                                <li class="gl-col1"><i class="gl-icon gl-r4-c1"></i>Aprendizaje
+                                    <ul>
+                                        <li><a href="http://reference.wolfram.com/language/?source=nav">Documentación de Wolfram Language</a></li>
+                                        <li><a href="http://www.wolfram.com/language/fast-introduction-for-programmers/?source=nav">Introducción rápida para programadores</a></li>
+                                        <li><a href="http://www.wolfram.com/training/?source=nav">Capacitación</a></li>
+                                        <li><a href="http://www.wolfram.com/broadcast/?source=nav">Videos y screencasts</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-col2">&nbsp;
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/language/elementary-introduction/?source=nav">Libro introductorio de Wolfram Language</a></li>
+                                        <li><a href="http://www.wolfram.com/training/special-event/?source=nav">Seminarios virtuales</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                        <li><a href="http://www.wolfram.com/books/?source=nav">Libros</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-icon gl-r4-c2"></i>¿Necesita ayuda?
+                                    <ul>
+                                        <li><a href="http://support.wolfram.com/kb/?source=nav">Preguntas frecuentes de soporte</a></li>
+                                        <li><a href="http://community.wolfram.com/?source=nav">Comunidad Wolfram</a></li>
+                                        <li><a href="http://www.wolfram.com/support/contact/?source=nav">Contacte a soporte</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover">
+                                <li><i class="gl-icon gl-r4-c4"></i>Soporte Premium
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/mathematica/pricing/premier-service.php?source=nav">Premier Service</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Servicios técnicos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/support/?source=nav">Todo soporte y aprendizaje »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-support -->
+
+                <li id="gl-menu-company" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/company/?source=nav">Compañía<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><i class="gl-icon gl-r5-c1"></i>Acerca de
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/background.html?source=nav">Historia de la compañía</a></li>
+                                        <li><a href="http://blog.wolfram.com/?source=nav">Wolfram Blog</a></li>
+                                        <li><a href="http://company.wolfram.com/announcements/?source=nav">Noticias</a></li>
+                                        <li><a href="http://company.wolfram.com/events/?source=nav">Eventos</a></li>
+                                        <li><a href="http://www.wolfram.com/company/contact/?source=nav">Contáctenos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-icon gl-r5-c2"></i>Trabaje con nosotros
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Profesiones en Wolfram</a></li>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Pasantías</a></li>
+                                        <li><a href="http://community.wolfram.com/content?curTag=jobs&amp;source=nav">Otros trabajos con Wolfram Language</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover cf">
+                                <li class="gl-col3"><i class="gl-icon gl-r5-c3"></i>Iniciativas
+                                    <ul>
+                                        <li><a href="http://www.wolframfoundation.org/?source=nav">Fundación Wolfram</a></li>
+                                        <li><a href="http://mathworld.wolfram.com/?source=nav" target="_blank">MathWorld</a></li>
+                                        <li><a href="http://www.computerbasedmath.org/?source=nav">Computer-Based Math</a></li>
+                </ul></li></ul></li></ul></li></ul></div></div></div></body></html>

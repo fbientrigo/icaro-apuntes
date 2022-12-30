@@ -1,0 +1,76 @@
+/* Triggers a warning message when users try to skip chapters
+
+   @file            chapter-cookie.en.js
+   @author          marionm
+   @dependencies    jQuery
+                    /language/elementary-introduction/css/chapter-cookie.en.css
+   ========================================================================== */
+
+/*$('body').append('<div id="chapter-warning"><span class="close">x</span><p>Each section of this book builds on concepts discussed in previous sections.</p><p>Skipping sections is not recommended. If you\'re an experienced programmer and want a quick summary, go to <a href="/language/fast-introduction-for-programmers/">A Fast Introduction for Programmers</a>.</p><p><span class="dismiss">Do not show again</span></p><div><button class="continue">Continue Anyway</button><button class="nextchapter">Go to Next Chapter</button></div></div>');
+
+function cc_setCookie(name, value, days) {
+    if (name == '' || value == '' || days == '') return;
+    var d = new Date();
+    d.setTime(d.getTime() + (days*24*60*60*1000));
+    var expires = 'expires=' + d.toUTCString();
+    document.cookie = name + '=' + value + '; ' + expires;
+}
+
+function cc_getCookie(name) {
+    if (name == '') return;
+    var name = name + '=';
+    var cookiearr = document.cookie.split(';');
+    for (var i = 0; i < cookiearr.length; i++) {
+        var c = cookiearr[i];
+        while (c.charAt(0) == ' ') c = c.substring(1);
+        if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+    }
+    return '';
+}
+
+function cc_showPopup() {
+    $('#chapter-warning').show();
+}
+
+function cc_hidePopup() {
+    $('#chapter-warning').hide();
+}
+
+var cc_dismissed = cc_getCookie('EIWLWarningDismissed');
+var cc_current = cc_getCookie('EIWLCurrentChapter');
+var cc_next = cc_getCookie('EIWLNextChapter');
+
+var cc_url = window.location.href.split('?')[0];
+var cc_i = 1; // start on the first chapter, not the preface
+
+$('#chapter-warning .continue, #chapter-warning .close').on('click', cc_hidePopup);
+
+$('#chapter-warning .nextchapter').on('click', function() {
+    $(this).addClass('active');
+    cc_hidePopup();
+    var cc_chapter_url = $('a.tocChapterLink').eq(cc_next - 1).prop('href');
+    window.location.href = cc_chapter_url;
+});
+
+$('#chapter-warning .dismiss').on('click', function() {
+    $(this).addClass('active');
+    cc_setCookie('EIWLWarningDismissed', true, 1);
+    cc_hidePopup();
+});
+
+if (cc_dismissed == '' || cc_dismissed === false) {
+    $('a.tocChapterLink').each(function() {
+        if ($(this).prop('href') == cc_url) {
+            var cc_inext = cc_i + 1;
+            if ((cc_i <= cc_next || cc_i <= cc_current) || (cc_next == '' || cc_current == '')) {
+                cc_setCookie('EIWLCurrentChapter', cc_i, 1);
+                cc_setCookie('EIWLNextChapter', cc_inext, 1);
+            } else {
+                cc_setCookie('EIWLCurrentChapter', cc_i, 1);
+                cc_setCookie('EIWLNextChapter', cc_inext, 1);
+                if (cc_current != '' && cc_next != '') cc_showPopup();
+            }
+        }
+        cc_i++;
+    });
+}*/

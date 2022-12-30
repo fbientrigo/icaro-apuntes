@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)https://www.wolfram.com/language/elementary-introduction/2nd-ed/10-images.es.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Imágenes: Una introducción elemental a Wolfram Language</title>
+<meta name="description" content="Apply many Wolfram Language functions to images. Easily import files, apply image processing functions, analyze results. Written by Stephen Wolfram.">
+
+<!-- gl-head-includes.es.html -->
+
+    
+    <link rel="stylesheet" href="./Colors and Styles_7_files/global.css">
+    <link rel="stylesheet" href="./Colors and Styles_7_files/gl-styles.es.css">
+    <script type="text/javascript" async="" src="https://doug1izaerwt3.cloudfront.net/de93ddd7a498cf841790cb0f91c486c3723c0836.1.js"></script><script type="text/javascript" async="" src="https://i.kissmetrics.com/i.js"></script><script async="" src="./Colors and Styles_7_files/analytics.js.descarga"></script><script async="" src="./Colors and Styles_7_files/wal.js.descarga"></script><script src="./Colors and Styles_7_files/cookie-consent.js.descarga"></script>
+    <script src="./Colors and Styles_7_files/walLoad.js.descarga"></script>
+    <script src="./Colors and Styles_7_files/jquery.min.js.descarga"></script>
+    <script src="./Colors and Styles_7_files/jquery-migrate-1.2.1.min.js.descarga"></script>
+    <script src="./Colors and Styles_7_files/hoverIntent.min.js.descarga"></script>
+    <script src="./Colors and Styles_7_files/gl-head-scripts.es.js.descarga"></script>
+    <script src="./Colors and Styles_7_files/analytics.js(1).descarga"></script>
+
+<!--/gl-head-includes.es.html -->
+
+<link rel="stylesheet" type="text/css" href="./Colors and Styles_7_files/global(1).css">
+<link rel="stylesheet" type="text/css" href="./Colors and Styles_7_files/eiwl.es.css">
+<link rel="stylesheet" type="text/css" href="./Colors and Styles_7_files/clipboard.es.css">
+<link rel="stylesheet" type="text/css" href="./Colors and Styles_7_files/chapter-cookie.es.css">
+<link rel="stylesheet" type="text/css" href="./Colors and Styles_7_files/eiwl-check-answer-lightbox.css">
+<script type="text/javascript" src="./Colors and Styles_7_files/eiwl.es.js.descarga"></script>
+<script type="text/javascript" src="./Colors and Styles_7_files/eiwl-input-popup.js.descarga"></script>
+<script type="text/javascript" src="./Colors and Styles_7_files/eiwl-check-answer-lightbox.js.descarga"></script>
+<script type="text/javascript" src="./Colors and Styles_7_files/clipboard.es.js.descarga"></script>
+<script type="text/javascript">baselang='10-images.es';</script>
+ 
+</head>
+<body id="eiwl" class="eiwl gl-header-always-compact-nofooter">
+
+<!-- gl-header.es.html -->
+
+<div id="gl-outer-wrapper" class="gl-es cf">
+    <div id="gl-header" class="gl-header-fixed">
+        <div id="gl-header-top">
+            <ul class="cf">
+                <li><a href="http://www.wolframalpha.com/?source=nav">WolframAlpha.com</a></li>
+                <li><a href="https://www.wolframcloud.com/?source=nav">WolframCloud.com</a></li>
+                <li><a href="http://www.wolfram.com/resources/?source=nav">Todos los sitios y recursos públicos...</a></li>
+            </ul>
+        </div>
+        <div id="gl-header-bottom" class="cf">
+            <div id="gl-logo">
+               <a href="http://www.wolfram.com/?source=nav" class="cf">
+                    <img src="./Colors and Styles_7_files/gl-logo-spikey.es.png" width="48" height="50" alt="" id="gl-logo-spikey">
+                    <img src="./Colors and Styles_7_files/gl-logo-wolfram.es.png" width="160" height="22" alt="Wolfram" id="gl-logo-wolfram">
+                    <img src="./Colors and Styles_7_files/gl-logo-computation-meets-knowledge.es.png" width="160" height="7" alt="Computation Meets Knowledge" id="gl-logo-slogan">
+                </a>
+            </div>
+            <ul id="gl-menu" class="cf">
+
+                <li id="gl-menu-products" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/products/?source=nav">Productos y servicios<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper cf">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><a href="http://www.wolfram.com/wolfram-one/?source=nav"><i class="gl-icon gl-r2-c11"></i>Wolfram|One</a></li>
+                                <li><a href="http://www.wolfram.com/mathematica/?source=nav"><i class="gl-icon gl-r1-c2"></i>Mathematica</a></li>
+                                <li><a href="http://www.wolfram.com/development-platform/?source=nav"><i class="gl-icon gl-r1-c1"></i>Development Platform</a></li>
+                                <li><a href="http://www.wolfram.com/programming-lab/?source=nav"><i class="gl-icon gl-r1-c10"></i>Programming Lab</a></li>
+                                <li><a href="http://www.wolfram.com/data-science-platform/?source=nav"><i class="gl-icon gl-r1-c4"></i>Data Science Platform</a></li>
+                                <li><a href="http://www.wolfram.com/finance-platform/?source=nav"><i class="gl-icon gl-r1-c5"></i>Finance Platform</a></li>
+                                <li><a href="http://www.wolfram.com/system-modeler/?source=nav"><i class="gl-icon gl-r1-c6"></i>SystemModeler</a></li>
+                            </ul>
+                            <ul class="gl-col gl-col2">
+                                <li class="gl-hover gl-lines">
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/enterprise-private-cloud/?source=nav"><i class="gl-icon gl-r1-c12"></i>Enterprise Private Cloud</a></li>
+                                        <li><a href="http://www.wolfram.com/mathematica-enterprise-edition/?source=nav"><i class="gl-icon gl-r1-c13"></i>Enterprise Mathematica</a></li>
+                                        <li><a href="http://products.wolframalpha.com/appliance/?source=nav"><i class="gl-icon gl-r1-c14"></i>Wolfram|Alpha Appliance</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c7"></i>Soluciones empresariales
+                                    <ul>
+                                        <li><a href="http://www.wolframsolutions.com/?source=nav">Consultorías corporativas</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Servicios técnicos</a></li>
+                                        <li><a href="http://products.wolframalpha.com/business/?source=nav">Soluciones empresariales de Wolfram|Alpha</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><a href="http://www.wolfram.com/education/?source=nav"><i class="gl-icon gl-r3-c2"></i>Productos para la educación</a></li>
+                                <li class="gl-hover"><a href="http://www.wolframalpha.com/?source=nav"><i class="gl-icon gl-r1-c7"></i>Wolfram|Alpha</a>
+                                    <ul>
+                                        <li><a href="http://www.wolframalpha.com/pro/?source=nav">Wolfram|Alpha Pro</a></li>
+                                        <li><a href="http://www.wolframalpha.com/pro/problem-generator/?source=nav">Generador de problemas</a></li>
+                                        <li><a href="http://products.wolframalpha.com/api/?source=nav">API</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><a href="https://datadrop.wolframcloud.com/?source=nav"><i class="gl-icon gl-r2-c10"></i>Data Drop</a></li>
+                                <li class="gl-hover"><a href="https://datarepository.wolframcloud.com/?source=nav"><i class="gl-icon gl-r3-c8"></i>Data Repository</a></li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><i class="gl-icon gl-r1-c8"></i>Aplicaciones para celulares
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/player-app/?source=nav">Wolfram Player</a></li>
+                                        <li><a href="http://www.wolfram.com/cloud-app/?source=nav" target="_blank">Applicación de Wolfram Cloud</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav">Wolfram|Alpha para celulares</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav#wapowered">Aplicaciones potenciadas por Wolfram|Alpha</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r1-c9"></i>Servicios
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Soporte a proyectos por pago</a></li>
+                                        <li><a href="http://www.wolfram.com/training/?source=nav">Capacitación</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/products/?source=nav">Todos los productos y servicios »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-products -->
+
+                <li id="gl-menu-technologies" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/technologies/?source=nav">Tecnologías<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <div class="gl-col gl-col1">
+                                <a href="http://www.wolfram.com/language/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c1"></i>Wolfram Language</span>
+                                    <span>Revolucionario lenguaje de programación basado en el conocimiento.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/cloud/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c2"></i>Wolfram Cloud</span>
+                                    <span>Infraestructura central para los productos y servicios de la nube Wolfram.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/wolfram-science/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c8"></i>Wolfram Science</span>
+                                    <span>Tecnología que permite el acceso a la ciencia del universo computacional.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col2">
+                                <a href="http://www.wolfram.com/notebooks/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c3"></i>Cuadernos Wolfram</span>
+                                    <span>El entorno preeminente para cualquier flujo de trabajo técnico.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/engine/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c4"></i>Wolfram Engine</span>
+                                    <span>Motor de software que implementa el Wolfram Language.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/natural-language-understanding/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c9"></i>Wolfram Natural Language Understanding System</span>
+                                    <span>Lenguaje natural basado en el conocimiento y ampliamente implementado.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col3">
+                                <a href="http://www.wolfram.com/data-framework/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c5"></i>Wolfram Data Framework</span>
+                                    <span>Marco semántico para datos del mundo real.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/universal-deployment-system/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c6"></i>Wolfram Universal Deployment System</span>
+                                    <span>Implementación instantánea a través de la nube, escritorio, celular y más.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/knowledgebase/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c7"></i>Wolfram Knowledgebase</span>
+                                    <span>Conocimiento computable curado potenciando a Wolfram|Alpha.</span>
+                                </a>
+                            </div>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/technologies/?source=nav">Todas las tecnologías »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-technologies -->
+
+                <li id="gl-menu-solutions" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/solutions/?source=nav">Soluciones<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><i class="gl-icon gl-r3-c1"></i>Ingeniería, I&amp;D
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/aerospace-engineering/?source=nav">Aeroespacial y defensa</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemical-engineering/?source=nav">Ingeniería química</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/control-systems/?source=nav">Sistemas de control</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electrical-engineering/?source=nav">Ingeniería eléctrica</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/image-processing/?source=nav">Procesamiento de imágenes</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/industrial-engineering/?source=nav">Ingeniería industrial</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/mechanical-engineering/?source=nav">Ingeniería mecánica</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/operations-research/?source=nav">Investigación de operaciones</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-rtall gl-r3-c4"></i>Finanzas, estadística y análisis de negocios
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/actuarial-sciences/?source=nav">Ciencias actuariales</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/bioinformatics/?source=nav">Bioinformática</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/data-science/?source=nav">Ciencia de datos</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/econometrics/?source=nav">Econometría</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/financial-risk-management/?source=nav">Administración de riesgos financieros</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/statistics/?source=nav">Estadística</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c2"></i>Educación
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/education/?source=nav">Todas las soluciones para la educación</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c6"></i>Tendiencias
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/featureset/machine-learning/?source=nav">Aprendizaje automático</a></li>
+                                        <li><a href="http://www.mpdatascience.com/?source=nav">Ciencia de datos multiparadigma</a></li>
+                                        <li><a href="http://www.wolfram.com/internet-of-things/?source=nav">Internet de las cosas</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/hpc/?source=nav">Computación de alto rendimiento</a></li>
+                                        <li><a href="http://www.wolfram.com/hackathons/?source=nav">Hackathones</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c3"></i>Web y software
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electronic-publishing/?source=nav">Autoría y publicación</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/interface-development/?source=nav">Desarrollo de interfaz</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/software-engineering/?source=nav">Desarrollo web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c5"></i>Ciencias
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/astronomy/?source=nav">Astronomía</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/biological-sciences/?source=nav">Biología</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemistry/?source=nav">Química</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/solutions/?source=nav">Todas las soluciones »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-solutions -->
+
+                <li id="gl-menu-support" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/support/?source=nav">Soporte y aprendizaje<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover cf">
+                                <li class="gl-col1"><i class="gl-icon gl-r4-c1"></i>Aprendizaje
+                                    <ul>
+                                        <li><a href="http://reference.wolfram.com/language/?source=nav">Documentación de Wolfram Language</a></li>
+                                        <li><a href="http://www.wolfram.com/language/fast-introduction-for-programmers/?source=nav">Introducción rápida para programadores</a></li>
+                                        <li><a href="http://www.wolfram.com/training/?source=nav">Capacitación</a></li>
+                                        <li><a href="http://www.wolfram.com/broadcast/?source=nav">Videos y screencasts</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-col2">&nbsp;
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/language/elementary-introduction/?source=nav">Libro introductorio de Wolfram Language</a></li>
+                                        <li><a href="http://www.wolfram.com/training/special-event/?source=nav">Seminarios virtuales</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                        <li><a href="http://www.wolfram.com/books/?source=nav">Libros</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-icon gl-r4-c2"></i>¿Necesita ayuda?
+                                    <ul>
+                                        <li><a href="http://support.wolfram.com/kb/?source=nav">Preguntas frecuentes de soporte</a></li>
+                                        <li><a href="http://community.wolfram.com/?source=nav">Comunidad Wolfram</a></li>
+                                        <li><a href="http://www.wolfram.com/support/contact/?source=nav">Contacte a soporte</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover">
+                                <li><i class="gl-icon gl-r4-c4"></i>Soporte Premium
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/mathematica/pricing/premier-service.php?source=nav">Premier Service</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Servicios técnicos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/support/?source=nav">Todo soporte y aprendizaje »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-support -->
+
+                <li id="gl-menu-company" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/company/?source=nav">Compañía<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><i class="gl-icon gl-r5-c1"></i>Acerca de
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/background.html?source=nav">Historia de la compañía</a></li>
+                                        <li><a href="http://blog.wolfram.com/?source=nav">Wolfram Blog</a></li>
+                                        <li><a href="http://company.wolfram.com/announcements/?source=nav">Noticias</a></li>
+                                        <li><a href="http://company.wolfram.com/events/?source=nav">Eventos</a></li>
+                                        <li><a href="http://www.wolfram.com/company/contact/?source=nav">Contáctenos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-icon gl-r5-c2"></i>Trabaje con nosotros
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Profesiones en Wolfram</a></li>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Pasantías</a></li>
+                                        <li><a href="http://community.wolfram.com/content?curTag=jobs&amp;source=nav">Otros trabajos con Wolfram Language</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover cf">
+                                <li class="gl-col3"><i class="gl-icon gl-r5-c3"></i>Iniciativas
+                                    <ul>
+                                        <li><a href="http://www.wolframfoundation.org/?source=nav">Fundación Wolfram</a></li>
+                                        <li><a href="http://mathworld.wolfram.com/?source=nav" target="_blank">MathWorld</a></li>
+                                        <li><a href="http://www.computerbasedmath.org/?source=nav">Computer-Based Math</a></li>
+                                        <li><a href="http://www.wolframscience.com/?source=nav"><em>A New Kind of Science</em></a></li>
+                                        <li><a href="http://www.wolfram.com/hackathons/?source=nav">Tecnología Wolfram para hackathones</a></li>
+                                        <li><a href="http://www.wolfram.com/company/careers/ambassador/?source=nav">Programa de estudiantes embajadores</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-col4">&nbsp;
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/startups/?source=nav">Wolfram para emprendimientos</a></li>
+                                        <li><a href="http://demonstrations.wolfram.com/?source=nav">Proyecto de demostraciones</a></li>
+                                        <li><a href="http://www.wolfram.com/events/technology-conference/innovator-award/?source=nav">Premios Wolfram a la innovación</a></li>
+                                        <li><a href="http://www.wolfram.com/raspberry-pi/?source=nav">Wolfram + Raspberry Pi</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                        <li><a href="http://www.wolfram.com/resources/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/company/?source=nav">Toda la compañía »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-company -->
+
+                <li id="gl-menu-divider"></li>
+                <li id="gl-menu-search" class="gl-menu-tab">
+                    <div class="gl-menu-tab-link"><i class="gl-icon gl-r6-c1"></i>Buscar</div>
+                    <ul class="gl-submenu">
+                        <li id="gl-search-wrapper" class="cf">
+                            <form action="https://search.wolfram.com/" method="get" accept-charset="utf-8">
+                                <div>
+                                    <input type="text" name="query" value="What are you looking for?" autocomplete="off" id="gl-search">
+                                </div>
+                            </form>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-search -->
+
+            </ul><!--/#gl-menu -->
+        </div><!--/#gl-header-bottom -->
+    </div><!--/#gl-header -->
+    <div id="gl-header-bg" class="gl-header-fixed"><span><!-- --></span></div>
+    <div id="gl-header-offset" class="gl-header-fixed"><span><!-- --></span></div>
+    <div id="gl-inner-wrapper">
+
+<!--/gl-header.es.html -->
+
+<header>
+	<div class="header-inner">
+		<span class="header-image"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/index.es.html" id="EIWL-WEB-2nd-ed-main-index-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/elementary-introduction-header.es.png" alt="An Elementary Introduction to the Wolfram Language"></a></span>
+		<span class="prevnext"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/09-interactive-manipulation.es.html" id="EIWL-WEB-2nd-ed-prev-section-header-10-images.es" class="km-track-click-no-url"><span><img src="./Colors and Styles_7_files/top-previous-arrow.png" width="12" height="20" alt=""></span></a><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/11-strings-and-text.es.html" id="EIWL-WEB-2nd-ed-next-section-header-10-images.es" class="km-track-click-no-url"><span><img src="./Colors and Styles_7_files/top-next-arrow.png" width="13" height="21" alt=""></span></a></span>
+	</div>
+</header>
+<div class="sidebarwrapper">
+ <div class="sidebarHamburger" id="sidebarHamburger">
+  <a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/10-images.es.html#" id="showSidebar"><img src="./Colors and Styles_7_files/hamburger.png" width="45" height="28"></a>
+ </div>
+ <div class="sidebar" id="sidebar">
+  <div class="sidebar-close-button">
+   <a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/10-images.es.html#" id="hide-sidebar-button"><img src="./Colors and Styles_7_files/x-icon.png" width="13" height="13"></a>
+  </div>
+  <nav id="nav" class="pageNav"><ul>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/preface.es.html" id="EIWL-WEB-sidebar-preface">Prefacio</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/what-is-the-wolfram-language.es.html" id="EIWL-WEB-sidebar-what-is-the-wolfram-language">¿Qué es Wolfram Language?</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/practicalities-of-using-the-wolfram-language.es.html" id="EIWL-WEB-sidebar-practicalities-of-using-the-wolfram-language">Aspectos prácticos en el uso de Wolfram Language</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/other-resources.es.html" id="EIWL-WEB-sidebar-other-resources">Otros recursos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/translation-notes.es.html" id="EIWL-WEB-sidebar-translation-notes">Sobre la traducción al español</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/01-starting-out-elementary-arithmetic.es.html" id="EIWL-WEB-sidebar-01-starting-out-elementary-arithmetic"><span class="tocSectionNumber">1</span>Inicio: aritmética elemental</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/02-introducing-functions.es.html" id="EIWL-WEB-sidebar-02-introducing-functions"><span class="tocSectionNumber">2</span>Introducción a las funciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/03-first-look-at-lists.es.html" id="EIWL-WEB-sidebar-03-first-look-at-lists"><span class="tocSectionNumber">3</span>Un primer vistazo a las listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/04-displaying-lists.es.html" id="EIWL-WEB-sidebar-04-displaying-lists"><span class="tocSectionNumber">4</span>Visualización de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/05-operations-on-lists.es.html" id="EIWL-WEB-sidebar-05-operations-on-lists"><span class="tocSectionNumber">5</span>Operaciones con listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/06-making-tables.es.html" id="EIWL-WEB-sidebar-06-making-tables"><span class="tocSectionNumber">6</span>Construcción de tablas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/07-colors-and-styles.es.html" id="EIWL-WEB-sidebar-07-colors-and-styles"><span class="tocSectionNumber">7</span>Colores y estilos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/08-basic-graphics-objects.es.html" id="EIWL-WEB-sidebar-08-basic-graphics-objects"><span class="tocSectionNumber">8</span>Objetos gráficos elementales</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/09-interactive-manipulation.es.html" id="EIWL-WEB-sidebar-09-interactive-manipulation"><span class="tocSectionNumber">9</span>Manipulación interactiva</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink selected" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/10-images.es.html" id="selected"><span class="tocSectionNumber">10</span>Imágenes</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/11-strings-and-text.es.html" id="EIWL-WEB-sidebar-11-strings-and-text"><span class="tocSectionNumber">11</span>Cadenas de caracteres y texto</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/12-sound.es.html" id="EIWL-WEB-sidebar-12-sound"><span class="tocSectionNumber">12</span>Sonido</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/13-arrays-or-lists-of-lists.es.html" id="EIWL-WEB-sidebar-13-arrays-or-lists-of-lists"><span class="tocSectionNumber">13</span>Arreglos o listas de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.es.html" id="EIWL-WEB-sidebar-14-coordinates-and-graphics"><span class="tocSectionNumber">14</span>Coordenadas y gráficos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/15-the-scope-of-the-wolfram-language.es.html" id="EIWL-WEB-sidebar-15-the-scope-of-the-wolfram-language"><span class="tocSectionNumber">15</span>El alcance de Wolfram Language</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/16-real-world-data.es.html" id="EIWL-WEB-sidebar-16-real-world-data"><span class="tocSectionNumber">16</span>Datos del mundo real</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/17-units.es.html" id="EIWL-WEB-sidebar-17-units"><span class="tocSectionNumber">17</span>Unidades</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/18-geocomputation.es.html" id="EIWL-WEB-sidebar-18-geocomputation"><span class="tocSectionNumber">18</span>Geocomputación</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/19-dates-and-times.es.html" id="EIWL-WEB-sidebar-19-dates-and-times"><span class="tocSectionNumber">19</span>Fechas y horas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/20-options.es.html" id="EIWL-WEB-sidebar-20-options"><span class="tocSectionNumber">20</span>Opciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/21-graphs-and-networks.es.html" id="EIWL-WEB-sidebar-21-graphs-and-networks"><span class="tocSectionNumber">21</span>Grafos y redes</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/22-machine-learning.es.html" id="EIWL-WEB-sidebar-22-machine-learning"><span class="tocSectionNumber">22</span>Aprendizaje automático</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/23-more-about-numbers.es.html" id="EIWL-WEB-sidebar-23-more-about-numbers"><span class="tocSectionNumber">23</span>Más sobre números</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/24-more-forms-of-visualization.es.html" id="EIWL-WEB-sidebar-24-more-forms-of-visualization"><span class="tocSectionNumber">24</span>Más formas de visualización</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/25-ways-to-apply-functions.es.html" id="EIWL-WEB-sidebar-25-ways-to-apply-functions"><span class="tocSectionNumber">25</span>Maneras de aplicar funciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/26-pure-anonymous-functions.es.html" id="EIWL-WEB-sidebar-26-pure-anonymous-functions"><span class="tocSectionNumber">26</span>Funciones puras anónimas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/27-applying-functions-repeatedly.es.html" id="EIWL-WEB-sidebar-27-applying-functions-repeatedly"><span class="tocSectionNumber">27</span>Aplicación repetida de funciones </a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/28-tests-and-conditionals.es.html" id="EIWL-WEB-sidebar-28-tests-and-conditionals"><span class="tocSectionNumber">28</span>Pruebas y condicionales</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/29-more-about-pure-functions.es.html" id="EIWL-WEB-sidebar-29-more-about-pure-functions"><span class="tocSectionNumber">29</span>Más sobre las funciones puras</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/30-rearranging-lists.es.html" id="EIWL-WEB-sidebar-30-rearranging-lists"><span class="tocSectionNumber">30</span>Reorganización de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/31-parts-of-lists.es.html" id="EIWL-WEB-sidebar-31-parts-of-lists"><span class="tocSectionNumber">31</span>Partes de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/32-patterns.es.html" id="EIWL-WEB-sidebar-32-patterns"><span class="tocSectionNumber">32</span>Patrones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/33-expressions-and-their-structure.es.html" id="EIWL-WEB-sidebar-33-expressions-and-their-structure"><span class="tocSectionNumber">33</span>Expresiones y su estructura</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/34-associations.es.html" id="EIWL-WEB-sidebar-34-associations"><span class="tocSectionNumber">34</span>Asociaciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/35-natural-language-understanding.es.html" id="EIWL-WEB-sidebar-35-natural-language-understanding"><span class="tocSectionNumber">35</span>Comprensión del lenguaje natural</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/36-creating-websites-and-apps.es.html" id="EIWL-WEB-sidebar-36-creating-websites-and-apps"><span class="tocSectionNumber">36</span>Construcción de sitios web y aplicaciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/37-layout-and-display.es.html" id="EIWL-WEB-sidebar-37-layout-and-display"><span class="tocSectionNumber">37</span>Composición y visualización</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/38-assigning-names-to-things.es.html" id="EIWL-WEB-sidebar-38-assigning-names-to-things"><span class="tocSectionNumber">38</span>Asignación de nombres a cosas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/39-immediate-and-delayed-values.es.html" id="EIWL-WEB-sidebar-39-immediate-and-delayed-values"><span class="tocSectionNumber">39</span>Valores inmediatos y diferidos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/40-defining-your-own-functions.es.html" id="EIWL-WEB-sidebar-40-defining-your-own-functions"><span class="tocSectionNumber">40</span>Funciones definidas por el usuario</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/41-more-about-patterns.es.html" id="EIWL-WEB-sidebar-41-more-about-patterns"><span class="tocSectionNumber">41</span>Más información sobre los patrones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/42-string-patterns-and-templates.es.html" id="EIWL-WEB-sidebar-42-string-patterns-and-templates"><span class="tocSectionNumber">42</span>Cadenas de caracteres y plantillas </a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/43-storing-things.es.html" id="EIWL-WEB-sidebar-43-storing-things"><span class="tocSectionNumber">43</span>Cómo guardar cosas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/44-importing-and-exporting.es.html" id="EIWL-WEB-sidebar-44-importing-and-exporting"><span class="tocSectionNumber">44</span>Importar y exportar</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/45-datasets.es.html" id="EIWL-WEB-sidebar-45-datasets"><span class="tocSectionNumber">45</span>Conjuntos de datos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/46-writing-good-code.es.html" id="EIWL-WEB-sidebar-46-writing-good-code"><span class="tocSectionNumber">46</span>Cómo escribir código de buena calidad</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/47-debugging-your-code.es.html" id="EIWL-WEB-sidebar-47-debugging-your-code"><span class="tocSectionNumber">47</span>Depuración de código</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/what-we-havent-discussed.es.html" id="EIWL-WEB-sidebar-what-we-havent-discussed">Lo que no se vio en el libro</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/being-a-programmer.es.html" id="EIWL-WEB-sidebar-being-a-programmer">Epílogo: ser un programador</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/answers-to-exercises.es.html" id="EIWL-WEB-sidebar-answers-to-exercises">Respuestas a los ejercicios</a>
+    </li>
+    <li id="book-index">
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/book-index.es.html" id="EIWL-WEB-sidebar-book-index">Índice</a>
+    </li>
+    <li class="goToPageClass">
+     <form action="javascript:pageURL();" autocomplete="off"><span class="goToPageText">Jump to Book Page:</span><input id="goToPageInput" type="text" size="6" onkeypress="handle(event)"></form>
+    </li>
+   </ul></nav>
+ </div>
+</div>
+
+<section>
+	<div class="section-inner">
+		<div class="wrapper mainOuter">
+			<div class="mainContent">
+		<div>
+ <a id="p-39">
+ </a><a id="i-1">
+ <table class="SectionTitleTable">
+  <tbody><tr><td id="SectionNumber"><span class="SectionNumber">10</span></td><td id="Section"><span class="Section">Im<span class="special-character AAcute">á</span>genes</span></td></tr>
+ </tbody></table>
+ </a><div class="bodytext"><a id="i-1">Muchas de las funciones de Wolfram Language est<span class="special-character AAcute">á</span>n orientadas al trabajo con <em>im<span class="special-character AAcute">á</span>genes</em>. Es muy sencillo introducir una imagen en Wolfram Language, por ejemplo, copi<span class="special-character AAcute">á</span>ndola o arrastr<span class="special-character AAcute">á</span>ndola con el cursor desde la web o desde una colecci<span class="special-character OAcute">ó</span>n de fotograf<span class="special-character IAcute">í</span>as. O bien, puede simplemente capturarse una imagen desde la c<span class="special-character AAcute">á</span>mara del equipo que se est<span class="special-character EAcute">é</span> usando mediante la funci<span class="special-character OAcute">ó</span>n </a><a href="http://reference.wolfram.com/language/ref/CurrentImage.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">CurrentImage</a>.</div>
+ <div class="CodeCaption"><a id="i-2">Obtenga la imagen actual en la c<span class="special-character AAcute">á</span>mara del equipo (aqu<span class="special-character IAcute">í</span>, el autor trabajando en este libro):</a></div><a id="i-2">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[1]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_1-i.es.png" height="20" width="102" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_1-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_1_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[1]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-1-o.es.png" width="186" height="139" id="10-images-io-1-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-2">Pueden aplicarse funciones a im<span class="special-character AAcute">á</span>genes, tal como se hace con n<span class="special-character UAcute">ú</span>meros, listas u otras cosas. La funci<span class="special-character OAcute">ó</span>n </a><a href="http://reference.wolfram.com/language/ref/ColorNegate,.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ColorNegate,</a> que se vio antes en conexi<span class="special-character OAcute">ó</span>n con los colores, tambi<span class="special-character EAcute">é</span>n trabaja con im<span class="special-character AAcute">á</span>genes y produce una <span class="special-character OpenCurlyDoubleQuote">“</span>imagen negativa<span class="special-character CloseCurlyDoubleQuote">”</span>. </div>
+ <div class="CodeCaption"><a id="i-3">Produzca el negativo de los colores en una imagen  (aqu<span class="special-character IAcute">í</span> la imagen del autor se ve muy extra<span class="special-character NTilde">ñ</span>a):</a></div><a id="i-3">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[2]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_2-i.es.png" height="62" width="171" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_2-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_2_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[2]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-2-o.es.png" width="185" height="139" id="10-images-io-2-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="i-3"></a><a id="i-4">Haga borrosa la imagen:</a></div><a id="i-4">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[3]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_3-i.es.png" height="62" width="117" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_3-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_3_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[3]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-3-o.es.png" width="185" height="139" id="10-images-io-3-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="i-4"></a><a id="p-40">El n<span class="special-character UAcute">ú</span>mero indica el nivel de difuminaci<span class="special-character OAcute">ó</span>n de la imagen resultante:</a></div><a id="p-40">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[4]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_4-i.es.png" height="62" width="140" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_4-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_4_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[4]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-4-o.es.png" width="185" height="139" id="10-images-io-4-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Puede hacerse una tabla con los resultados de diferentes niveles de difuminaci<span class="special-character OAcute">ó</span>n:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[5]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_5-i.es.png" height="62" width="258" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_5-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_5_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[5]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-5-o.es.png" width="589" height="105" id="10-images-io-5-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="p-40"></a><a id="i-5"></a><a href="http://reference.wolfram.com/language/ref/ImageCollage.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageCollage</a> re<span class="special-character UAcute">ú</span>ne varias im<span class="special-character AAcute">á</span>genes:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[6]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_6-i.es.png" height="62" width="355" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_6-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_6_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[6]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-6-o.es.png" width="186" height="139" id="10-images-io-6-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="bodytext"><a id="p-41"></a><a id="i-6">Se pueden hacer muchos tipos de an<span class="special-character AAcute">á</span>lisis con una imagen. As<span class="special-character IAcute">í</span>, por ejemplo, </a><a href="http://reference.wolfram.com/language/ref/DominantColors.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">DominantColors</a> produce una lista con los colores m<span class="special-character AAcute">á</span>s significativos en una imagen.</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[7]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_7-i.es.png" height="62" width="195" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_7-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_7_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[7]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-7-o.es.png" width="82" height="19" id="10-images-io-7-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption"><a id="i-7"></a><a href="http://reference.wolfram.com/language/ref/Binarize.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Binarize</a> produce una imagen en blanco y negro:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[8]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_8-i.es.png" height="62" width="143" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_8-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_8_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[8]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-8-o.es.png" width="185" height="139" id="10-images-io-8-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Como es de esperar, los colores dominantes son, en este caso, el blanco y el negro:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[9]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_9-i.es.png" height="62" width="257" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_9-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_9_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[9]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-9-o.es.png" width="42" height="19" id="10-images-io-9-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="bodytext"><a id="i-8">Se puede hacer otro tipo de an<span class="special-character AAcute">á</span>lisis con <em>detecci<span class="special-character OAcute">ó</span>n de bordes</em>: para eso, se busca en qu<span class="special-character EAcute">é</span> partes de la imagen hay cambios bruscos de color. El resultado es como si fuera un bosquejo de la imagen original.</a></div><a id="i-8">
+ <div class="CodeCaption">Identifique los bordes en la imagen original:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[10]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_10-i.es.png" height="62" width="164" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_10-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_10_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[10]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-10-o.es.png" width="185" height="139" id="10-images-io-10-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="i-8"></a><a id="p-42"></a><a id="i-9"><span class="special-character OpenCurlyDoubleQuote">“</span>Sume<span class="special-character CloseCurlyDoubleQuote">”</span> la imagen original al resultado de la detecci<span class="special-character OAcute">ó</span>n de bordes:</a></div><a id="i-9">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[11]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_11-i.es.png" height="62" width="243" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_11-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_11_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[11]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-11-o.es.png" width="186" height="140" id="10-images-io-11-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-9">A menudo conviene hacer el procesamiento de im<span class="special-character AAcute">á</span>genes de manera interactiva mediante el uso de interfaces producidas con </a><a href="http://reference.wolfram.com/language/ref/Manipulate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Manipulate</a>. As<span class="special-character IAcute">í</span>, por ejemplo, <a href="http://reference.wolfram.com/language/ref/Binarize.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Binarize</a> permite fijar un umbral para la conversi<span class="special-character OAcute">ó</span>n a blanco y negro y, en tal caso, la experimentaci<span class="special-character OAcute">ó</span>n interactiva puede ser lo m<span class="special-character AAcute">á</span>s indicado para encontrar el umbral correcto. </div>
+ <div class="CodeCaption">Cree una interfaz para ajustar el umbral en la binarizaci<span class="special-character OAcute">ó</span>n de una imagen:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[12]:=</td><td class="Input"><div class="copyable-input">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io_12-i.es.png" height="62" width="292" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_12-10-images.es" class="km-track-click-no-url">
+     </div><div id="io_12_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[12]=</td><td class="Output"><div class="wideimage">
+      <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-io-12-o.es.png" width="364" height="324" id="10-images-io-12-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="VocabularySection"><a id="p-43"></a><a id="Vocabulary">Vocabulario</a></div><a id="Vocabulary">
+ <div class="VocabularyTable">
+  <table class="nogridboxdividers">
+   <colgroup><col>
+   <col>
+   <col>
+   </colgroup><tbody><tr class="lineAbove" style=""><td><a href="http://reference.wolfram.com/language/ref/CurrentImage.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">CurrentImage</a>[ ]</td><td> </td><td><span class="VocabularyText">captura la imagen actual en la computadora, etc. </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/ColorNegate.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ColorNegate</a>[ <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-1.es.png" height="26" width="31" alt=""> ]</td><td> </td><td><span class="VocabularyText">obtiene el negativo de los colores de una imagen </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Binarize.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Binarize</a>[ <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-2.es.png" height="26" width="31" alt=""> ]</td><td> </td><td><span class="VocabularyText">pone una imagen en blanco y negro  </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Blur.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Blur</a>[ <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-3.es.png" height="26" width="31" alt=""> , 5]</td><td> </td><td><span class="VocabularyText">difumina o hace borrosa una imagen </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/EdgeDetect.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">EdgeDetect</a>[ <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-4.es.png" height="26" width="31" alt=""> ]</td><td> </td><td><span class="VocabularyText">detecta los bordes dentro de una imagen </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/DominantColors.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">DominantColors</a>[ <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-5.es.png" height="26" width="31" alt=""> ]</td><td> </td><td><span class="VocabularyText">obtiene una lista de los colores dominantes en una imagen </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/ImageCollage.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageCollage</a>[{ <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-6.es.png" height="27" width="25" alt=""> ,<img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-7.es.png" height="27" width="25" alt=""> ,<img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-8.es.png" height="27" width="25" alt=""> }]</td><td> </td><td><span class="VocabularyText">re<span class="special-character UAcute">ú</span>ne varias im<span class="special-character AAcute">á</span>genes en un collage </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/ImageAdd.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageAdd</a>[ <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-9.es.png" height="27" width="25" alt=""> ,<img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/10-images-10.es.png" height="27" width="25" alt=""> ]</td><td> </td><td><span class="VocabularyText">suma los valores de color de dos im<span class="special-character AAcute">á</span>genes </span></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="ExerciseSection" id="ExerciseSection"><a id="Vocabulary"></a><a id="Exercises">Ejercicios</a><div class="NewCheckYourAnswers"><a id="Exercises">
+   </a><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-new-check-your-exercises-in-cloud-10-images.es">NUEVO: Verifique sus respuestas en Wolfram Cloud</a>
+  </div></div>
+ <div class="Exercise" id="10.1"><span class="ExerciseNumber">10.1</span>Obtenga el negativo de color del resultado de encontrar los bordes en una imagen. (Use <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/CurrentImage.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">CurrentImage</a>[ ]</span> o cualquier otra imagen).&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.1&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.1-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.1&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.1-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.1-out.png" class="ExerciseBoxOutputImage" width="275" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.1-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.2"><span class="ExerciseNumber">10.2</span>Use <a href="http://reference.wolfram.com/language/ref/Manipulate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Manipulate</a> para hacer una interfaz que cambie, en una imagen, la difuminaci<span class="special-character OAcute">ó</span>n entre 0 y 20.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.2&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.2-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.2&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.2-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.2-out.png" class="ExerciseBoxOutputImage" width="365" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.2-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.3"><span class="ExerciseNumber">10.3</span>Cree una tabla con el resultado de detectar bordes en una imagen, con niveles variables de difuminaci<span class="special-character OAcute">ó</span>n, entre 1 y 10.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.3&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.3-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.3&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.3-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.3-out.png" class="ExerciseBoxOutputImage" width="544" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.3-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.4"><span class="ExerciseNumber">10.4</span>Haga un collage de im<span class="special-character AAcute">á</span>genes, reuniendo una imagen y los resultados de hacerla borrosa, de detectar sus bordes y de binarizarla.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.4&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.4-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.4&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.4-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.4-out.png" class="ExerciseBoxOutputImage" width="330" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.4-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.5"><span class="ExerciseNumber">10.5</span>Sume una imagen a la versi<span class="special-character OAcute">ó</span>n binarizada de la misma.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.5&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.5-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.5&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.5-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.5-out.png" class="ExerciseBoxOutputImage" width="250" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.5-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.6"><span class="ExerciseNumber">10.6</span>Cree un <a href="http://reference.wolfram.com/language/ref/Manipulate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Manipulate</a> para mostrar los bordes de una imagen con niveles variables de difuminaci<span class="special-character OAcute">ó</span>n, entre 0 y 20.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.6&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.6-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.6&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.6-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.6-out.png" class="ExerciseBoxOutputImage" width="365" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.6-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.7"><span class="ExerciseNumber">10.7</span>Las operaciones con im<span class="special-character AAcute">á</span>genes funcionan con <a href="http://reference.wolfram.com/language/ref/Graphics.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Graphics</a> y <a href="http://reference.wolfram.com/language/ref/Graphics3D.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Graphics3D</a>. As<span class="special-character IAcute">í</span> pues, si se quiere detectar los bordes en la gr<span class="special-character AAcute">á</span>fica de una esfera se puede hacer:&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.7&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.7-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.7&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.7-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.7-out.png" class="ExerciseBoxOutputImage" width="180" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.7-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.8"><span class="ExerciseNumber">10.8</span>Haga un <a href="http://reference.wolfram.com/language/ref/Manipulate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Manipulate</a> para construir una interfaz que cambie el nivel de difuminaci<span class="special-character OAcute">ó</span>n, entre el 0 y el 20, de un pent<span class="special-character AAcute">á</span>gono morado.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.8&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.8-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.8&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.8-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.8-out.png" class="ExerciseBoxOutputImage" width="405" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.8-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.9"><span class="ExerciseNumber">10.9</span>Cree un collage con las im<span class="special-character AAcute">á</span>genes de 9 discos, cada uno con un color aleatorio..&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.9&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.9-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.9&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.9-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.9-out.png" class="ExerciseBoxOutputImage" width="275" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.9-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.10"><span class="ExerciseNumber">10.10</span>Use <a href="http://reference.wolfram.com/language/ref/ImageCollage.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageCollage</a> para formar una imagen combinada de esferas, con tonalidades del 0 al 1, en incrementos de 0.2.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.10&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.10-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.10&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.10-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.10-out.png" class="ExerciseBoxOutputImage" width="275" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.10-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.11"><span class="ExerciseNumber">10.11</span>Forme la tabla de un disco con niveles variables de difuminaci<span class="special-character OAcute">ó</span>n, del 0 al 30, en incrementos de 5.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.11&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.11-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.11&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.11-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.11-out.png" class="ExerciseBoxOutputImage" width="558" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.11-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.12"><span class="ExerciseNumber">10.12</span>Use <a href="http://reference.wolfram.com/language/ref/ImageAdd.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageAdd</a> para sumar una imagen a la imagen de un disco.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.12&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.12-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.12&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.12-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.12-out.png" class="ExerciseBoxOutputImage" width="150" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.12-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="10.13"><span class="ExerciseNumber">10.13</span>Use <a href="http://reference.wolfram.com/language/ref/ImageAdd.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageAdd</a> para sumar una imagen a la imagen de un oct<span class="special-character AAcute">á</span>gono rojo.&nbsp;<a href="javascript:OpenCloseExercises(&#39;10.13&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.13-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.13&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.13-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.13-out.png" class="ExerciseBoxOutputImage" width="150" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.13-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <a id="LastCellOfAPage">
+ </a><div class="Exercise" id="10.14"><a id="LastCellOfAPage"><span class="ExerciseNumber">10.14</span>Sume una imagen a la versi<span class="special-character OAcute">ó</span>n de esa misma imagen en negativo de color y con detecci<span class="special-character OAcute">ó</span>n de bordes .&nbsp;</a><a href="javascript:OpenCloseExercises(&#39;10.14&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-10.14-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;10.14&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-10.14-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-10.14-out.png" class="ExerciseBoxOutputImage" width="250" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-10.14-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x10.1"><span class="ExerciseWebNumber">+10.1</span>Detecte bordes en una imagen binarizada.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x10.1&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x10.1-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x10.1&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x10.1-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-x10.1-out.png" class="ExerciseBoxOutputImage" width="250" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x10.1-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x10.2"><span class="ExerciseWebNumber">+10.2</span>Obtenga el negativo de color en el resultado de detectar bordes en la gr<span class="special-character AAcute">á</span>fica de un pent<span class="special-character AAcute">á</span>gono regular.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x10.2&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x10.2-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x10.2&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x10.2-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-x10.2-out.png" class="ExerciseBoxOutputImage" width="180" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x10.2-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x10.3"><span class="ExerciseWebNumber">+10.3</span>Use <a href="http://reference.wolfram.com/language/ref/ImageAdd.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageAdd</a>para sumar una imagen consigo misma.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x10.3&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x10.3-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x10.3&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x10.3-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-x10.3-out.png" class="ExerciseBoxOutputImage" width="250" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x10.3-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x10.4"><span class="ExerciseWebNumber">+10.4</span>Use <a href="http://reference.wolfram.com/language/ref/ImageAdd.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageAdd</a> para sumar las im<span class="special-character AAcute">á</span>genes de todos los pol<span class="special-character IAcute">í</span>gonos regulares que tengan entre 3 y 100 lados.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x10.4&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x10.4-10-images.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x10.4&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x10.4-10-images.es" class="km-track-click-no-url"><img src="./Colors and Styles_7_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/Files-es/answers-to-exercises-x10.4-out.png" class="ExerciseBoxOutputImage" width="200" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Colors and Styles_7_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/10-images-exercises.nb#sidebar=eiwl/10-images" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x10.4-10-images.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="QASection"><a id="p-44"></a><a id="QAndA">Preguntas y respuestas</a></div><a id="QAndA">
+ </a><div class="Question"><a id="QAndA"></a><a id="i-10"><span class="special-character DownQuestion">¿</span>Qu<span class="special-character EAcute">é</span> hacer si la computadora no cuenta con c<span class="special-character AAcute">á</span>mara o si esta no se puede usar?</a></div><a id="i-10">
+ </a><div class="Answer"><a id="i-10">En vez de <span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/CurrentImage.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">CurrentImage</a>[], consiga una imagen de prueba, por ejemplo, <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/ExampleData.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ExampleData</a>[{"TestImage", "Mandrill"}]</span>.</div>
+ <div class="Question"><span class="special-character DownQuestion">¿</span>Qu<span class="special-character EAcute">é</span> significa el n<span class="special-character UAcute">ú</span>mero en la funci<span class="special-character OAcute">ó</span>n <a href="http://reference.wolfram.com/language/ref/Blur.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Blur</a>?</div>
+ <div class="Answer">Es la gama de p<span class="special-character IAcute">í</span>xeles que conllevan la difuminaci<span class="special-character OAcute">ó</span>n.</div>
+ <div class="Question"><span class="special-character DownQuestion">¿</span>C<span class="special-character OAcute">ó</span>mo decide <a href="http://reference.wolfram.com/language/ref/Binarize.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Binarize</a> entre blanco y negro?</div>
+ <div class="Answer">Si no se le fija un umbral, lo elegir<span class="special-character AAcute">á</span> de acuerdo al an<span class="special-character AAcute">á</span>lisis de la distribuci<span class="special-character OAcute">ó</span>n de los colores en la imagen.</div>
+ <div class="TechNoteGroup">
+  <div class="TechNoteSection"><a id="TechNotes">Notas t<span class="special-character EAcute">é</span>cnicas</a></div><a id="TechNotes">
+  </a><ul class="TechNoteList"><a id="TechNotes">
+   </a><li class="TechNote"><a id="TechNotes"></a><a id="i-11">El hecho de que puedan usarse im<span class="special-character AAcute">á</span>genes directamente en un c<span class="special-character OAcute">ó</span>digo de Wolfram Language es de enorme importancia y otra de las consecuencias de que Wolfram Language sea un lenguaje de programaci<span class="special-character OAcute">ó</span>n simb<span class="special-character OAcute">ó</span>lico. </a></li><a id="i-11">
+   </a><li class="TechNote"><a id="i-11"></a><a id="i-12">Por ejemplo, si se deseara tener una colecci<span class="special-character OAcute">ó</span>n de im<span class="special-character AAcute">á</span>genes de cocodrilos, podr<span class="special-character IAcute">í</span>a recurrirse al uso de <span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/WikipediaData.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">WikipediaData</a>["crocodiles", "ImageList"].</li>
+   <li class="TechNote"><a id="i-13">Suponiendo que se tenga una versi<span class="special-character OAcute">ó</span>n apropiada de Wolfram Language, <span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/WebImageSearch.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">WebImageSearch</a>["colorful birds", "Thumbnails"] obtendr<span class="special-character AAcute">á</span> las im<span class="special-character AAcute">á</span>genes deseadas mediante una b<span class="special-character UAcute">ú</span>squeda en la web (v<span class="special-character EAcute">é</span>ase la <a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/44-importing-and-exporting.es.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-10-images.es" target="_blank">Secci<span class="special-character OAcute">ó</span>n 44</a>).</li>
+   <li class="TechNote"><a id="i-14"><span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/CurrentImage.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">CurrentImage</a> funciona en los navegadores m<span class="special-character AAcute">á</span>s modernos y en dispositivos m<span class="special-character OAcute">ó</span>viles de igual manera que en computadoras.</li>
+   <li class="TechNote"><a id="i-15">Muchas de las operaciones aritm<span class="special-character EAcute">é</span>ticas funcionan directamente, pixel-a-pixel, en im<span class="special-character AAcute">á</span>genes (por ejemplo, <span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/Sqrt.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">Sqrt</a>[<span class="special-character Square"></span>] o <span class="InlineCode"><span class="special-character Square"></span>-<a href="http://reference.wolfram.com/language/ref/EdgeDetect.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">EdgeDetect</a>[<span class="special-character Square"></span>]</span>), as<span class="special-character IAcute">í</span> que no es necesario usar expl<span class="special-character IAcute">í</span>citamente <a href="http://reference.wolfram.com/language/ref/ImageAdd.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageAdd</a>, <a href="http://reference.wolfram.com/language/ref/ImageMultiply.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-10-images.es" target="_blank">ImageMultiply</a>, etc.</li>
+  </ul>
+ </div>
+ <div class="MoreExploreGroup">
+  <div class="MoreExploreSection"><a id="MoreToExplore">Para explorar m<span class="special-character AAcute">á</span>s</a></div><a id="MoreToExplore">
+  </a><div class="MoreExploreList"><a id="MoreToExplore">
+   </a><div class="MoreExplore"><a id="MoreToExplore">
+    </a><a id="LastCellOfAPage">
+    </a><a href="http://reference.wolfram.com/language/guide/ImageProcessing.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-10-images.es" target="_blank">Gu<span class="special-character IAcute">í</span>a para procesamiento de im<span class="special-character AAcute">á</span>genes en Wolfram Language<span class="special-character NonBreakingSpace">&nbsp;</span><span class="special-character RightGuillemet">»</span></a>
+   </div>
+  </div>
+ </div>
+</div>
+			<div class="FooterCopyright"><div id="_language-picker" class="margin-t-1__600"> <i class="_icon-r7-c2"></i> <select id="_language-picker-select"> <option disabled="" selected="">Español</option> <option value=".en">English</option> </select> </div>Copyright 2019</div></div>
+		
+			<div class="bottomSpacerCell">&nbsp;<div id="FooterCopyright" class="FooterCopyright" style="margin-left: 120px;"><div id="_language-picker" class="margin-t-1__600"> <i class="_icon-r7-c2"></i> <select id="_language-picker-select"> <option disabled="" selected="">Español</option> <option value=".en">English</option> </select> </div>Copyright 2019</div></div>
+		</div>
+	</div>
+</section>
+	<div class="GoToCloudVersion" id="GoToCloudVersion"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/10-images.es-cloud.html" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-switch-to-cloud-embed-10-images.es"><img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/img/switch-to-cloud.png" alt=""></a></div>
+	<div class="GoToHTMLVersion" id="GoToHTMLVersion"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/10-images.es.html" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-switch-to-html-10-images.es"><img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/img/switch-to-html.png" alt=""></a></div>
+	<a href="javascript:nbdownload(&#39;EIWL2-10-images.nb&#39;);" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-download-notebook-10-images.es"><div class="DownloadNotebook" id="DownloadNotebook"><span class="DownloadNotebookText">Download Notebook Version</span></div></a>
+	<a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/09-interactive-manipulation.es.html" id="EIWL-WEB-2nd-ed-prev-section-footer-10-images.es" class="km-track-click-no-url"><div class="previousFooter"></div></a>
+	<a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/11-strings-and-text.es.html" id="EIWL-WEB-2nd-ed-next-section-footer-10-images.es" class="km-track-click-no-url"><div class="nextFooter">Siguiente <div>›</div></div></a>
+
+
+<!-- gl-footer-includes.es.html -->
+
+    </div><!--/#gl-inner-wrapper -->
+    <noscript><div id="gl-noscript"><div><i><!-- --></i>Habilite JavaScript para interactuar con el contenido y enviar formularios en las p&aacute;ginas web de Wolfram. <a href="http://www.enable-javascript.com/" target="_blank">Aprenda c&oacute;mo&nbsp;&raquo;</a></div></div></noscript>
+</div><!--/#gl-outer-wrapper -->
+
+<span id="gl-footer-lang"></span><span id="gl-footer-lang-links"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/10-images.en.html?footer=lang"><img src="https://www.wolfram.com/common/images/gl-lang-en.png" alt="en"></a> </span>
+<script src="https://www.wolfram.com/common/javascript/gl-footer-scripts.es.js"></script>
+
+<!--/gl-footer-includes.es.html -->
+
+
+<script src="https://www.wolfram.com/common/javascript/kissmetrics.js"></script>
+<script src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/js/chapter-cookie.es.js"></script>
+
+
+<div class="SecondEditionTitle">SEGUNDA EDICIÓN</div><div class="WaysToView" id="show-otherviews-button"><div class="WayToViewText"><span>Otras formas de ver</span><div class="down-arrow-div"><img src="https://www.wolfram.com/language/elementary-introduction/2nd-ed/img/down-arrow.png"></div><ul id="MenuWayToView" class="WaysToViewMenus"><li id="InteractiveViewMenu" class="InteractiveViewMenu">Páginas interactivas</li><li id="OnlineCourseMenu" class="OnlineCourseMenu">Curso en línea&nbsp;»</li><li id="WPLOnlineMenu" class="WPLOnlineMenu">Wolfram Programming Lab&nbsp;»</li></ul></div></div></body></html>

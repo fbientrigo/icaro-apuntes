@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)https://www.wolfram.com/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.es.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Coordenadas y gráficos: Una introducción elemental a Wolfram Language</title>
+<meta name="description" content="Learn to use pairs of coordinates to plot points and shapes. Specify sizes, colors, details. Works for 3D plots as well. Written by Stephen Wolfram.">
+
+<!-- gl-head-includes.es.html -->
+
+    
+    <link rel="stylesheet" href="./Coordenadas y gráficos_14_files/global.css">
+    <link rel="stylesheet" href="./Coordenadas y gráficos_14_files/gl-styles.es.css">
+    <script type="text/javascript" async="" src="./Coordenadas y gráficos_14_files/de93ddd7a498cf841790cb0f91c486c3723c0836.1.js.descarga"></script><script type="text/javascript" async="" src="./Coordenadas y gráficos_14_files/i.js.descarga"></script><script async="" src="./Coordenadas y gráficos_14_files/analytics.js.descarga"></script><script async="" src="./Coordenadas y gráficos_14_files/wal.js.descarga"></script><script src="./Coordenadas y gráficos_14_files/cookie-consent.js.descarga"></script>
+    <script src="./Coordenadas y gráficos_14_files/walLoad.js.descarga"></script>
+    <script src="./Coordenadas y gráficos_14_files/jquery.min.js.descarga"></script>
+    <script src="./Coordenadas y gráficos_14_files/jquery-migrate-1.2.1.min.js.descarga"></script>
+    <script src="./Coordenadas y gráficos_14_files/hoverIntent.min.js.descarga"></script>
+    <script src="./Coordenadas y gráficos_14_files/gl-head-scripts.es.js.descarga"></script>
+    <script src="./Coordenadas y gráficos_14_files/analytics.js(1).descarga"></script>
+
+<!--/gl-head-includes.es.html -->
+
+<link rel="stylesheet" type="text/css" href="./Coordenadas y gráficos_14_files/global(1).css">
+<link rel="stylesheet" type="text/css" href="./Coordenadas y gráficos_14_files/eiwl.es.css">
+<link rel="stylesheet" type="text/css" href="./Coordenadas y gráficos_14_files/clipboard.es.css">
+<link rel="stylesheet" type="text/css" href="./Coordenadas y gráficos_14_files/chapter-cookie.es.css">
+<link rel="stylesheet" type="text/css" href="./Coordenadas y gráficos_14_files/eiwl-check-answer-lightbox.css">
+<script type="text/javascript" src="./Coordenadas y gráficos_14_files/eiwl.es.js.descarga"></script>
+<script type="text/javascript" src="./Coordenadas y gráficos_14_files/eiwl-input-popup.js.descarga"></script>
+<script type="text/javascript" src="./Coordenadas y gráficos_14_files/eiwl-check-answer-lightbox.js.descarga"></script>
+<script type="text/javascript" src="./Coordenadas y gráficos_14_files/clipboard.es.js.descarga"></script>
+<script type="text/javascript">baselang='14-coordinates-and-graphics.es';</script>
+ 
+</head>
+<body id="eiwl" class="eiwl gl-header-always-compact-nofooter">
+
+<!-- gl-header.es.html -->
+
+<div id="gl-outer-wrapper" class="gl-es cf">
+    <div id="gl-header" class="gl-header-fixed" style="position: relative; left: 0px;">
+        <div id="gl-header-top">
+            <ul class="cf">
+                <li><a href="http://www.wolframalpha.com/?source=nav">WolframAlpha.com</a></li>
+                <li><a href="https://www.wolframcloud.com/?source=nav">WolframCloud.com</a></li>
+                <li><a href="http://www.wolfram.com/resources/?source=nav">Todos los sitios y recursos públicos...</a></li>
+            </ul>
+        </div>
+        <div id="gl-header-bottom" class="cf">
+            <div id="gl-logo">
+               <a href="http://www.wolfram.com/?source=nav" class="cf">
+                    <img src="./Coordenadas y gráficos_14_files/gl-logo-spikey.es.png" width="48" height="50" alt="" id="gl-logo-spikey">
+                    <img src="./Coordenadas y gráficos_14_files/gl-logo-wolfram.es.png" width="160" height="22" alt="Wolfram" id="gl-logo-wolfram">
+                    <img src="./Coordenadas y gráficos_14_files/gl-logo-computation-meets-knowledge.es.png" width="160" height="7" alt="Computation Meets Knowledge" id="gl-logo-slogan">
+                </a>
+            </div>
+            <ul id="gl-menu" class="cf">
+
+                <li id="gl-menu-products" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/products/?source=nav">Productos y servicios<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper cf">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><a href="http://www.wolfram.com/wolfram-one/?source=nav"><i class="gl-icon gl-r2-c11"></i>Wolfram|One</a></li>
+                                <li><a href="http://www.wolfram.com/mathematica/?source=nav"><i class="gl-icon gl-r1-c2"></i>Mathematica</a></li>
+                                <li><a href="http://www.wolfram.com/development-platform/?source=nav"><i class="gl-icon gl-r1-c1"></i>Development Platform</a></li>
+                                <li><a href="http://www.wolfram.com/programming-lab/?source=nav"><i class="gl-icon gl-r1-c10"></i>Programming Lab</a></li>
+                                <li><a href="http://www.wolfram.com/data-science-platform/?source=nav"><i class="gl-icon gl-r1-c4"></i>Data Science Platform</a></li>
+                                <li><a href="http://www.wolfram.com/finance-platform/?source=nav"><i class="gl-icon gl-r1-c5"></i>Finance Platform</a></li>
+                                <li><a href="http://www.wolfram.com/system-modeler/?source=nav"><i class="gl-icon gl-r1-c6"></i>SystemModeler</a></li>
+                            </ul>
+                            <ul class="gl-col gl-col2">
+                                <li class="gl-hover gl-lines">
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/enterprise-private-cloud/?source=nav"><i class="gl-icon gl-r1-c12"></i>Enterprise Private Cloud</a></li>
+                                        <li><a href="http://www.wolfram.com/mathematica-enterprise-edition/?source=nav"><i class="gl-icon gl-r1-c13"></i>Enterprise Mathematica</a></li>
+                                        <li><a href="http://products.wolframalpha.com/appliance/?source=nav"><i class="gl-icon gl-r1-c14"></i>Wolfram|Alpha Appliance</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c7"></i>Soluciones empresariales
+                                    <ul>
+                                        <li><a href="http://www.wolframsolutions.com/?source=nav">Consultorías corporativas</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Servicios técnicos</a></li>
+                                        <li><a href="http://products.wolframalpha.com/business/?source=nav">Soluciones empresariales de Wolfram|Alpha</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><a href="http://www.wolfram.com/education/?source=nav"><i class="gl-icon gl-r3-c2"></i>Productos para la educación</a></li>
+                                <li class="gl-hover"><a href="http://www.wolframalpha.com/?source=nav"><i class="gl-icon gl-r1-c7"></i>Wolfram|Alpha</a>
+                                    <ul>
+                                        <li><a href="http://www.wolframalpha.com/pro/?source=nav">Wolfram|Alpha Pro</a></li>
+                                        <li><a href="http://www.wolframalpha.com/pro/problem-generator/?source=nav">Generador de problemas</a></li>
+                                        <li><a href="http://products.wolframalpha.com/api/?source=nav">API</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><a href="https://datadrop.wolframcloud.com/?source=nav"><i class="gl-icon gl-r2-c10"></i>Data Drop</a></li>
+                                <li class="gl-hover"><a href="https://datarepository.wolframcloud.com/?source=nav"><i class="gl-icon gl-r3-c8"></i>Data Repository</a></li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><i class="gl-icon gl-r1-c8"></i>Aplicaciones para celulares
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/player-app/?source=nav">Wolfram Player</a></li>
+                                        <li><a href="http://www.wolfram.com/cloud-app/?source=nav" target="_blank">Applicación de Wolfram Cloud</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav">Wolfram|Alpha para celulares</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav#wapowered">Aplicaciones potenciadas por Wolfram|Alpha</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r1-c9"></i>Servicios
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Soporte a proyectos por pago</a></li>
+                                        <li><a href="http://www.wolfram.com/training/?source=nav">Capacitación</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/products/?source=nav">Todos los productos y servicios »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-products -->
+
+                <li id="gl-menu-technologies" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/technologies/?source=nav">Tecnologías<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <div class="gl-col gl-col1">
+                                <a href="http://www.wolfram.com/language/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c1"></i>Wolfram Language</span>
+                                    <span>Revolucionario lenguaje de programación basado en el conocimiento.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/cloud/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c2"></i>Wolfram Cloud</span>
+                                    <span>Infraestructura central para los productos y servicios de la nube Wolfram.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/wolfram-science/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c8"></i>Wolfram Science</span>
+                                    <span>Tecnología que permite el acceso a la ciencia del universo computacional.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col2">
+                                <a href="http://www.wolfram.com/notebooks/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c3"></i>Cuadernos Wolfram</span>
+                                    <span>El entorno preeminente para cualquier flujo de trabajo técnico.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/engine/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c4"></i>Wolfram Engine</span>
+                                    <span>Motor de software que implementa el Wolfram Language.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/natural-language-understanding/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c9"></i>Wolfram Natural Language Understanding System</span>
+                                    <span>Lenguaje natural basado en el conocimiento y ampliamente implementado.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col3">
+                                <a href="http://www.wolfram.com/data-framework/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c5"></i>Wolfram Data Framework</span>
+                                    <span>Marco semántico para datos del mundo real.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/universal-deployment-system/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c6"></i>Wolfram Universal Deployment System</span>
+                                    <span>Implementación instantánea a través de la nube, escritorio, celular y más.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/knowledgebase/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c7"></i>Wolfram Knowledgebase</span>
+                                    <span>Conocimiento computable curado potenciando a Wolfram|Alpha.</span>
+                                </a>
+                            </div>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/technologies/?source=nav">Todas las tecnologías »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-technologies -->
+
+                <li id="gl-menu-solutions" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/solutions/?source=nav">Soluciones<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><i class="gl-icon gl-r3-c1"></i>Ingeniería, I&amp;D
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/aerospace-engineering/?source=nav">Aeroespacial y defensa</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemical-engineering/?source=nav">Ingeniería química</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/control-systems/?source=nav">Sistemas de control</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electrical-engineering/?source=nav">Ingeniería eléctrica</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/image-processing/?source=nav">Procesamiento de imágenes</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/industrial-engineering/?source=nav">Ingeniería industrial</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/mechanical-engineering/?source=nav">Ingeniería mecánica</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/operations-research/?source=nav">Investigación de operaciones</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-rtall gl-r3-c4"></i>Finanzas, estadística y análisis de negocios
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/actuarial-sciences/?source=nav">Ciencias actuariales</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/bioinformatics/?source=nav">Bioinformática</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/data-science/?source=nav">Ciencia de datos</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/econometrics/?source=nav">Econometría</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/financial-risk-management/?source=nav">Administración de riesgos financieros</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/statistics/?source=nav">Estadística</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c2"></i>Educación
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/education/?source=nav">Todas las soluciones para la educación</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c6"></i>Tendiencias
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/featureset/machine-learning/?source=nav">Aprendizaje automático</a></li>
+                                        <li><a href="http://www.mpdatascience.com/?source=nav">Ciencia de datos multiparadigma</a></li>
+                                        <li><a href="http://www.wolfram.com/internet-of-things/?source=nav">Internet de las cosas</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/hpc/?source=nav">Computación de alto rendimiento</a></li>
+                                        <li><a href="http://www.wolfram.com/hackathons/?source=nav">Hackathones</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c3"></i>Web y software
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electronic-publishing/?source=nav">Autoría y publicación</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/interface-development/?source=nav">Desarrollo de interfaz</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/software-engineering/?source=nav">Desarrollo web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c5"></i>Ciencias
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/astronomy/?source=nav">Astronomía</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/biological-sciences/?source=nav">Biología</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemistry/?source=nav">Química</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/solutions/?source=nav">Todas las soluciones »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-solutions -->
+
+                <li id="gl-menu-support" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/support/?source=nav">Soporte y aprendizaje<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover cf">
+                                <li class="gl-col1"><i class="gl-icon gl-r4-c1"></i>Aprendizaje
+                                    <ul>
+                                        <li><a href="http://reference.wolfram.com/language/?source=nav">Documentación de Wolfram Language</a></li>
+                                        <li><a href="http://www.wolfram.com/language/fast-introduction-for-programmers/?source=nav">Introducción rápida para programadores</a></li>
+                                        <li><a href="http://www.wolfram.com/training/?source=nav">Capacitación</a></li>
+                                        <li><a href="http://www.wolfram.com/broadcast/?source=nav">Videos y screencasts</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-col2">&nbsp;
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/language/elementary-introduction/?source=nav">Libro introductorio de Wolfram Language</a></li>
+                                        <li><a href="http://www.wolfram.com/training/special-event/?source=nav">Seminarios virtuales</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                        <li><a href="http://www.wolfram.com/books/?source=nav">Libros</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-icon gl-r4-c2"></i>¿Necesita ayuda?
+                                    <ul>
+                                        <li><a href="http://support.wolfram.com/kb/?source=nav">Preguntas frecuentes de soporte</a></li>
+                                        <li><a href="http://community.wolfram.com/?source=nav">Comunidad Wolfram</a></li>
+                                        <li><a href="http://www.wolfram.com/support/contact/?source=nav">Contacte a soporte</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover">
+                                <li><i class="gl-icon gl-r4-c4"></i>Soporte Premium
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/mathematica/pricing/premier-service.php?source=nav">Premier Service</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Servicios técnicos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/support/?source=nav">Todo soporte y aprendizaje »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-support -->
+
+                <li id="gl-menu-company" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/company/?source=nav">Compañía<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><i class="gl-icon gl-r5-c1"></i>Acerca de
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/background.html?source=nav">Historia de la compañía</a></li>
+                                        <li><a href="http://blog.wolfram.com/?source=nav">Wolfram Blog</a></li>
+                                        <li><a href="http://company.wolfram.com/announcements/?source=nav">Noticias</a></li>
+                                        <li><a href="http://company.wolfram.com/events/?source=nav">Eventos</a></li>
+                                        <li><a href="http://www.wolfram.com/company/contact/?source=nav">Contáctenos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-icon gl-r5-c2"></i>Trabaje con nosotros
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Profesiones en Wolfram</a></li>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Pasantías</a></li>
+                                        <li><a href="http://community.wolfram.com/content?curTag=jobs&amp;source=nav">Otros trabajos con Wolfram Language</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover cf">
+                                <li class="gl-col3"><i class="gl-icon gl-r5-c3"></i>Iniciativas
+                                    <ul>
+                                        <li><a href="http://www.wolframfoundation.org/?source=nav">Fundación Wolfram</a></li>
+                                        <li><a href="http://mathworld.wolfram.com/?source=nav" target="_blank">MathWorld</a></li>
+                                        <li><a href="http://www.computerbasedmath.org/?source=nav">Computer-Based Math</a></li>
+                                        <li><a href="http://www.wolframscience.com/?source=nav"><em>A New Kind of Science</em></a></li>
+                                        <li><a href="http://www.wolfram.com/hackathons/?source=nav">Tecnología Wolfram para hackathones</a></li>
+                                        <li><a href="http://www.wolfram.com/company/careers/ambassador/?source=nav">Programa de estudiantes embajadores</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-col4">&nbsp;
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/startups/?source=nav">Wolfram para emprendimientos</a></li>
+                                        <li><a href="http://demonstrations.wolfram.com/?source=nav">Proyecto de demostraciones</a></li>
+                                        <li><a href="http://www.wolfram.com/events/technology-conference/innovator-award/?source=nav">Premios Wolfram a la innovación</a></li>
+                                        <li><a href="http://www.wolfram.com/raspberry-pi/?source=nav">Wolfram + Raspberry Pi</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                        <li><a href="http://www.wolfram.com/resources/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/company/?source=nav">Toda la compañía »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-company -->
+
+                <li id="gl-menu-divider"></li>
+                <li id="gl-menu-search" class="gl-menu-tab">
+                    <div class="gl-menu-tab-link"><i class="gl-icon gl-r6-c1"></i>Buscar</div>
+                    <ul class="gl-submenu">
+                        <li id="gl-search-wrapper" class="cf">
+                            <form action="https://search.wolfram.com/" method="get" accept-charset="utf-8">
+                                <div>
+                                    <input type="text" name="query" value="What are you looking for?" autocomplete="off" id="gl-search">
+                                </div>
+                            </form>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-search -->
+
+            </ul><!--/#gl-menu -->
+        </div><!--/#gl-header-bottom -->
+    </div><!--/#gl-header -->
+    <div id="gl-header-bg" class="gl-header-fixed"><span><!-- --></span></div>
+    <div id="gl-header-offset" class="gl-header-fixed"><span><!-- --></span></div>
+    <div id="gl-inner-wrapper">
+
+<!--/gl-header.es.html -->
+
+<header>
+	<div class="header-inner">
+		<span class="header-image"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/index.es.html" id="EIWL-WEB-2nd-ed-main-index-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/elementary-introduction-header.es.png" alt="An Elementary Introduction to the Wolfram Language"></a></span>
+		<span class="prevnext"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/13-arrays-or-lists-of-lists.es.html" id="EIWL-WEB-2nd-ed-prev-section-header-14-coordinates-and-graphics.es" class="km-track-click-no-url"><span><img src="./Coordenadas y gráficos_14_files/top-previous-arrow.png" width="12" height="20" alt=""></span></a><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/15-the-scope-of-the-wolfram-language.es.html" id="EIWL-WEB-2nd-ed-next-section-header-14-coordinates-and-graphics.es" class="km-track-click-no-url"><span><img src="./Coordenadas y gráficos_14_files/top-next-arrow.png" width="13" height="21" alt=""></span></a></span>
+	</div>
+</header>
+<div class="sidebarwrapper">
+ <div class="sidebarHamburger" id="sidebarHamburger">
+  <a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.es.html#" id="showSidebar"><img src="./Coordenadas y gráficos_14_files/hamburger.png" width="45" height="28"></a>
+ </div>
+ <div class="sidebar" id="sidebar">
+  <div class="sidebar-close-button">
+   <a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.es.html#" id="hide-sidebar-button"><img src="./Coordenadas y gráficos_14_files/x-icon.png" width="13" height="13"></a>
+  </div>
+  <nav id="nav" class="pageNav"><ul>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/preface.es.html" id="EIWL-WEB-sidebar-preface">Prefacio</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/what-is-the-wolfram-language.es.html" id="EIWL-WEB-sidebar-what-is-the-wolfram-language">¿Qué es Wolfram Language?</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/practicalities-of-using-the-wolfram-language.es.html" id="EIWL-WEB-sidebar-practicalities-of-using-the-wolfram-language">Aspectos prácticos en el uso de Wolfram Language</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/other-resources.es.html" id="EIWL-WEB-sidebar-other-resources">Otros recursos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/translation-notes.es.html" id="EIWL-WEB-sidebar-translation-notes">Sobre la traducción al español</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/01-starting-out-elementary-arithmetic.es.html" id="EIWL-WEB-sidebar-01-starting-out-elementary-arithmetic"><span class="tocSectionNumber">1</span>Inicio: aritmética elemental</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/02-introducing-functions.es.html" id="EIWL-WEB-sidebar-02-introducing-functions"><span class="tocSectionNumber">2</span>Introducción a las funciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/03-first-look-at-lists.es.html" id="EIWL-WEB-sidebar-03-first-look-at-lists"><span class="tocSectionNumber">3</span>Un primer vistazo a las listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/04-displaying-lists.es.html" id="EIWL-WEB-sidebar-04-displaying-lists"><span class="tocSectionNumber">4</span>Visualización de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/05-operations-on-lists.es.html" id="EIWL-WEB-sidebar-05-operations-on-lists"><span class="tocSectionNumber">5</span>Operaciones con listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/06-making-tables.es.html" id="EIWL-WEB-sidebar-06-making-tables"><span class="tocSectionNumber">6</span>Construcción de tablas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/07-colors-and-styles.es.html" id="EIWL-WEB-sidebar-07-colors-and-styles"><span class="tocSectionNumber">7</span>Colores y estilos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/08-basic-graphics-objects.es.html" id="EIWL-WEB-sidebar-08-basic-graphics-objects"><span class="tocSectionNumber">8</span>Objetos gráficos elementales</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/09-interactive-manipulation.es.html" id="EIWL-WEB-sidebar-09-interactive-manipulation"><span class="tocSectionNumber">9</span>Manipulación interactiva</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/10-images.es.html" id="EIWL-WEB-sidebar-10-images"><span class="tocSectionNumber">10</span>Imágenes</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/11-strings-and-text.es.html" id="EIWL-WEB-sidebar-11-strings-and-text"><span class="tocSectionNumber">11</span>Cadenas de caracteres y texto</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/12-sound.es.html" id="EIWL-WEB-sidebar-12-sound"><span class="tocSectionNumber">12</span>Sonido</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/13-arrays-or-lists-of-lists.es.html" id="EIWL-WEB-sidebar-13-arrays-or-lists-of-lists"><span class="tocSectionNumber">13</span>Arreglos o listas de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink selected" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.es.html" id="selected"><span class="tocSectionNumber">14</span>Coordenadas y gráficos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/15-the-scope-of-the-wolfram-language.es.html" id="EIWL-WEB-sidebar-15-the-scope-of-the-wolfram-language"><span class="tocSectionNumber">15</span>El alcance de Wolfram Language</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/16-real-world-data.es.html" id="EIWL-WEB-sidebar-16-real-world-data"><span class="tocSectionNumber">16</span>Datos del mundo real</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/17-units.es.html" id="EIWL-WEB-sidebar-17-units"><span class="tocSectionNumber">17</span>Unidades</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/18-geocomputation.es.html" id="EIWL-WEB-sidebar-18-geocomputation"><span class="tocSectionNumber">18</span>Geocomputación</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/19-dates-and-times.es.html" id="EIWL-WEB-sidebar-19-dates-and-times"><span class="tocSectionNumber">19</span>Fechas y horas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/20-options.es.html" id="EIWL-WEB-sidebar-20-options"><span class="tocSectionNumber">20</span>Opciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/21-graphs-and-networks.es.html" id="EIWL-WEB-sidebar-21-graphs-and-networks"><span class="tocSectionNumber">21</span>Grafos y redes</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/22-machine-learning.es.html" id="EIWL-WEB-sidebar-22-machine-learning"><span class="tocSectionNumber">22</span>Aprendizaje automático</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/23-more-about-numbers.es.html" id="EIWL-WEB-sidebar-23-more-about-numbers"><span class="tocSectionNumber">23</span>Más sobre números</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/24-more-forms-of-visualization.es.html" id="EIWL-WEB-sidebar-24-more-forms-of-visualization"><span class="tocSectionNumber">24</span>Más formas de visualización</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/25-ways-to-apply-functions.es.html" id="EIWL-WEB-sidebar-25-ways-to-apply-functions"><span class="tocSectionNumber">25</span>Maneras de aplicar funciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/26-pure-anonymous-functions.es.html" id="EIWL-WEB-sidebar-26-pure-anonymous-functions"><span class="tocSectionNumber">26</span>Funciones puras anónimas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/27-applying-functions-repeatedly.es.html" id="EIWL-WEB-sidebar-27-applying-functions-repeatedly"><span class="tocSectionNumber">27</span>Aplicación repetida de funciones </a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/28-tests-and-conditionals.es.html" id="EIWL-WEB-sidebar-28-tests-and-conditionals"><span class="tocSectionNumber">28</span>Pruebas y condicionales</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/29-more-about-pure-functions.es.html" id="EIWL-WEB-sidebar-29-more-about-pure-functions"><span class="tocSectionNumber">29</span>Más sobre las funciones puras</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/30-rearranging-lists.es.html" id="EIWL-WEB-sidebar-30-rearranging-lists"><span class="tocSectionNumber">30</span>Reorganización de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/31-parts-of-lists.es.html" id="EIWL-WEB-sidebar-31-parts-of-lists"><span class="tocSectionNumber">31</span>Partes de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/32-patterns.es.html" id="EIWL-WEB-sidebar-32-patterns"><span class="tocSectionNumber">32</span>Patrones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/33-expressions-and-their-structure.es.html" id="EIWL-WEB-sidebar-33-expressions-and-their-structure"><span class="tocSectionNumber">33</span>Expresiones y su estructura</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/34-associations.es.html" id="EIWL-WEB-sidebar-34-associations"><span class="tocSectionNumber">34</span>Asociaciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/35-natural-language-understanding.es.html" id="EIWL-WEB-sidebar-35-natural-language-understanding"><span class="tocSectionNumber">35</span>Comprensión del lenguaje natural</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/36-creating-websites-and-apps.es.html" id="EIWL-WEB-sidebar-36-creating-websites-and-apps"><span class="tocSectionNumber">36</span>Construcción de sitios web y aplicaciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/37-layout-and-display.es.html" id="EIWL-WEB-sidebar-37-layout-and-display"><span class="tocSectionNumber">37</span>Composición y visualización</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/38-assigning-names-to-things.es.html" id="EIWL-WEB-sidebar-38-assigning-names-to-things"><span class="tocSectionNumber">38</span>Asignación de nombres a cosas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/39-immediate-and-delayed-values.es.html" id="EIWL-WEB-sidebar-39-immediate-and-delayed-values"><span class="tocSectionNumber">39</span>Valores inmediatos y diferidos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/40-defining-your-own-functions.es.html" id="EIWL-WEB-sidebar-40-defining-your-own-functions"><span class="tocSectionNumber">40</span>Funciones definidas por el usuario</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/41-more-about-patterns.es.html" id="EIWL-WEB-sidebar-41-more-about-patterns"><span class="tocSectionNumber">41</span>Más información sobre los patrones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/42-string-patterns-and-templates.es.html" id="EIWL-WEB-sidebar-42-string-patterns-and-templates"><span class="tocSectionNumber">42</span>Cadenas de caracteres y plantillas </a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/43-storing-things.es.html" id="EIWL-WEB-sidebar-43-storing-things"><span class="tocSectionNumber">43</span>Cómo guardar cosas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/44-importing-and-exporting.es.html" id="EIWL-WEB-sidebar-44-importing-and-exporting"><span class="tocSectionNumber">44</span>Importar y exportar</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/45-datasets.es.html" id="EIWL-WEB-sidebar-45-datasets"><span class="tocSectionNumber">45</span>Conjuntos de datos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/46-writing-good-code.es.html" id="EIWL-WEB-sidebar-46-writing-good-code"><span class="tocSectionNumber">46</span>Cómo escribir código de buena calidad</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/47-debugging-your-code.es.html" id="EIWL-WEB-sidebar-47-debugging-your-code"><span class="tocSectionNumber">47</span>Depuración de código</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/what-we-havent-discussed.es.html" id="EIWL-WEB-sidebar-what-we-havent-discussed">Lo que no se vio en el libro</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/being-a-programmer.es.html" id="EIWL-WEB-sidebar-being-a-programmer">Epílogo: ser un programador</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/answers-to-exercises.es.html" id="EIWL-WEB-sidebar-answers-to-exercises">Respuestas a los ejercicios</a>
+    </li>
+    <li id="book-index">
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/book-index.es.html" id="EIWL-WEB-sidebar-book-index">Índice</a>
+    </li>
+    <li class="goToPageClass">
+     <form action="javascript:pageURL();" autocomplete="off"><span class="goToPageText">Jump to Book Page:</span><input id="goToPageInput" type="text" size="6" onkeypress="handle(event)"></form>
+    </li>
+   </ul></nav>
+ </div>
+</div>
+
+<section>
+	<div class="section-inner">
+		<div class="wrapper mainOuter">
+			<div class="mainContent">
+		<div>
+ <a id="p-63">
+ <table class="SectionTitleTable">
+  <tbody><tr><td id="SectionNumber"><span class="SectionNumber">14</span></td><td id="Section"><span class="Section">Coordenadas y gr<span class="special-character AAcute">á</span>ficos</span></td></tr>
+ </tbody></table>
+ </a><div class="bodytext"><a id="p-63"></a><a href="http://reference.wolfram.com/language/ref/ListPlot.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">ListPlot</a> y <a href="http://reference.wolfram.com/language/ref/ListLinePlot.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">ListLinePlot</a> se han venido usando para obtener los gr<span class="special-character AAcute">á</span>ficos de listas de valores dados en forma consecutiva. Si se consideran listas compuestas de <em>parejas de coordenadas,</em> en vez de valores individuales, aquellas funciones podr<span class="special-character AAcute">á</span>n usarse para obtener los gr<span class="special-character AAcute">á</span>ficos de puntos que est<span class="special-character EAcute">é</span>n en posiciones arbitrarias. </div>
+ <div class="CodeCaption"><a id="i-1">Represente gr<span class="special-character AAcute">á</span>ficamente una lista de valores donde cada uno de ellos aparece despu<span class="special-character EAcute">é</span>s del anterior:</a></div><a id="i-1">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[1]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_1-i.es.png" height="20" width="213" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_1-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_1_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[1]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-1-o.es.png" width="176" height="118" id="14-coordinates-and-graphics-io-1-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="i-1"></a><a id="i-2">Represente gr<span class="special-character AAcute">á</span>ficamente una secuencia de puntos arbitrarios, especificados por sus coordenadas {<em>x</em>, <em>y</em>}:</a></div><a id="i-2">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[2]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_2-i.es.png" height="20" width="336" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_2-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_2_out" class="IFL"><span class="close">✕</span><pre id="io_2_out_text" class="text">ListLinePlot[{{1,1},{1,5},{6,4},{6,2},{2,3},{5,5}}]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[2]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-2-o.es.png" width="175" height="119" id="14-coordinates-and-graphics-io-2-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-2"></a><a id="i-3">Aqu<span class="special-character IAcute">í</span> la posici<span class="special-character OAcute">ó</span>n de cada punto est<span class="special-character AAcute">á</span> especificada por sus coordenadas {<em>x</em>, <em>y</em>}. De acuerdo con el uso convencional en matem<span class="special-character AAcute">á</span>ticas, el valor <em>x</em> indica hasta qu<span class="special-character EAcute">é</span> distancia se encuentra el punto en la direcci<span class="special-character OAcute">ó</span>n horizontal, mientras que el valor <em>y</em> indica hasta qu<span class="special-character EAcute">é</span> distancia est<span class="special-character AAcute">á</span> en la direcci<span class="special-character OAcute">ó</span>n vertical. </a></div><a id="i-3">
+ <div class="CodeCaption">Genere una secuencia de coordenadas {<em>x</em>, <em>y</em>} aleatorias:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[3]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_3-i.es.png" height="20" width="209" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_3-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_3_out" class="IFL"><span class="close">✕</span><pre id="io_3_out_text" class="text">Table[RandomInteger[20],10,2]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[3]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-3-o.es.png" width="457" height="19" id="14-coordinates-and-graphics-io-3-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Otra forma de obtener coordenadas aleatorias es:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[4]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_4-i.es.png" height="20" width="175" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_4-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_4_out" class="IFL"><span class="close">✕</span><pre id="io_4_out_text" class="text">RandomInteger[20,{10,2}]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[4]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-4-o.es.png" width="487" height="19" id="14-coordinates-and-graphics-io-4-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="i-3"></a><a id="p-64">Represente gr<span class="special-character AAcute">á</span>ficamente 100 puntos con coordenadas aleatorias:</a></div><a id="p-64">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[5]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_5-i.es.png" height="20" width="291" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_5-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_5_out" class="IFL"><span class="close">✕</span><pre id="io_5_out_text" class="text">ListPlot[Table[RandomInteger[1000],100,2]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[5]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-5-o.es.png" width="215" height="129" id="14-coordinates-and-graphics-io-5-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="p-64"></a><a id="graphics-with-several-objects">Las coordenadas pueden usarse para construir gr<span class="special-character AAcute">á</span>ficos. Anteriormente se vio c<span class="special-character OAcute">ó</span>mo graficar un c<span class="special-character IAcute">í</span>rculo. Para hacer gr<span class="special-character AAcute">á</span>ficos de m<span class="special-character AAcute">á</span>s de un c<span class="special-character IAcute">í</span>rculo hay que indicar d<span class="special-character OAcute">ó</span>nde queda cada uno</a><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/08-basic-graphics-objects.es.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-14-coordinates-and-graphics.es" target="_blank">, lo que se consigue dando las coordenadas de sus centros</a>. </div>
+ <div class="CodeCaption"><a id="i-4">Sit<span class="special-character UAcute">ú</span>e varios c<span class="special-character IAcute">í</span>rculos, dando las coordenadas de sus centros:</a></div><a id="i-4">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[6]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_6-i.es.png" height="20" width="331" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_6-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_6_out" class="IFL"><span class="close">✕</span><pre id="io_6_out_text" class="text">Graphics[{Circle[{1,1}],Circle[{1,2}],Circle[{3,1}]}]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[6]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-6-o.es.png" width="135" height="103" id="14-coordinates-and-graphics-io-6-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Es m<span class="special-character AAcute">á</span>s f<span class="special-character AAcute">á</span>cil distinguir cada uno de los c<span class="special-character IAcute">í</span>rculos cuando se aplican estilos de color:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[7]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_7-i.es.png" height="20" width="571" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_7-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_7_out" class="IFL"><span class="close">✕</span><pre id="io_7_out_text" class="text">Graphics[{Style[Circle[{1,1}],Red],Style[Circle[{1,2}],Green],  Style[Circle[{3,1}],Blue]}]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[7]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-7-o.es.png" width="135" height="103" id="14-coordinates-and-graphics-io-7-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Presente gr<span class="special-character AAcute">á</span>ficamente 100 c<span class="special-character IAcute">í</span>rculos colocados al azar, donde las coordenadas de los centros est<span class="special-character EAcute">é</span>n entre 0 y 50:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[8]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_8-i.es.png" height="20" width="329" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_8-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_8_out" class="IFL"><span class="close">✕</span><pre id="io_8_out_text" class="text">Graphics[Table[Circle[RandomInteger[50,2]],100]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[8]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-8-o.es.png" width="142" height="142" id="14-coordinates-and-graphics-io-8-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="i-4"></a><a id="p-65"></a><a id="i-5">Un arreglo de c<span class="special-character IAcute">í</span>rculos en 2D, acomodados de manera que apenas se toquen uno con otro:</a></div><a id="i-5">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[9]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_9-i.es.png" height="20" width="348" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_9-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_9_out" class="IFL"><span class="close">✕</span><pre id="io_9_out_text" class="text">Graphics[Table[Circle[{x,y}],{x,0,10,2},{y,0,10,2}]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[9]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-9-o.es.png" width="142" height="142" id="14-coordinates-and-graphics-io-9-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-5"></a><a id="circle-x-y"></a><a id="i-6"><span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/Circle.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Circle</a>[{<span class="CodeVariable">x</span>,<span class="CodeVariable">y</span>}] quiere decir un c<span class="special-character IAcute">í</span>rculo con centro en la posici<span class="special-character OAcute">ó</span>n <span class="InlineCode">{<span class="CodeVariable">x</span>,<span class="CodeVariable">y</span>}</span>, y si no se dice otra cosa, ese c<span class="special-character IAcute">í</span>rculo tiene radio 1. Pero puede hacerse un c<span class="special-character IAcute">í</span>rculo de radio cualquiera usando <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Circle.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Circle</a>[{<span class="CodeVariable">x</span>,<span class="CodeVariable">y</span>},<span class="CodeVariable">r</span>]</span>.</div>
+ <div class="CodeCaption">Use radios diferentes para c<span class="special-character IAcute">í</span>rculos diferentes:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[10]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_10-i.es.png" height="20" width="412" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_10-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_10_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[10]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-10-o.es.png" width="140" height="107" id="14-coordinates-and-graphics-io-10-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Cree 10 c<span class="special-character IAcute">í</span>rculos conc<span class="special-character EAcute">é</span>ntricos:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[11]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_11-i.es.png" height="20" width="251" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_11-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_11_out" class="IFL"><span class="close">✕</span><pre id="io_11_out_text" class="text">Graphics[Table[Circle[{0,0},r],{r,10}]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[11]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-11-o.es.png" width="135" height="135" id="14-coordinates-and-graphics-io-11-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Dibuje c<span class="special-character IAcute">í</span>rculos cada vez m<span class="special-character AAcute">á</span>s grandes cuyos centros se vayan corriendo progresivamente hacia la derecha:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[12]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_12-i.es.png" height="20" width="254" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_12-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_12_out" class="IFL"><span class="close">✕</span><pre id="io_12_out_text" class="text">Graphics[Table[Circle[{x,0},x],{x,10}]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[12]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-12-o.es.png" width="135" height="135" id="14-coordinates-and-graphics-io-12-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption"><a id="p-66">Escoja al azar tanto las posiciones como los radios:</a></div><a id="p-66">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[13]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_13-i.es.png" height="20" width="462" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_13-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_13_out" class="IFL"><span class="close">✕</span><pre id="io_13_out_text" class="text">Graphics[Table[Circle[RandomInteger[50,2],RandomInteger[10]],100]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[13]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-13-o.es.png" width="142" height="130" id="14-coordinates-and-graphics-io-13-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="p-66"></a><a id="i-7"></a><a href="http://reference.wolfram.com/language/ref/RegularPolygon.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">RegularPolygon</a> funciona de manera muy parecida a <a href="http://reference.wolfram.com/language/ref/Circle.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Circle</a> y <a href="http://reference.wolfram.com/language/ref/Disk.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Disk</a>, salvo que, adem<span class="special-character AAcute">á</span>s de dar la posici<span class="special-character OAcute">ó</span>n del centro y el tama<span class="special-character NTilde">ñ</span>o, hay que indicar de cu<span class="special-character AAcute">á</span>ntos lados es el pol<span class="special-character IAcute">í</span>gono.</div>
+ <div class="CodeCaption">Presente gr<span class="special-character AAcute">á</span>ficamente un pent<span class="special-character AAcute">á</span>gono regular de tama<span class="special-character NTilde">ñ</span>o 1 y un hept<span class="special-character AAcute">á</span>gono regular de tama<span class="special-character NTilde">ñ</span>o 0.5:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[14]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_14-i.es.png" height="20" width="448" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_14-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_14_out" class="IFL"><span class="close">✕</span><pre id="io_14_out_text" class="text">Graphics[{RegularPolygon[{1,1},1,5],  RegularPolygon[{3,1},0.5,7]}]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[14]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-14-o.es.png" width="165" height="90" id="14-coordinates-and-graphics-io-14-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Pueden mezclarse diferentes clases de objetos gr<span class="special-character AAcute">á</span>ficos:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[15]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_15-i.es.png" height="44" width="537" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_15-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_15_out" class="IFL"><span class="close">✕</span><pre id="io_15_out_text" class="text">Graphics[{RegularPolygon[{1,1},1,5],Circle[{1,1},1],  RegularPolygon[{3,1},.5,7],Disk[{2,2},.5]}]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[15]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-15-o.es.png" width="165" height="120" id="14-coordinates-and-graphics-io-15-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="bodytext"><a id="i-8">Para producir gr<span class="special-character AAcute">á</span>ficos arbitrarios es necesario utilizar las <em>primitivas gr<span class="special-character AAcute">á</span>ficas </em>b<span class="special-character AAcute">á</span>sicas </a><a href="http://reference.wolfram.com/language/ref/Point.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Point</a>, <a href="http://reference.wolfram.com/language/ref/Line.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Line</a> y <a href="http://reference.wolfram.com/language/ref/Polygon.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Polygon</a>. <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Point.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Point</a>[{<span class="CodeVariable">x</span>,<span class="CodeVariable">y</span>}]</span> representa un punto en la posici<span class="special-character OAcute">ó</span>n de coordenadas <span class="InlineCode">{<span class="CodeVariable">x</span>,<span class="CodeVariable">y</span>}</span>. Para obtener varios puntos se puede dar una lista de <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Point.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Point</a>[{<span class="CodeVariable">x</span>,<span class="CodeVariable">y</span>}]</span>s, o bien una lista de coordenadas de posici<span class="special-character OAcute">ó</span>n dentro de un <span class="special-character UAcute">ú</span>nico <a href="http://reference.wolfram.com/language/ref/Point.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Point</a>.</div>
+ <div class="CodeCaption">Presentaci<span class="special-character OAcute">ó</span>n gr<span class="special-character AAcute">á</span>fica de tres puntos en posiciones especificadas:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[16]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_16-i.es.png" height="20" width="336" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_16-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_16_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[16]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-16-o.es.png" width="112" height="85" id="14-coordinates-and-graphics-io-16-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption"><a id="p-67">La forma alternativa es reunir todas las coordenadas de posici<span class="special-character OAcute">ó</span>n en una sola lista:</a></div><a id="p-67">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[17]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_17-i.es.png" height="20" width="249" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_17-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_17_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[17]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-17-o.es.png" width="120" height="91" id="14-coordinates-and-graphics-io-17-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="p-67"></a><a id="i-9">Dibuje una l<span class="special-character IAcute">í</span>nea que una las posiciones:</a></div><a id="i-9">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[18]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_18-i.es.png" height="20" width="242" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_18-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_18_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[18]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-18-o.es.png" width="118" height="90" id="14-coordinates-and-graphics-io-18-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="i-9"></a><a id="i-10">Haga un pol<span class="special-character IAcute">í</span>gono cuyas esquinas est<span class="special-character EAcute">é</span>n en las posiciones que se indiquen:</a></div><a id="i-10">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[19]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_19-i.es.png" height="20" width="267" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_19-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_19_out" class="IFL"><span class="close">✕</span><pre id="io_19_out_text" class="text">Graphics[Polygon[{{0,0},{2,0},{1,1.5}}]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[19]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-19-o.es.png" width="118" height="90" id="14-coordinates-and-graphics-io-19-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-10"></a><a href="http://reference.wolfram.com/language/ref/RegularPolygon.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">RegularPolygon</a> construye un pol<span class="special-character IAcute">í</span>gono en que todos los lados y los <span class="special-character AAcute">á</span>ngulos son iguales. <a href="http://reference.wolfram.com/language/ref/Polygon.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Polygon</a> hace un pol<span class="special-character IAcute">í</span>gono cualquiera, aun si se quiere que se doble sobre s<span class="special-character IAcute">í</span> mismo, por extra<span class="special-character NTilde">ñ</span>o que parezca. </div>
+ <div class="CodeCaption">Un pol<span class="special-character IAcute">í</span>gono de 20 esquinas en posiciones aleatorias entre 0 y 100; este pol<span class="special-character IAcute">í</span>gono se dobla sobre s<span class="special-character IAcute">í</span> mismo:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[20]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_20-i.es.png" height="20" width="345" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_20-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_20_out" class="IFL"><span class="close">✕</span><pre id="io_20_out_text" class="text">Graphics[Polygon[Table[RandomInteger[100],20,2]]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[20]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-20-o.es.png" width="160" height="158" id="14-coordinates-and-graphics-io-20-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="bodytext"><a id="p-68"></a><a id="i-11">Lo que se ha hecho hasta ahora puede generalizarse a 3D. En vez de dos coordenadas {<em>x</em>, <em>y</em>} ahora se usan tres: {<em>x</em>, <em>y, z</em>}. En Wolfram Language, la <em>x</em> aumenta hacia la derecha a trav<span class="special-character EAcute">é</span>s de la pantalla, la <em>y</em> se <span class="special-character OpenCurlyDoubleQuote">“</span>mete dentro<span class="special-character CloseCurlyDoubleQuote">”</span> de la pantalla, y la <em>z</em> aumenta de abajo hacia arriba.</a></div><a id="i-11">
+ <div class="CodeCaption">Dos esferas apiladas, una encima de la otra:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[21]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_21-i.es.png" height="20" width="309" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_21-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_21_out" class="IFL"><span class="close">✕</span><pre id="io_21_out_text" class="text">Graphics3D[{Sphere[{0,0,0}],Sphere[{0,0,2}]}]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[21]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-21-o.es.png" width="110" height="178" id="14-coordinates-and-graphics-io-21-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Un arreglo en 3D de esferas (un radio com<span class="special-character UAcute">ú</span>n de 1/2 hace que apenas se toquen):</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[22]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_22-i.es.png" height="20" width="383" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_22-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_22_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[22]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-22-o.es.png" width="136" height="147" id="14-coordinates-and-graphics-io-22-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Un arreglo de puntos en 3D:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[23]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_23-i.es.png" height="20" width="365" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_23-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_23_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[23]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-23-o.es.png" width="142" height="154" id="14-coordinates-and-graphics-io-23-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="i-11"></a><a id="p-69">50 esferas con posiciones aleatorias en 3D, donde cada coordenada var<span class="special-character IAcute">í</span>a entre 0 y 50:</a></div><a id="p-69">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[24]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_24-i.es.png" height="20" width="347" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_24-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_24_out" class="IFL"><span class="close">✕</span><pre id="io_24_out_text" class="text">Graphics3D[Table[Sphere[RandomInteger[10,3]],50]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[24]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-24-o.es.png" width="135" height="140" id="14-coordinates-and-graphics-io-24-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="p-69"></a><a id="i-12">Los objetos en 3D aparecen como s<span class="special-character OAcute">ó</span>lidos, a menos que se indique otra cosa, de tal manera que no puede verse a trav<span class="special-character EAcute">é</span>s de ellos. Pero as<span class="special-character IAcute">í</span> como puede especificarse el color de algo, tambi<span class="special-character EAcute">é</span>n puede especificarse su <em>opacidad</em>. Opacidad 1 significa completamente opaco, de modo que no puede verse nada a trav<span class="special-character EAcute">é</span>s del objeto; opacidad 0 quiere decir completamente transparente.</a></div><a id="i-12">
+ <div class="CodeCaption">Especifique una opacidad de 0.5 para todas las esferas:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[25]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_25-i.es.png" height="20" width="475" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_25-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_25_out" class="IFL"><span class="close">✕</span><pre id="io_25_out_text" class="text">Graphics3D[ Table[Style[Sphere[RandomInteger[10,3]],Opacity[0.5]],50]]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[25]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-25-o.es.png" width="135" height="146" id="14-coordinates-and-graphics-io-25-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-12">El uso de </a><a href="http://reference.wolfram.com/language/ref/Manipulate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Manipulate</a> permite la manipulaci<span class="special-character OAcute">ó</span>n de objetos gr<span class="special-character AAcute">á</span>ficos en 2D o en 3D. </div>
+ <div class="CodeCaption">Manipule la posici<span class="special-character OAcute">ó</span>n y la opacidad de la segunda esfera:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[26]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io_26-i.es.png" height="44" width="506" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_26-14-coordinates-and-graphics.es" class="km-track-click-no-url">
+     </div><div id="io_26_out" class="IFL"><span class="close">✕</span><pre id="io_26_out_text" class="text">Manipulate[ Graphics3D[{Sphere[{0,0,0}],   Style[Sphere[{x,0,0}],Opacity[o]]}],{x,1,3},{o,0.5,1}]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[26]=</td><td class="Output"><div class="wideimage">
+      <img src="./Coordenadas y gráficos_14_files/14-coordinates-and-graphics-io-26-o.es.png" width="246" height="282" id="14-coordinates-and-graphics-io-26-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="VocabularySection"><a id="p-70"></a><a id="Vocabulary">Vocabulario</a></div><a id="Vocabulary">
+ <div class="VocabularyTable">
+  <table class="nogridboxdividers">
+   <colgroup><col>
+   <col>
+   <col>
+   </colgroup><tbody><tr class="lineAbove" style=""><td><a href="http://reference.wolfram.com/language/ref/Point.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Point</a>[{<span class="CodeVariableLrg">x</span>,<span class="CodeVariableLrg">y</span>}]</td><td> </td><td><span class="VocabularyText">un punto con coordenadas <span class="InlineCode">{<span class="CodeVariable">x</span>, <span class="CodeVariable">y</span>}</span> </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Line.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Line</a>[{{1,1},{2,4},{1,2}}]</td><td> </td><td><span class="VocabularyText">una recta que conecta las coordenadas especificadas </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Circle.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Circle</a>[{<span class="CodeVariableLrg">x</span>,<span class="CodeVariableLrg">y</span>}]</td><td> </td><td><span class="VocabularyText">un c<span class="special-character IAcute">í</span>rculo con centro en <span class="InlineCode">{<span class="CodeVariable">x</span>, <span class="CodeVariable">y</span>}</span> </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Circle.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Circle</a>[{<span class="CodeVariableLrg">x</span>,<span class="CodeVariableLrg">y</span>},<span class="CodeVariableLrg">r</span>]</td><td> </td><td><span class="VocabularyText">un c<span class="special-character IAcute">í</span>rculo con centro en <span class="InlineCode">{<span class="CodeVariable">x</span>, <span class="CodeVariable">y</span>}</span> y de radio <span class="InlineCode"><span class="CodeVariable">r</span></span> </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/RegularPolygon.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">RegularPolygon</a>[{<span class="CodeVariableLrg">x</span>,<span class="CodeVariableLrg">y</span>},<span class="CodeVariableLrg">s</span>,<span class="CodeVariableLrg">n</span>]</td><td> </td><td><span class="VocabularyText">un pol<span class="special-character IAcute">í</span>gono regular con centro <span class="InlineCode">{<span class="CodeVariable">x</span>, <span class="CodeVariable">y</span>}</span><br>y <span class="InlineCode"><span class="CodeVariable">n</span></span> lados, cada uno de longitud <span class="InlineCode"><span class="CodeVariable">s</span></span> </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Polygon.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Polygon</a>[{{1,1},{2,4},{1,2}}]</td><td> </td><td><span class="VocabularyText">un pol<span class="special-character IAcute">í</span>gono con las esquinas especificadas </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Sphere.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Sphere</a>[{<span class="CodeVariableLrg">x</span>,<span class="CodeVariableLrg">y</span>,<span class="CodeVariableLrg">z</span>}]</td><td> </td><td><span class="VocabularyText">una esfera con centro en <span class="InlineCode">{<span class="CodeVariable">x</span>, <span class="CodeVariable">y</span>, <span class="CodeVariable">z</span>}</span> </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Sphere.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Sphere</a>[{<span class="CodeVariableLrg">x</span>,<span class="CodeVariableLrg">y</span>,<span class="CodeVariableLrg">z</span>},<span class="CodeVariableLrg">r</span>]</td><td> </td><td><span class="VocabularyText">una esfera con centro en <span class="InlineCode">{<span class="CodeVariable">x</span>, <span class="CodeVariable">y</span>, <span class="CodeVariable">z</span>}</span> y de radio <span class="InlineCode"><span class="CodeVariable">r</span></span></span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Opacity.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Opacity</a>[<span class="CodeVariableLrg">level</span>]</td><td> </td><td><span class="VocabularyText">especifica un nivel de opacidad (0: transparente; 1: s<span class="special-character OAcute">ó</span>lido) </span></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="ExerciseSection" id="ExerciseSection"><a id="Vocabulary"></a><a id="Exercises">Ejercicios</a><div class="NewCheckYourAnswers"><a id="Exercises">
+   </a><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-new-check-your-exercises-in-cloud-14-coordinates-and-graphics.es">NUEVO: Verifique sus respuestas en Wolfram Cloud</a>
+  </div></div>
+ <div class="Exercise" id="14.1"><span class="ExerciseNumber">14.1</span>Presente gr<span class="special-character AAcute">á</span>ficamente 5 c<span class="special-character IAcute">í</span>rculos conc<span class="special-character EAcute">é</span>ntricos centrados en <span class="InlineCode">{0, 0}</span> con radios 1, 2, <span class="GrayPointSix">...</span> , 5.&nbsp;<a href="javascript:OpenCloseExercises(&#39;14.1&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.1-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.1&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.1-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.1-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.1-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="14.2"><span class="ExerciseNumber">14.2</span>Cree 10 c<span class="special-character IAcute">í</span>rculos conc<span class="special-character EAcute">é</span>ntricos con colores aleatorios.&nbsp;<a href="javascript:OpenCloseExercises(&#39;14.2&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.2-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.2&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.2-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.2-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.2-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="14.3"><span class="ExerciseNumber">14.3</span>Presente gr<span class="special-character AAcute">á</span>ficamente una cuadr<span class="special-character IAcute">í</span>cula de 10<span class="special-character Times">×</span>10 c<span class="special-character IAcute">í</span>rculos de radio 1 en los puntos de coordenadas enteras <span class="InlineCode">{x, y}</span>.&nbsp;<a href="javascript:OpenCloseExercises(&#39;14.3&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.3-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.3&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.3-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.3-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.3-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="14.4"><span class="ExerciseNumber">14.4</span>Forme una cuadr<span class="special-character IAcute">í</span>cula de 10<span class="special-character Times">×</span>10 puntos cuyas coordenadas sean enteras en las posiciones del 1 al 10.&nbsp;<a href="javascript:OpenCloseExercises(&#39;14.4&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.4-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.4&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.4-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.4-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.4-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="14.5"><span class="ExerciseNumber">14.5</span>Escriba un <a href="http://reference.wolfram.com/language/ref/Manipulate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Manipulate</a> con entre 1 y 20 c<span class="special-character IAcute">í</span>rculos conc<span class="special-character EAcute">é</span>ntricos.&nbsp;<a href="javascript:OpenCloseExercises(&#39;14.5&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.5-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.5&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.5-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.5-out.png" class="ExerciseBoxOutputImage" width="285" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.5-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="14.6"><span class="ExerciseNumber">14.6</span>Coloque 50 esferas, de colores aleatorios, en coordenadas enteras aleatorias entre 0 y 10.&nbsp;<a href="javascript:OpenCloseExercises(&#39;14.6&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.6-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.6&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.6-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.6-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.6-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <a id="i-13">
+ </a><div class="Exercise" id="14.7"><a id="i-13"><span class="ExerciseNumber">14.7</span>Haga un arreglo de 10<span class="special-character Times">×</span>10<span class="special-character Times">×</span>10 esferas con componentes RGB entre 0 y 1. Las esferas deben estar centradas en coordenadas enteras de manera que apenas se toquen una con otra.&nbsp;</a><a href="javascript:OpenCloseExercises(&#39;14.7&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.7-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.7&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.7-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.7-out.png" class="ExerciseBoxOutputImage" width="285" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.7-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="14.8"><span class="ExerciseNumber">14.8</span>Formule un <a href="http://reference.wolfram.com/language/ref/Manipulate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Manipulate</a> que contenga c<span class="special-character IAcute">í</span>rculos de radio x, centrados en <span class="InlineCode">{t*x, 0},  donde t var<span class="special-character IAcute">í</span>e entre</span> <span class="special-character Minus">−</span>2 y +2, y tal que x var<span class="special-character IAcute">í</span>e entre 1 y 10.&nbsp;<a href="javascript:OpenCloseExercises(&#39;14.8&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.8-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.8&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.8-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.8-out.png" class="ExerciseBoxOutputImage" width="285" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.8-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="14.9"><span class="ExerciseNumber">14.9</span>Forme un arreglo de 5<span class="special-character Times">×</span>5 hex<span class="special-character AAcute">á</span>gonos regulares con lados de 1/2 y centrados en puntos enteros.&nbsp;<a href="javascript:OpenCloseExercises(&#39;14.9&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.9-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.9&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.9-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.9-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.9-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <a id="LastCellOfAPage">
+ </a><div class="Exercise" id="14.10"><a id="LastCellOfAPage"><span class="ExerciseNumber">14.10</span>Trace una l<span class="special-character IAcute">í</span>nea en 3D que pase por 50 puntos con coordenadas enteras elegidas al azar entre 0 y 50.&nbsp;</a><a href="javascript:OpenCloseExercises(&#39;14.10&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-14.10-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;14.10&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-14.10-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-14.10-out.png" class="ExerciseBoxOutputImage" width="216" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-14.10-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x14.1"><span class="ExerciseWebNumber">+14.1</span>Establezca un <a href="http://reference.wolfram.com/language/ref/Manipulate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Manipulate</a> para crear una cuadr<span class="special-character IAcute">í</span>cula regular de <span class="InlineCode">n<span class="special-character Times">×</span>n</span> puntos en posiciones enteras, donde n var<span class="special-character IAcute">í</span>e de 5 a 20.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x14.1&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x14.1-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x14.1&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x14.1-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-x14.1-out.png" class="ExerciseBoxOutputImage" width="285" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x14.1-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x14.2"><span class="ExerciseWebNumber">+14.2</span>Coloque 30 c<span class="special-character IAcute">í</span>rculos de radio 1, con colores aleatorios, en coordenadas enteras al azar, entre 0 y 10.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x14.2&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x14.2-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x14.2&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x14.2-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-x14.2-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x14.2-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x14.3"><span class="ExerciseWebNumber">+14.3</span>Muestre 100 pol<span class="special-character CapitalIAcute">Í</span>gonos con tama<span class="special-character NTilde">ñ</span>os de lado aleatorios entre 3 y 8, con opacidad de .5 y colores aleatorios y con coordenadas aleatorias enteras entre 0 y 100.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x14.3&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x14.3-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x14.3&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x14.3-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-x14.3-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x14.3-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x14.4"><span class="ExerciseWebNumber">+14.4</span>Haga un arreglo de 10<span class="special-character Times">×</span>10<span class="special-character Times">×</span>10 puntos en 3D, donde cada punto tenga un color diferente.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x14.4&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x14.4-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x14.4&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x14.4-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-x14.4-out.png" class="ExerciseBoxOutputImage" width="262" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x14.4-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x14.5"><span class="ExerciseWebNumber">+14.5</span>Tome los dos primeros d<span class="special-character IAcute">í</span>gitos de los n<span class="special-character UAcute">ú</span>meros del 10 al 100 y trazar una l<span class="special-character IAcute">í</span>nea que los tenga como coordenadas.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x14.5&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x14.5-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x14.5&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x14.5-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-x14.5-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x14.5-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x14.6"><span class="ExerciseWebNumber">+14.6</span>Tome los 3 primeros d<span class="special-character IAcute">í</span>gitos de los n<span class="special-character UAcute">ú</span>meros entre 100 y 1000 y dibujar una l<span class="special-character IAcute">í</span>nea en 3D que los use como coordenadas.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x14.6&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x14.6-14-coordinates-and-graphics.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x14.6&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x14.6-14-coordinates-and-graphics.es" class="km-track-click-no-url"><img src="./Coordenadas y gráficos_14_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Coordenadas y gráficos_14_files/answers-to-exercises-x14.6-out.png" class="ExerciseBoxOutputImage" width="318" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Coordenadas y gráficos_14_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/14-coordinates-and-graphics-exercises.nb#sidebar=eiwl/14-coordinates-and-graphics" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x14.6-14-coordinates-and-graphics.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="QASection"><a id="p-71"></a><a id="QAndA">Preguntas y respuestas</a></div><a id="QAndA">
+ <div class="Question"><span class="special-character DownQuestion">¿</span>Qu<span class="special-character EAcute">é</span> es lo que determina la amplitud de las coordenadas que se muestran?</div>
+ </a><div class="Answer"><a id="QAndA">Por defecto, se selecciona autom<span class="special-character AAcute">á</span>ticamente, pero se puede fijar expl<span class="special-character IAcute">í</span>citamente usando la opci<span class="special-character OAcute">ó</span>n </a><a href="http://reference.wolfram.com/language/ref/PlotRange,.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">PlotRange,</a> como se explica en la <a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/20-options.es.html#PlotRange" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-14-coordinates-and-graphics.es" target="_blank">Secci<span class="special-character OAcute">ó</span>n 20</a>.</div>
+ <div class="Question"><span class="special-character DownQuestion">¿</span>C<span class="special-character OAcute">ó</span>mo pueden colocarse ejes en los gr<span class="special-character AAcute">á</span>ficos?</div>
+ <div class="Answer"><a id="i-14">Usando la opci<span class="special-character OAcute">ó</span>n <span class="InlineCode">Axes<span class="special-character Rule"></span>True</span> (ver la </a><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/20-options.es.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-14-coordinates-and-graphics.es" target="_blank">Secci<span class="special-character OAcute">ó</span>n 20</a>) .</div>
+ <div class="Question"><span class="special-character DownQuestion">¿</span>C<span class="special-character OAcute">ó</span>mo puede cambiarse la apariencia de los bordes de un pol<span class="special-character IAcute">í</span>gono o disco?</div>
+ <div class="Answer"><a id="i-15">Usando </a><a href="http://reference.wolfram.com/language/ref/EdgeForm.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">EdgeForm</a> dentro de <a href="http://reference.wolfram.com/language/ref/Style.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Style</a>.</div>
+ <div class="Question"><span class="special-character DownQuestion">¿</span>Cu<span class="special-character AAcute">á</span>les otras construcciones hay?</div>
+ <div class="Answer"><a id="i-16"></a><a href="http://reference.wolfram.com/language/guide/SymbolicGraphicsLanguage.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-14-coordinates-and-graphics.es" target="_blank">Hay bastantes</a>. Algunos ejemplos son <a href="http://reference.wolfram.com/language/ref/Text.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Text</a> (para colocar texto dentro de un gr<span class="special-character AAcute">á</span>fico), <a href="http://reference.wolfram.com/language/ref/Arrow.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Arrow</a> (para colocar puntas de flecha en l<span class="special-character IAcute">í</span>neas, etc.), <a href="http://reference.wolfram.com/language/ref/Inset.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Inset</a> (para poner gr<span class="special-character AAcute">á</span>ficos dentro de otros gr<span class="special-character AAcute">á</span>ficos) y <a href="http://reference.wolfram.com/language/ref/FilledCurve.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">FilledCurve</a>.</div>
+ <div class="Question"><span class="special-character DownQuestion">¿</span>C<span class="special-character OAcute">ó</span>mo se quita la caja alrededor de las gr<span class="special-character AAcute">á</span>ficos 3D?</div>
+ <div class="Answer"><a id="i-17">Usando la opci<span class="special-character OAcute">ó</span>n Boxed<span class="special-character Rule"></span>False (ver la </a><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/20-options.es.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-14-coordinates-and-graphics.es" target="_blank">Secci<span class="special-character OAcute">ó</span>n 20</a>) .</div>
+ <div class="TechNoteGroup">
+  <div class="TechNoteSection"><a id="TechNotes">Notas t<span class="special-character EAcute">é</span>cnicas</a></div><a id="TechNotes">
+  </a><ul class="TechNoteList"><a id="TechNotes">
+   </a><li class="TechNote"><a id="TechNotes">Los c<span class="special-character IAcute">í</span>rculos aleatorios dibujados en esta secci<span class="special-character OAcute">ó</span>n tienen coordenadas enteras, pero se puede usar </a><a href="http://reference.wolfram.com/language/ref/RandomReal.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">RandomReal</a> para colocarlos en coordenadas arbitrarias.</li>
+   <li class="TechNote">En vez de usar <a href="http://reference.wolfram.com/language/ref/Style.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Style</a>, puede darse una lista de directivas para gr<span class="special-character AAcute">á</span>ficos, tal como por ejemplo <span class="InlineCode">{<a href="http://reference.wolfram.com/language/ref/Red.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Red</a>, <a href="http://reference.wolfram.com/language/ref/Disk.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Disk</a>[]}</span>. Una directiva particular afecta a todos los objetos gr<span class="special-character AAcute">á</span>ficos que aparezcan despu<span class="special-character EAcute">é</span>s dentro de dicha lista.</li>
+   <li class="TechNote">En gr<span class="special-character AAcute">á</span>ficos 2D, los objetos se dibujan en el orden en que se escriben, as<span class="special-character IAcute">í</span> que los <span class="special-character UAcute">ú</span>ltimos que aparezcan pueden ocultar a los primeros. </li>
+   <li class="TechNote"><a id="i-18">Pueden aplicarse transformaciones geom<span class="special-character EAcute">é</span>tricas a los objetos gr<span class="special-character AAcute">á</span>ficos utilizando funciones como </a><a href="http://reference.wolfram.com/language/ref/Translate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Translate</a>, <a href="http://reference.wolfram.com/language/ref/Scale.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Scale</a> y <a href="http://reference.wolfram.com/language/ref/Rotate.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Rotate</a>.</li>
+   <li class="TechNote"><a id="i-19">Los pol<span class="special-character IAcute">í</span>gonos que se doblen sobre s<span class="special-character IAcute">í</span> mismos (como para formar un corbat<span class="special-character IAcute">í</span>n) se muestran usando una regla de par-impar.</a></li><a id="i-19">
+   </a><li class="TechNote"><a id="i-19"></a><a id="i-20">Los gr<span class="special-character AAcute">á</span>ficos 3D pueden incluir </a><a href="http://reference.wolfram.com/language/ref/Cuboid.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Cuboid</a>, <a href="http://reference.wolfram.com/language/ref/Tetrahedron.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">Tetrahedron</a> y poliedros especificados en <a href="http://reference.wolfram.com/language/ref/PolyhedronData.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-14-coordinates-and-graphics.es" target="_blank">PolyhedronData</a>, as<span class="special-character IAcute">í</span> como formas definidas mediante mallas arbitrarias de puntos en el espacio 3D. </li>
+  </ul>
+ </div>
+ <div class="MoreExploreGroup">
+  <div class="MoreExploreSection"><a id="MoreToExplore">Paea explorar m<span class="special-character AAcute">á</span>s</a></div><a id="MoreToExplore">
+  </a><div class="MoreExploreList"><a id="MoreToExplore">
+   </a><div class="MoreExplore"><a id="MoreToExplore">
+    </a><a id="LastCellOfAPage">
+    </a><a href="http://reference.wolfram.com/language/guide/SymbolicGraphicsLanguage.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-14-coordinates-and-graphics.es" target="_blank">Gu<span class="special-character IAcute">í</span>a para Graphics en Wolfram Language<span class="special-character NonBreakingSpace">&nbsp;</span><span class="special-character RightGuillemet">»</span></a>
+   </div>
+  </div>
+ </div>
+</div>
+			<div class="FooterCopyright"><div id="_language-picker" class="margin-t-1__600"> <i class="_icon-r7-c2"></i> <select id="_language-picker-select"> <option disabled="" selected="">Español</option> <option value=".en">English</option> </select> </div>Copyright 2019</div></div>
+		
+			<div class="bottomSpacerCell">&nbsp;<div id="FooterCopyright" class="FooterCopyright" style="margin-left: 120px;"><div id="_language-picker" class="margin-t-1__600"> <i class="_icon-r7-c2"></i> <select id="_language-picker-select"> <option disabled="" selected="">Español</option> <option value=".en">English</option> </select> </div>Copyright 2019</div></div>
+		</div>
+	</div>
+</section>
+	<div class="GoToCloudVersion" id="GoToCloudVersion"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.es-cloud.html" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-switch-to-cloud-embed-14-coordinates-and-graphics.es"><img src="./Coordenadas y gráficos_14_files/switch-to-cloud.png" alt=""></a></div>
+	<div class="GoToHTMLVersion" id="GoToHTMLVersion"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.es.html" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-switch-to-html-14-coordinates-and-graphics.es"><img src="./Coordenadas y gráficos_14_files/switch-to-html.png" alt=""></a></div>
+	<a href="javascript:nbdownload(&#39;EIWL2-14-coordinates-and-graphics.nb&#39;);" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-download-notebook-14-coordinates-and-graphics.es"><div class="DownloadNotebook" id="DownloadNotebook"><span class="DownloadNotebookText">Download Notebook Version</span></div></a>
+	<a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/13-arrays-or-lists-of-lists.es.html" id="EIWL-WEB-2nd-ed-prev-section-footer-14-coordinates-and-graphics.es" class="km-track-click-no-url"><div class="previousFooter"></div></a>
+	<a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/15-the-scope-of-the-wolfram-language.es.html" id="EIWL-WEB-2nd-ed-next-section-footer-14-coordinates-and-graphics.es" class="km-track-click-no-url"><div class="nextFooter" style="display: block;">Siguiente <div>›</div></div></a>
+
+
+<!-- gl-footer-includes.es.html -->
+
+    </div><!--/#gl-inner-wrapper -->
+    <noscript><div id="gl-noscript"><div><i><!-- --></i>Habilite JavaScript para interactuar con el contenido y enviar formularios en las p&aacute;ginas web de Wolfram. <a href="http://www.enable-javascript.com/" target="_blank">Aprenda c&oacute;mo&nbsp;&raquo;</a></div></div></noscript>
+</div><!--/#gl-outer-wrapper -->
+
+<span id="gl-footer-lang"></span><span id="gl-footer-lang-links"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.en.html?footer=lang"><img src="./Coordenadas y gráficos_14_files/gl-lang-en.png" alt="en"></a> </span>
+<script src="./Coordenadas y gráficos_14_files/gl-footer-scripts.es.js.descarga"></script>
+
+<!--/gl-footer-includes.es.html -->
+
+
+<script src="./Coordenadas y gráficos_14_files/kissmetrics.js.descarga"></script>
+<script src="./Coordenadas y gráficos_14_files/chapter-cookie.es.js.descarga"></script>
+
+
+<div class="SecondEditionTitle">SEGUNDA EDICIÓN</div><div class="WaysToView" id="show-otherviews-button"><div class="WayToViewText"><span>Otras formas de ver</span><div class="down-arrow-div"><img src="./Coordenadas y gráficos_14_files/down-arrow.png"></div><ul id="MenuWayToView" class="WaysToViewMenus"><li id="InteractiveViewMenu" class="InteractiveViewMenu">Páginas interactivas</li><li id="OnlineCourseMenu" class="OnlineCourseMenu">Curso en línea&nbsp;»</li><li id="WPLOnlineMenu" class="WPLOnlineMenu">Wolfram Programming Lab&nbsp;»</li></ul></div></div></body></html>

@@ -1,0 +1,754 @@
+$(document).ready(function(){
+
+   var thisYear = new Date().getFullYear();
+
+   $( "body" ).append( "<div class='SecondEditionTitle'>SEGUNDA EDICIÓN</div>" );
+   $( ".nextFooter" ).append( "Siguiente <div>&rsaquo;</div>" );
+   $( ".mainContent" ).append( "<div class='FooterCopyright'>Copyright " + thisYear + "</div>" );
+   $(".bottomSpacerCell").append("<div id='FooterCopyright' class='FooterCopyright' style='margin-left: 120px;'>Copyright " + thisYear + "</div>");
+
+    /* Add id and class 'selected' to current page within nav sidebar */
+    var currenturl = window.location.pathname;
+    $('nav a[href="'+currenturl+'"]').addClass('selected');
+    $('nav a[href="'+currenturl+'"]').attr('id', 'selected');
+    /* scroll to 'selected' page id within nav */
+    if(document.getElementById('selected') != undefined) {
+        $('nav').animate({scrollTop: $("#selected").offset().top - 300}, 0);
+    }
+
+    if(document.getElementById('ExerciseSection') != undefined) {
+      $("section").scroll(function(){
+//        console.log($("section").scrollTop());
+        if( isElementVisible( document.getElementById('ExerciseSection')) || document.getElementsByClassName('FooterCopyright').length ) 
+	{
+          document.getElementsByClassName("nextFooter")[0].style.display = 'block';
+  	}
+      });
+    }
+//    $( "#DownloadNotebook a" ).append( "<span class='DownloadNotebookText'>Download Notebook Version</span>" );
+
+
+//   document.getElementById('goToPageInput').setAttribute('autocomplete','falasdasse');
+
+   /*  SHOW / HIDE SIDEBAR */ 
+/*
+   document.getElementById('sidebar').style.display = 'block';
+   document.getElementById('sidebarHamburger').style.display = 'none';
+   document.getElementsByClassName("previousFooter")[0].style.display = 'none';
+*/
+   $('#showSidebar').on('click', function() {
+       document.getElementById('sidebar').style.display = 'block';
+       document.getElementById('sidebarHamburger').style.display = 'none';
+       document.getElementsByClassName("previousFooter")[0].style.display = 'none';
+   });
+/*
+   $('#hideSidebar').on('click', function() {
+       document.getElementById('sidebar').style.display = 'none';
+       document.getElementById('sidebarHamburger').style.display = 'block';
+       document.getElementsByClassName("previousFooter")[0].style.display = 'block';
+   });
+
+   $('#show-sidebar-button').on('click', function() {
+       document.getElementById('sidebar').style.display = 'block';
+       document.getElementById('sidebarHamburger').style.display = 'none';
+       document.getElementsByClassName("previousFooter")[0].style.display = 'none';
+   });
+*/
+   $('#hide-sidebar-button').on('click', function() {
+       document.getElementById('sidebar').style.display = 'none';                                                               
+       document.getElementById('sidebarHamburger').style.display = 'block';                                                     
+       document.getElementsByClassName("previousFooter")[0].style.display = 'block';                                            
+   });                                                                                                                          
+
+
+   $('.NewCheckYourAnswers').on('mouseenter', function() {
+console.log('entering NewCheckYourAnswers');
+       document.getElementsByClassName("ExerciseCloudLink")[0].style.color = '#fff';
+   });
+   $('.NewCheckYourAnswers').on('mouseleave', function() {
+console.log('leaving NewCheckYourAnswers');
+       document.getElementsByClassName("ExerciseCloudLink")[0].style.color = 'inherit';
+   })
+
+
+   $('.FooterCopyright').prepend('<div id="_language-picker" class="margin-t-1__600"> <i class="_icon-r7-c2"></i> <select id="_language-picker-select"> <option disabled="" selected="">Español</option> <option value=".en">English</option> </select> </div>');
+
+   var pageLang = ".es.html";
+
+   $('#_language-picker-select').change(function() {
+      var val = $('#_language-picker-select').val();
+      if (val === ".en") { val = ""}
+      var url = window.location.pathname;
+
+      var filename = GetFileName();
+      if (filename ==="index") {
+         url = url + "index" + pageLang;
+      }
+
+      if (url.indexOf(pageLang) > 0) {
+         var langurl = url.replace(pageLang, val + ".html");
+      } else {
+         var langurl = url.replace(".html", val + ".html");
+      }
+/*
+      console.log(filename);
+      console.log(url);
+      console.log(url.indexOf(pageLang));
+      console.log(val);
+      console.log(langurl);
+*/
+      window.location.href = langurl;  
+   });
+
+
+/****************************
+
+    WAYS TO VIEW menu
+
+****************************/
+
+   $('body').append("<div class='WaysToView' id='show-otherviews-button'><div class='WayToViewText' ><span>Otras formas de ver</span><div class='down-arrow-div'><img src='img/down-arrow.png'/></div><ul id='MenuWayToView' class='WaysToViewMenus'><li id='InteractiveViewMenu' class='InteractiveViewMenu'>Páginas interactivas</li><li id='OnlineCourseMenu' class='OnlineCourseMenu'>Curso en línea&#160;&#187;</li><li id='WPLOnlineMenu' class='WPLOnlineMenu'>Wolfram Programming Lab&#160;&#187;</li></ul></div>");
+
+   var urlsWithNoCloudNotebook = [
+      '/language/elementary-introduction/2nd-ed/',
+      '/language/elementary-introduction/2nd-ed/index.html',
+      '/language/elementary-introduction/2nd-ed/preface.html',
+      '/language/elementary-introduction/2nd-ed/what-is-the-wolfram-language.html',
+      '/language/elementary-introduction/2nd-ed/practicalities-of-using-the-wolfram-language.html',
+      '/language/elementary-introduction/2nd-ed/other-resources.html', 
+      '/language/elementary-introduction/2nd-ed/what-we-havent-discussed.html',
+      '/language/elementary-introduction/2nd-ed/being-a-programmer.html',
+      '/language/elementary-introduction/2nd-ed/answers-to-exercises.html',
+      '/language/elementary-introduction/2nd-ed/book-index.html',
+
+      '/language/elementary-introduction/2nd-ed/index.en.html',
+      '/language/elementary-introduction/2nd-ed/preface.en.html',
+      '/language/elementary-introduction/2nd-ed/what-is-the-wolfram-language.en.html',
+      '/language/elementary-introduction/2nd-ed/practicalities-of-using-the-wolfram-language.en.html',
+      '/language/elementary-introduction/2nd-ed/other-resources.en.html', 
+      '/language/elementary-introduction/2nd-ed/what-we-havent-discussed.en.html',
+      '/language/elementary-introduction/2nd-ed/being-a-programmer.en.html',
+      '/language/elementary-introduction/2nd-ed/answers-to-exercises.en.html',
+
+      '/language/elementary-introduction/2nd-ed/index.es.html',
+      '/language/elementary-introduction/2nd-ed/preface.es.html',
+      '/language/elementary-introduction/2nd-ed/what-is-the-wolfram-language.es.html',
+      '/language/elementary-introduction/2nd-ed/practicalities-of-using-the-wolfram-language.es.html',
+      '/language/elementary-introduction/2nd-ed/other-resources.es.html', 
+      '/language/elementary-introduction/2nd-ed/what-we-havent-discussed.es.html',
+      '/language/elementary-introduction/2nd-ed/being-a-programmer.es.html',
+      '/language/elementary-introduction/2nd-ed/answers-to-exercises.es.html',
+      '/language/elementary-introduction/2nd-ed//translation-notes.es.html'
+]
+
+   var onSectionWithCloudNotebook =  urlsWithNoCloudNotebook.indexOf(currenturl) ;
+/*   console.log(onSectionWithCloudNotebook); */
+
+   if(onSectionWithCloudNotebook < 0) {
+       $('#show-otherviews-button').show();
+   } else {
+       $('#show-otherviews-button').hide();
+   };
+
+   $('#show-otherviews-button').on('mouseenter', function() {
+       $('#MenuWayToView').show();
+   });
+   $('#show-otherviews-button').on('mouseleave', function() {
+       $('#MenuWayToView').hide();
+   });
+   $('#MenuWayToView').on('click', function() {
+       $('#MenuWayToView').hide();
+   });
+
+
+   $('#InteractiveViewMenu').on('click', function() {
+   
+      if($("#InteractiveViewMenu").hasClass('statichtml')) {  
+         $(".mainOuter .mainContent").show(); 
+         $("#cloudiframe").hide(); 
+         $(".bottomSpacerCell").hide(); 
+         $('#InteractiveViewMenu').text('Páginas interactivas');
+         $('.InteractiveViewMenu').removeClass('statichtml');
+      } else {
+         var url = getCloudNotebookURL(baselang);
+         iframe = "<iframe id='cloudiframe' class='cloudiframe' width='825' height='1000' scrolling='no' frameborder='0' src='" + url + "'  ></iframe>";
+         $(iframe).insertAfter(".mainOuter .mainContent");
+         $(".mainOuter .mainContent").hide(); 
+         $(".bottomSpacerCell").show(); 
+         $('#InteractiveViewMenu').text('Páginas estáticas');
+         $('.InteractiveViewMenu').addClass('statichtml');
+      } 
+   });
+
+   $('#OnlineCourseMenu').on('click', function() {
+       var url = getMOOCURL(baselang);
+       window.open(url, '_blank');                                         
+   });
+
+   $('#WPLOnlineMenu').on('click', function() {
+       window.open("http://www.wolfram.com/programming-lab/", '_blank');                                         
+   });
+
+
+
+   /*******************/
+   /* WAL EVENTS      */
+   /*******************/
+
+   $('.km-track-click-no-url').on('click', function() {
+      var id = $(this).attr('id');
+      id = id.replace('EIWL-WEB-', '');
+//      alert(('log','event', 'eiwl-web', id)); 
+      wal('log','event', 'eiwl-web', id); 
+   });
+});
+
+
+
+   /************************/
+   /* SCROLL TO EXERICISE  */
+   /************************/
+
+function isElementVisible(el) {
+    var rect     = el.getBoundingClientRect(),
+        vWidth   = window.innerWidth || doc.documentElement.clientWidth,
+        vHeight  = window.innerHeight || doc.documentElement.clientHeight,
+        efp      = function (x, y) { return document.elementFromPoint(x, y) };     
+
+    // Return false if it's not in the viewport
+    if (rect.right < 0 || rect.bottom < 0 
+            || rect.left > vWidth || rect.top > vHeight)
+        return false;
+
+    // Return true if any of its four corners are visible
+    return (
+          el.contains(efp(rect.left,  rect.top))
+      ||  el.contains(efp(rect.right, rect.top))
+      ||  el.contains(efp(rect.right, rect.bottom))
+      ||  el.contains(efp(rect.left,  rect.bottom))
+    );
+}
+
+
+
+
+/*******************/
+/* MISC FUNCTIONS  */
+/*******************/
+
+// fixed positioning vertically, scroll horizontally -- suef, 2015-11-19
+$(document).scroll(function(e) {
+
+   $('.nextFooter').css({
+       'margin-left': 0 - $(document).scrollLeft()
+   });
+   $('.next-article a').css({
+       'margin-left': -2 - $(document).scrollLeft()
+   });
+});    
+
+
+/* Download notebook */
+function nbdownload(a){
+    document.location = "/language/elementary-introduction/2nd-ed/inc/download.php?nb=" + a;
+}
+
+
+/*******************/
+/* EXERCISES       */
+/*******************/
+
+function next(elem) {
+    do {
+        elem = elem.nextSibling;
+    } while (elem && elem.nodeType !== 1);
+    return elem;
+};
+function OpenCloseExercises(id){
+        var exer = document.getElementById(id);
+        var input = next(exer);
+        if(input.className.match(/(?:^|\s)ExerciseInputBox(?!\S)/) ) {
+                if ( input.className.match(/(?:^|\s)active(?!\S)/) ) {
+                        input.className = 'ExerciseInputBox';
+                } else {
+                        input.className += " " + 'active';
+                }
+        }
+};
+
+
+
+/*******************/
+/* JUMP TO PAGE    */
+/*******************/
+
+function pageURL() {
+
+    var page = document.getElementById("goToPageInput").value;
+
+    if(pageNumberToURL[page] != undefined) {
+//        console.log( pageNumberToURL[page]);
+        location.href = "/language/elementary-introduction/" +  pageNumberToURL[page];
+    }
+};
+
+
+function handle(e) {
+    if(e.keyCode === 13){
+        pageURL(); // alert("Enter was pressed was presses");
+    }
+
+    return false;
+}
+
+
+
+function getCloudNotebookURL(section) {
+console.log(section);
+    var page = section.replace(/\.\w\w$/, "");
+    var url = "https://develop.wolframcloud.com/app/objects/wolfram-media/Elementary-Introduction-to-the-Wolfram-Language/InteractiveNotebooks/EIWL2-" + page + ".nb?_view=frameless";
+//    console.log(url);
+    return url;
+}
+
+function getMOOCURL(section) {
+    var baseUrl = get_baseUrl();
+    var page = section.replace(/\.\w\w$/, "");
+    var url = baseUrl + "/wolfram-u/s/an-elementary-introduction-to-the-wolfram-language/" + page + ".html";
+    console.log(baseUrl);
+    console.log(url);
+    return url;
+}
+
+
+
+function get_mech() {
+   /********************
+    
+      WHICH MACHINE?
+      
+   ********************/
+    
+   var devReg = new RegExp('devel2');
+   var testReg = new RegExp('test');
+   var urlStr = "" + window.location.host;
+   var insertStr = "";
+
+   if (urlStr.match(devReg)) {
+      insertStr = "devel2.";
+//      insertStr = "test.";
+   } else if (urlStr.match(testReg)) {
+      insertStr = "test.";
+   }
+console.log(urlStr);
+   return insertStr
+}       
+        
+            
+function get_baseUrl() {
+             
+   var mech = get_mech();
+   /* construct specific url */
+   return "http://www."+ mech +"wolfram.com"
+}       
+      
+
+      
+function GetFileName(){
+//this gets the full url
+var url = document.location.href;
+//this removes the anchor at the end, if there is one
+url = url.substring(0, (url.indexOf("#") == -1) ? url.length : url.indexOf("#"));
+//this removes the query after the file name, if there is one
+url = url.substring(0, (url.indexOf("?") == -1) ? url.length : url.indexOf("?"));
+//this removes everything before the last slash in the path
+url = url.substring(url.lastIndexOf("/") + 1, url.length);
+//return
+if(url.length == 0){
+url = "index";
+}  
+return url;
+}
+
+
+
+
+/*******************/
+/* PAGE DATA       */
+/*******************/
+
+var pageNumberToURL = [];
+//pageNumberToURL["vii"] = "preface.html#p-vii";
+pageNumberToURL["vii"] = "preface.html";
+pageNumberToURL["viii"] = "preface.html#p-viii";
+pageNumberToURL["ix"] = "preface.html#p-ix";
+//pageNumberToURL["xi"] = "what-is-the-wolfram-language.html#p-xi";
+pageNumberToURL["x"] = "what-is-the-wolfram-language.html";
+pageNumberToURL["xi"] = "what-is-the-wolfram-language.html";
+pageNumberToURL["xii"] = "what-is-the-wolfram-language.html#p-xii";
+//pageNumberToURL["xiii"] = "practicalities-of-using-the-wolfram-language.html#p-xiii";
+pageNumberToURL["xiii"] = "practicalities-of-using-the-wolfram-language.html";
+pageNumberToURL["xiv"] = "practicalities-of-using-the-wolfram-language.html#p-xiv";
+//pageNumberToURL["xv"] = "other-resources.html#p-xv";
+pageNumberToURL["xv"] = "other-resources.html";
+pageNumberToURL["xvi"] = "other-resources.html";
+//pageNumberToURL["1"] = "01-starting-out-elementary-arithmetic.html#p-1";
+pageNumberToURL["1"] = "01-starting-out-elementary-arithmetic.html";
+pageNumberToURL["2"] = "01-starting-out-elementary-arithmetic.html#p-2";
+//pageNumberToURL["3"] = "02-introducing-functions.html#p-3";
+pageNumberToURL["3"] = "02-introducing-functions.html";
+pageNumberToURL["4"] = "02-introducing-functions.html#p-4";
+pageNumberToURL["5"] = "02-introducing-functions.html#p-5";
+pageNumberToURL["6"] = "03-first-look-at-lists.html";
+//pageNumberToURL["7"] = "03-first-look-at-lists.html#p-7";
+pageNumberToURL["7"] = "03-first-look-at-lists.html";
+pageNumberToURL["8"] = "03-first-look-at-lists.html#p-8";
+pageNumberToURL["9"] = "03-first-look-at-lists.html#p-9";
+pageNumberToURL["10"] = "03-first-look-at-lists.html#p-10";
+//pageNumberToURL["11"] = "04-displaying-lists.html#p-11";
+pageNumberToURL["11"] = "04-displaying-lists.html";
+pageNumberToURL["12"] = "04-displaying-lists.html#p-12";
+pageNumberToURL["13"] = "04-displaying-lists.html#p-13";
+pageNumberToURL["14"] = "05-operations-on-lists.html";
+//pageNumberToURL["15"] = "05-operations-on-lists.html#p-15";
+pageNumberToURL["15"] = "05-operations-on-lists.html";
+pageNumberToURL["16"] = "05-operations-on-lists.html#p-16";
+pageNumberToURL["17"] = "05-operations-on-lists.html#p-17";
+pageNumberToURL["18"] = "05-operations-on-lists.html#p-18";
+//pageNumberToURL["19"] = "06-making-tables.html#p-19";
+pageNumberToURL["19"] = "06-making-tables.html";
+pageNumberToURL["20"] = "06-making-tables.html#p-20";
+pageNumberToURL["21"] = "06-making-tables.html#p-21";
+pageNumberToURL["22"] = "06-making-tables.html#p-22";
+pageNumberToURL["23"] = "06-making-tables.html#p-23";
+pageNumberToURL["24"] = "07-colors-and-styles.html";
+//pageNumberToURL["25"] = "07-colors-and-styles.html#p-25";
+pageNumberToURL["25"] = "07-colors-and-styles.html";
+pageNumberToURL["26"] = "07-colors-and-styles.html#p-26";
+pageNumberToURL["27"] = "07-colors-and-styles.html#p-27";
+pageNumberToURL["28"] = "07-colors-and-styles.html#p-28";
+//pageNumberToURL["29"] = "08-basic-graphics-objects.html#p-29";
+pageNumberToURL["29"] = "08-basic-graphics-objects.html";
+pageNumberToURL["30"] = "08-basic-graphics-objects.html#p-30";
+pageNumberToURL["31"] = "08-basic-graphics-objects.html#p-31";
+pageNumberToURL["32"] = "09-interactive-manipulation.html";
+//pageNumberToURL["33"] = "09-interactive-manipulation.html#p-33";
+pageNumberToURL["33"] = "09-interactive-manipulation.html";
+pageNumberToURL["34"] = "09-interactive-manipulation.html#p-34";
+pageNumberToURL["35"] = "09-interactive-manipulation.html#p-35";
+pageNumberToURL["36"] = "09-interactive-manipulation.html#p-36";
+pageNumberToURL["37"] = "09-interactive-manipulation.html#p-37";
+pageNumberToURL["38"] = "10-images.html";
+//pageNumberToURL["39"] = "10-images.html#p-39";
+pageNumberToURL["39"] = "10-images.html";
+pageNumberToURL["40"] = "10-images.html#p-40";
+pageNumberToURL["41"] = "10-images.html#p-41";
+pageNumberToURL["42"] = "10-images.html#p-42";
+pageNumberToURL["43"] = "10-images.html#p-43";
+pageNumberToURL["44"] = "10-images.html#p-44";
+//pageNumberToURL["45"] = "11-strings-and-text.html#p-45";
+pageNumberToURL["45"] = "11-strings-and-text.html";
+pageNumberToURL["46"] = "11-strings-and-text.html#p-46";
+pageNumberToURL["47"] = "11-strings-and-text.html#p-47";
+pageNumberToURL["48"] = "11-strings-and-text.html#p-48";
+pageNumberToURL["49"] = "11-strings-and-text.html#p-49";
+pageNumberToURL["50"] = "11-strings-and-text.html#p-50";
+pageNumberToURL["51"] = "11-strings-and-text.html#p-51";
+pageNumberToURL["52"] = "11-strings-and-text.html#p-52";
+//pageNumberToURL["53"] = "12-sound.html#p-53";
+pageNumberToURL["53"] = "12-sound.html";
+pageNumberToURL["54"] = "12-sound.html#p-54";
+pageNumberToURL["55"] = "12-sound.html#p-55";
+pageNumberToURL["56"] = "12-sound.html#p-56";
+//pageNumberToURL["57"] = "13-arrays-or-lists-of-lists.html#p-57";
+pageNumberToURL["57"] = "13-arrays-or-lists-of-lists.html";
+pageNumberToURL["58"] = "13-arrays-or-lists-of-lists.html#p-58";
+pageNumberToURL["59"] = "13-arrays-or-lists-of-lists.html#p-59";
+pageNumberToURL["60"] = "13-arrays-or-lists-of-lists.html#p-60";
+pageNumberToURL["61"] = "13-arrays-or-lists-of-lists.html#p-61";
+pageNumberToURL["62"] = "14-coordinates-and-graphics.html";
+//pageNumberToURL["63"] = "14-coordinates-and-graphics.html#p-63";
+pageNumberToURL["63"] = "14-coordinates-and-graphics.html";
+pageNumberToURL["64"] = "14-coordinates-and-graphics.html#p-64";
+pageNumberToURL["65"] = "14-coordinates-and-graphics.html#p-65";
+pageNumberToURL["66"] = "14-coordinates-and-graphics.html#p-66";
+pageNumberToURL["67"] = "14-coordinates-and-graphics.html#p-67";
+pageNumberToURL["68"] = "14-coordinates-and-graphics.html#p-68";
+pageNumberToURL["69"] = "14-coordinates-and-graphics.html#p-69";
+pageNumberToURL["70"] = "14-coordinates-and-graphics.html#p-70";
+pageNumberToURL["71"] = "14-coordinates-and-graphics.html#p-71";
+pageNumberToURL["72"] = "15-the-scope-of-the-wolfram-language.html";
+//pageNumberToURL["73"] = "15-the-scope-of-the-wolfram-language.html#p-73";
+pageNumberToURL["73"] = "15-the-scope-of-the-wolfram-language.html";
+pageNumberToURL["74"] = "15-the-scope-of-the-wolfram-language.html#p-74";
+pageNumberToURL["75"] = "15-the-scope-of-the-wolfram-language.html#p-75";
+pageNumberToURL["76"] = "15-the-scope-of-the-wolfram-language.html#p-76";
+//pageNumberToURL["77"] = "16-real-world-data.html#p-77";
+pageNumberToURL["77"] = "16-real-world-data.html";
+pageNumberToURL["78"] = "16-real-world-data.html#p-78";
+pageNumberToURL["79"] = "16-real-world-data.html#p-79";
+pageNumberToURL["80"] = "16-real-world-data.html#p-80";
+pageNumberToURL["81"] = "16-real-world-data.html#p-81";
+pageNumberToURL["82"] = "16-real-world-data.html#p-82";
+pageNumberToURL["83"] = "16-real-world-data.html#p-83";
+pageNumberToURL["84"] = "16-real-world-data.html#p-84";
+pageNumberToURL["85"] = "16-real-world-data.html#p-85";
+pageNumberToURL["86"] = "17-units.html";
+//pageNumberToURL["87"] = "17-units.html#p-87";
+pageNumberToURL["87"] = "17-units.html";
+pageNumberToURL["88"] = "17-units.html#p-88";
+pageNumberToURL["89"] = "17-units.html#p-89";
+pageNumberToURL["90"] = "17-units.html#p-90";
+pageNumberToURL["91"] = "17-units.html#p-91";
+pageNumberToURL["92"] = "18-geocomputation.html";
+//pageNumberToURL["93"] = "18-geocomputation.html#p-93";
+pageNumberToURL["93"] = "18-geocomputation.html";
+pageNumberToURL["94"] = "18-geocomputation.html#p-94";
+pageNumberToURL["95"] = "18-geocomputation.html#p-95";
+pageNumberToURL["96"] = "18-geocomputation.html#p-96";
+pageNumberToURL["97"] = "18-geocomputation.html#p-97";
+pageNumberToURL["98"] = "18-geocomputation.html#p-98";
+pageNumberToURL["99"] = "18-geocomputation.html#p-99";
+pageNumberToURL["100"] = "19-dates-and-times.html";
+//pageNumberToURL["101"] = "19-dates-and-times.html#p-101";
+pageNumberToURL["101"] = "19-dates-and-times.html";
+pageNumberToURL["102"] = "19-dates-and-times.html#p-102";
+pageNumberToURL["103"] = "19-dates-and-times.html#p-103";
+pageNumberToURL["104"] = "19-dates-and-times.html#p-104";
+pageNumberToURL["105"] = "19-dates-and-times.html#p-105";
+pageNumberToURL["106"] = "19-dates-and-times.html#p-106";
+//pageNumberToURL["107"] = "20-options.html#p-107";
+pageNumberToURL["107"] = "20-options.html";
+pageNumberToURL["108"] = "20-options.html#p-108";
+pageNumberToURL["109"] = "20-options.html#p-109";
+pageNumberToURL["110"] = "20-options.html#p-110";
+pageNumberToURL["111"] = "20-options.html#p-111";
+pageNumberToURL["112"] = "20-options.html#p-112";
+pageNumberToURL["113"] = "20-options.html#p-113";
+pageNumberToURL["114"] = "20-options.html#p-114";
+//pageNumberToURL["115"] = "21-graphs-and-networks.html#p-115";
+pageNumberToURL["115"] = "21-graphs-and-networks.html";
+pageNumberToURL["116"] = "21-graphs-and-networks.html#p-116";
+pageNumberToURL["117"] = "21-graphs-and-networks.html#p-117";
+pageNumberToURL["118"] = "21-graphs-and-networks.html#p-118";
+pageNumberToURL["119"] = "21-graphs-and-networks.html#p-119";
+pageNumberToURL["120"] = "21-graphs-and-networks.html#p-120";
+pageNumberToURL["121"] = "21-graphs-and-networks.html#p-121";
+pageNumberToURL["122"] = "22-machine-learning.html";
+//pageNumberToURL["123"] = "22-machine-learning.html#p-123";
+pageNumberToURL["123"] = "22-machine-learning.html";
+pageNumberToURL["124"] = "22-machine-learning.html#p-124";
+pageNumberToURL["125"] = "22-machine-learning.html#p-125";
+pageNumberToURL["126"] = "22-machine-learning.html#p-126";
+pageNumberToURL["127"] = "22-machine-learning.html#p-127";
+pageNumberToURL["128"] = "23-more-about-numbers.html";
+//pageNumberToURL["129"] = "23-more-about-numbers.html#p-129";
+pageNumberToURL["129"] = "23-more-about-numbers.html";
+pageNumberToURL["130"] = "23-more-about-numbers.html#p-130";
+pageNumberToURL["131"] = "23-more-about-numbers.html#p-131";
+pageNumberToURL["132"] = "23-more-about-numbers.html#p-132";
+pageNumberToURL["133"] = "23-more-about-numbers.html#p-133";
+pageNumberToURL["134"] = "23-more-about-numbers.html#p-134";
+pageNumberToURL["135"] = "23-more-about-numbers.html#p-135";
+pageNumberToURL["136"] = "24-more-forms-of-visualization.html";
+//pageNumberToURL["137"] = "24-more-forms-of-visualization.html#p-137";
+pageNumberToURL["137"] = "24-more-forms-of-visualization.html";
+pageNumberToURL["138"] = "24-more-forms-of-visualization.html#p-138";
+pageNumberToURL["139"] = "24-more-forms-of-visualization.html#p-139";
+pageNumberToURL["140"] = "24-more-forms-of-visualization.html#p-140";
+//pageNumberToURL["141"] = "25-ways-to-apply-functions.html#p-141";
+pageNumberToURL["141"] = "25-ways-to-apply-functions.html";
+pageNumberToURL["142"] = "25-ways-to-apply-functions.html#p-142";
+pageNumberToURL["143"] = "25-ways-to-apply-functions.html#p-143";
+pageNumberToURL["144"] = "25-ways-to-apply-functions.html#p-144";
+pageNumberToURL["145"] = "25-ways-to-apply-functions.html#p-145";
+pageNumberToURL["146"] = "25-ways-to-apply-functions.html#p-146";
+//pageNumberToURL["147"] = "26-pure-anonymous-functions.html#p-147";
+pageNumberToURL["147"] = "26-pure-anonymous-functions.html";
+pageNumberToURL["148"] = "26-pure-anonymous-functions.html#p-148";
+pageNumberToURL["149"] = "26-pure-anonymous-functions.html#p-149";
+pageNumberToURL["150"] = "26-pure-anonymous-functions.html#p-150";
+pageNumberToURL["151"] = "26-pure-anonymous-functions.html#p-151";
+pageNumberToURL["152"] = "26-pure-anonymous-functions.html#p-152";
+//pageNumberToURL["153"] = "27-applying-functions-repeatedly.html#p-153";
+pageNumberToURL["153"] = "27-applying-functions-repeatedly.html";
+pageNumberToURL["154"] = "27-applying-functions-repeatedly.html#p-154";
+pageNumberToURL["155"] = "27-applying-functions-repeatedly.html#p-155";
+pageNumberToURL["156"] = "27-applying-functions-repeatedly.html#p-156";
+pageNumberToURL["157"] = "27-applying-functions-repeatedly.html#p-157";
+pageNumberToURL["158"] = "27-applying-functions-repeatedly.html#p-158";
+pageNumberToURL["159"] = "27-applying-functions-repeatedly.html#p-159";
+pageNumberToURL["160"] = "27-applying-functions-repeatedly.html#p-160";
+pageNumberToURL["161"] = "27-applying-functions-repeatedly.html#p-161";
+pageNumberToURL["162"] = "28-tests-and-conditionals.html";
+//pageNumberToURL["163"] = "28-tests-and-conditionals.html#p-163";
+pageNumberToURL["163"] = "28-tests-and-conditionals.html";
+pageNumberToURL["164"] = "28-tests-and-conditionals.html#p-164";
+pageNumberToURL["165"] = "28-tests-and-conditionals.html#p-165";
+pageNumberToURL["166"] = "28-tests-and-conditionals.html#p-166";
+pageNumberToURL["167"] = "28-tests-and-conditionals.html#p-167";
+pageNumberToURL["168"] = "28-tests-and-conditionals.html#p-168";
+pageNumberToURL["169"] = "28-tests-and-conditionals.html#p-169";
+pageNumberToURL["170"] = "29-more-about-pure-functions.html";
+//pageNumberToURL["171"] = "29-more-about-pure-functions.html#p-171";
+pageNumberToURL["171"] = "29-more-about-pure-functions.html";
+pageNumberToURL["172"] = "29-more-about-pure-functions.html#p-172";
+pageNumberToURL["173"] = "29-more-about-pure-functions.html#p-173";
+pageNumberToURL["174"] = "29-more-about-pure-functions.html#p-174";
+pageNumberToURL["175"] = "29-more-about-pure-functions.html#p-175";
+pageNumberToURL["176"] = "30-rearranging-lists.html";
+//pageNumberToURL["177"] = "30-rearranging-lists.html#p-177";
+pageNumberToURL["177"] = "30-rearranging-lists.html";
+pageNumberToURL["178"] = "30-rearranging-lists.html#p-178";
+pageNumberToURL["179"] = "30-rearranging-lists.html#p-179";
+pageNumberToURL["180"] = "30-rearranging-lists.html#p-180";
+pageNumberToURL["181"] = "30-rearranging-lists.html#p-181";
+pageNumberToURL["182"] = "30-rearranging-lists.html#p-182";
+pageNumberToURL["183"] = "30-rearranging-lists.html#p-183";
+pageNumberToURL["184"] = "30-rearranging-lists.html#p-184";
+pageNumberToURL["185"] = "30-rearranging-lists.html#p-185";
+pageNumberToURL["186"] = "31-parts-of-lists.html";
+//pageNumberToURL["187"] = "31-parts-of-lists.html#p-187";
+pageNumberToURL["187"] = "31-parts-of-lists.html";
+pageNumberToURL["188"] = "31-parts-of-lists.html#p-188";
+pageNumberToURL["189"] = "31-parts-of-lists.html#p-189";
+pageNumberToURL["190"] = "31-parts-of-lists.html#p-190";
+pageNumberToURL["191"] = "31-parts-of-lists.html#p-191";
+pageNumberToURL["192"] = "32-patterns.html";
+//pageNumberToURL["193"] = "32-patterns.html#p-193";
+pageNumberToURL["193"] = "32-patterns.html";
+pageNumberToURL["194"] = "32-patterns.html#p-194";
+pageNumberToURL["195"] = "32-patterns.html#p-195";
+pageNumberToURL["196"] = "32-patterns.html#p-196";
+//pageNumberToURL["197"] = "33-expressions-and-their-structure.html#p-197";
+pageNumberToURL["197"] = "33-expressions-and-their-structure.html";
+pageNumberToURL["198"] = "33-expressions-and-their-structure.html#p-198";
+pageNumberToURL["199"] = "33-expressions-and-their-structure.html#p-199";
+pageNumberToURL["200"] = "33-expressions-and-their-structure.html#p-200";
+pageNumberToURL["201"] = "33-expressions-and-their-structure.html#p-201";
+pageNumberToURL["202"] = "33-expressions-and-their-structure.html#p-202";
+pageNumberToURL["203"] = "33-expressions-and-their-structure.html#p-203";
+pageNumberToURL["204"] = "33-expressions-and-their-structure.html#p-204";
+//pageNumberToURL["205"] = "34-associations.html#p-205";
+pageNumberToURL["205"] = "34-associations.html";
+pageNumberToURL["206"] = "34-associations.html#p-206";
+pageNumberToURL["207"] = "34-associations.html#p-207";
+pageNumberToURL["208"] = "34-associations.html#p-208";
+pageNumberToURL["209"] = "34-associations.html#p-209";
+pageNumberToURL["210"] = "35-natural-language-understanding.html";
+//pageNumberToURL["211"] = "35-natural-language-understanding.html#p-211";
+pageNumberToURL["211"] = "35-natural-language-understanding.html";
+pageNumberToURL["212"] = "35-natural-language-understanding.html#p-212";
+pageNumberToURL["213"] = "35-natural-language-understanding.html#p-213";
+pageNumberToURL["214"] = "35-natural-language-understanding.html#p-214";
+pageNumberToURL["215"] = "35-natural-language-understanding.html#p-215";
+pageNumberToURL["216"] = "36-creating-websites-and-apps.html";
+//pageNumberToURL["217"] = "36-creating-websites-and-apps.html#p-217";
+pageNumberToURL["217"] = "36-creating-websites-and-apps.html";
+pageNumberToURL["218"] = "36-creating-websites-and-apps.html#p-218";
+pageNumberToURL["219"] = "36-creating-websites-and-apps.html#p-219";
+pageNumberToURL["220"] = "36-creating-websites-and-apps.html#p-220";
+pageNumberToURL["221"] = "36-creating-websites-and-apps.html#p-221";
+pageNumberToURL["222"] = "36-creating-websites-and-apps.html#p-222";
+pageNumberToURL["223"] = "36-creating-websites-and-apps.html#p-223";
+pageNumberToURL["224"] = "36-creating-websites-and-apps.html#p-224";
+pageNumberToURL["225"] = "36-creating-websites-and-apps.html#p-225";
+pageNumberToURL["226"] = "36-creating-websites-and-apps.html#p-226";
+//pageNumberToURL["227"] = "37-layout-and-display.html#p-227";
+pageNumberToURL["227"] = "37-layout-and-display.html";
+pageNumberToURL["228"] = "37-layout-and-display.html#p-228";
+pageNumberToURL["229"] = "37-layout-and-display.html#p-229";
+pageNumberToURL["230"] = "37-layout-and-display.html#p-230";
+pageNumberToURL["231"] = "37-layout-and-display.html#p-231";
+pageNumberToURL["232"] = "38-assigning-names-to-things.html";
+//pageNumberToURL["233"] = "38-assigning-names-to-things.html#p-233";
+pageNumberToURL["233"] = "38-assigning-names-to-things.html";
+pageNumberToURL["234"] = "38-assigning-names-to-things.html#p-234";
+pageNumberToURL["235"] = "38-assigning-names-to-things.html#p-235";
+pageNumberToURL["236"] = "38-assigning-names-to-things.html#p-236";
+pageNumberToURL["237"] = "38-assigning-names-to-things.html#p-237";
+pageNumberToURL["238"] = "39-immediate-and-delayed-values.html";
+//pageNumberToURL["239"] = "39-immediate-and-delayed-values.html#p-239";
+pageNumberToURL["239"] = "39-immediate-and-delayed-values.html";
+pageNumberToURL["240"] = "39-immediate-and-delayed-values.html#p-240";
+pageNumberToURL["241"] = "39-immediate-and-delayed-values.html#p-241";
+pageNumberToURL["242"] = "40-defining-your-own-functions.html";
+//pageNumberToURL["243"] = "40-defining-your-own-functions.html#p-243";
+pageNumberToURL["243"] = "40-defining-your-own-functions.html";
+pageNumberToURL["244"] = "40-defining-your-own-functions.html#p-244";
+pageNumberToURL["245"] = "40-defining-your-own-functions.html#p-245";
+pageNumberToURL["246"] = "40-defining-your-own-functions.html#p-246";
+pageNumberToURL["247"] = "40-defining-your-own-functions.html#p-247";
+pageNumberToURL["248"] = "41-more-about-patterns.html";
+//pageNumberToURL["249"] = "41-more-about-patterns.html#p-249";
+pageNumberToURL["249"] = "41-more-about-patterns.html";
+pageNumberToURL["250"] = "41-more-about-patterns.html#p-250";
+pageNumberToURL["251"] = "41-more-about-patterns.html#p-251";
+pageNumberToURL["252"] = "41-more-about-patterns.html#p-252";
+pageNumberToURL["253"] = "41-more-about-patterns.html#p-253";
+pageNumberToURL["254"] = "42-string-patterns-and-templates.html";
+//pageNumberToURL["255"] = "42-string-patterns-and-templates.html#p-255";
+pageNumberToURL["255"] = "42-string-patterns-and-templates.html";
+pageNumberToURL["256"] = "42-string-patterns-and-templates.html#p-256";
+pageNumberToURL["257"] = "42-string-patterns-and-templates.html#p-257";
+pageNumberToURL["258"] = "42-string-patterns-and-templates.html#p-258";
+pageNumberToURL["259"] = "42-string-patterns-and-templates.html#p-259";
+pageNumberToURL["260"] = "43-storing-things.html";
+//pageNumberToURL["261"] = "43-storing-things.html#p-261";
+pageNumberToURL["261"] = "43-storing-things.html";
+pageNumberToURL["262"] = "43-storing-things.html#p-262";
+pageNumberToURL["263"] = "43-storing-things.html#p-263";
+pageNumberToURL["264"] = "43-storing-things.html#p-264";
+//pageNumberToURL["265"] = "44-importing-and-exporting.html#p-265";
+pageNumberToURL["265"] = "44-importing-and-exporting.html";
+pageNumberToURL["266"] = "44-importing-and-exporting.html#p-266";
+pageNumberToURL["267"] = "44-importing-and-exporting.html#p-267";
+pageNumberToURL["268"] = "44-importing-and-exporting.html#p-268";
+pageNumberToURL["269"] = "44-importing-and-exporting.html#p-269";
+pageNumberToURL["270"] = "44-importing-and-exporting.html#p-270";
+//pageNumberToURL["271"] = "45-datasets.html#p-271";
+pageNumberToURL["271"] = "45-datasets.html";
+pageNumberToURL["272"] = "45-datasets.html#p-272";
+pageNumberToURL["273"] = "45-datasets.html#p-273";
+pageNumberToURL["274"] = "45-datasets.html#p-274";
+pageNumberToURL["275"] = "45-datasets.html#p-275";
+pageNumberToURL["276"] = "45-datasets.html#p-276";
+pageNumberToURL["277"] = "45-datasets.html#p-277";
+pageNumberToURL["278"] = "45-datasets.html#p-278";
+pageNumberToURL["279"] = "45-datasets.html#p-279";
+pageNumberToURL["280"] = "45-datasets.html#p-280";
+pageNumberToURL["281"] = "45-datasets.html#p-281";
+pageNumberToURL["282"] = "45-datasets.html#p-282";
+//pageNumberToURL["283"] = "46-writing-good-code.html#p-283";
+pageNumberToURL["283"] = "46-writing-good-code.html";
+pageNumberToURL["284"] = "46-writing-good-code.html#p-284";
+pageNumberToURL["285"] = "46-writing-good-code.html#p-285";
+pageNumberToURL["286"] = "46-writing-good-code.html#p-286";
+pageNumberToURL["287"] = "46-writing-good-code.html#p-287";
+pageNumberToURL["288"] = "46-writing-good-code.html#p-288";
+pageNumberToURL["289"] = "46-writing-good-code.html#p-289";
+pageNumberToURL["290"] = "47-debugging-your-code.html";
+//pageNumberToURL["291"] = "47-debugging-your-code.html#p-291";
+pageNumberToURL["291"] = "47-debugging-your-code.html";
+pageNumberToURL["292"] = "47-debugging-your-code.html#p-292";
+pageNumberToURL["293"] = "47-debugging-your-code.html#p-293";
+pageNumberToURL["294"] = "47-debugging-your-code.html#p-294";
+//pageNumberToURL["295"] = "what-we-havent-discussed.html#p-295";
+pageNumberToURL["295"] = "what-we-havent-discussed.html";
+pageNumberToURL["296"] = "what-we-havent-discussed.html#p-296";
+pageNumberToURL["297"] = "what-we-havent-discussed.html#p-297";
+pageNumberToURL["298"] = "what-we-havent-discussed.html#p-298";
+pageNumberToURL["299"] = "what-we-havent-discussed.html#p-299";
+pageNumberToURL["300"] = "what-we-havent-discussed.html#p-300";
+pageNumberToURL["301"] = "what-we-havent-discussed.html#p-301";
+pageNumberToURL["302"] = "being-a-programmer.html";
+//pageNumberToURL["303"] = "being-a-programmer.html#p-303";
+pageNumberToURL["303"] = "being-a-programmer.html";
+pageNumberToURL["304"] = "being-a-programmer.html#p-304";
+
+
+
+
+
+
+

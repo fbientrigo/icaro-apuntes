@@ -1,0 +1,5 @@
+Muy bien, el programa funciona, y muy buen trabajo usando la función "radians" para hacer la conversión de grados a radianes. También has demostrado que entiendes muy bien "while" y "if". Excelente!
+
+Supongo que estas usando "while 1==1" para usar el programa muchas veces, porque así el ciclo nunca terminará. No es muy buen práctica programar ciclos infinitos, pero si es necesario, es mejor usar "while True". La expresión "1==1" se evalua a "True" (puedes averiguar eso), uno de los dos valores posibles de una variable tipo "bool" (Booleano).
+
+Las comparaciones lógicas que tienes para ver si las variables x,y son iguales a cero funcionan, aunque no son necesarios. Además, la comparación de igualdad entre dos números reales es problematico en la programación, por problemas de precisión de los valores. Veremos algo sobre este en la Intro a las Menciones, Computación Científica.

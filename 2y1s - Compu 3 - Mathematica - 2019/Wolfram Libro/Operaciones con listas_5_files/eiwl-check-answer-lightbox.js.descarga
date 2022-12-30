@@ -1,0 +1,11 @@
+// Magnific Popup v1.1.0 by Dmitry Semenov
+// http://bit.ly/magnific-popup#build=inline
+/*
+$(function() {
+  return $('a.ExerciseCloudLink[href*="lab.wolframcloud.com"]').each(function() {
+    var $this;
+    $this = $(this);
+    return $this.prop('href', $this.prop('href').replace('lab.wolframcloud.com', 'lab.open.wolframcloud.com'));
+  });
+});
+*/

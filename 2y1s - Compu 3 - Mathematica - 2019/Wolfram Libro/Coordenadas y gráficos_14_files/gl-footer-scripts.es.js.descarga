@@ -1,0 +1,53 @@
+/* Supplementary javascript needed globally.
+
+   @file            gl-footer-scripts.es.js
+   @author          marionm
+   @dependencies    jQuery
+                    /common/javascript/gl-head-scripts.es.js
+   ========================================================================== */
+
+$(document).ready(function() {
+
+/* ==========================================================================
+   global footer
+   ========================================================================== */
+
+    if ($(gl_Footer).length > 0) {
+        // add copyright year, if missing
+        if ($('.gl-year').length > 0 && $('.gl-year').text().length !== 4) {
+            $('.gl-year').text(new Date().getFullYear());
+        }
+
+        // move footer to the bottom of the viewport on short pages
+        $(window).on('load resize', gl_SetBodyHeightDifference);
+
+        // move language menu content into position if the global localization menu has been included
+        if ($(gl_FooterLanguages).length > 0) {
+            $(gl_FooterLangMessages).appendTo(gl_FooterLanguages);
+            $(gl_FooterLangLinks).appendTo(gl_FooterLanguages);
+            $(gl_FooterLanguages).prependTo('#gl-footer-copyright .gl-col2');
+        } else {
+            $(gl_FooterLangMessages).remove();
+        }
+    } else {
+        if ($(gl_FooterLanguages).length > 0 && $('#gl-standalone-lang-picker').length > 0) {
+            $(gl_FooterLangMessages).appendTo(gl_FooterLanguages);
+            $(gl_FooterLangLinks).appendTo(gl_FooterLanguages);
+            $(gl_FooterLanguages).appendTo('#gl-standalone-lang-picker');
+        } else {
+            $(gl_FooterLangMessages).remove();
+        }
+    }
+
+/* ==========================================================================
+   utility
+   ========================================================================== */
+
+    // prevent widows by automatically inserting a non-breaking space character between the last two words (or html elements)
+    $('.no-widows, .no-widows-in-heirs > *').each(function() {
+        var text = $(this).html().trim().split(' ');
+        var last = text.pop();
+        $(this).html(text.join(' ') + (text.length > 0 ? '&nbsp;' + last : last));
+    });
+
+});

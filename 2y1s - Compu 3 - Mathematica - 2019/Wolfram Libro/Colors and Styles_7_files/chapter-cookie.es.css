@@ -1,0 +1,136 @@
+/* Styles for the chapter skipping  popup.
+
+   @file            chapter-cookie.en.css
+   @author          marionm
+   @dependencies    none
+   ========================================================================== */
+
+#chapter-warning * {
+    box-sizing: content-box;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#chapter-warning {
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #b9b9b9;
+    box-sizing: content-box;
+    display: none;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    left: 50%;
+    margin: -100px 0 0 -250px;
+    padding: 30px;
+    position: absolute;
+    top: 50%;
+    width: 500px;
+    z-index: 99999999999;
+    border: 1px solid #D8D8D8;
+    box-shadow: 0px 0px 12px #ccc;
+}
+
+#chapter-warning .close {
+    color: #777;
+    cursor: pointer;
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 0;
+    padding: 16px 12px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: scale(1.4, 1);
+}
+
+#chapter-warning .close:hover {
+    color: #444;
+}
+
+#chapter-warning p:nth-of-type(1) {
+    color: #dd1100;
+    font-size: 21px;
+    font-weight: 600;
+    line-height: 22px;
+    margin: 0 0 20px 0;
+}
+
+#chapter-warning p:nth-of-type(2) {
+    color: #535353;
+    font-size: 17px;
+    line-height: 22px;
+    margin: 0 0 20px 0;
+}
+
+#chapter-warning p:nth-of-type(3) {
+    color: #535353;
+    font-size: 15px;
+    line-height: 1;
+    margin: 0 0 20px 0;
+}
+
+#chapter-warning p a {
+    color: #fd7700;
+}
+
+#chapter-warning p a:hover,
+#chapter-warning p a:active {
+    color: #b00f00;
+}
+
+#chapter-warning .dismiss {
+    cursor: pointer;
+}
+
+#chapter-warning .dismiss:before {
+    background: url('../img/chapter-cookie-checkbox.png') no-repeat 0 0;
+    box-sizing: content-box;
+    content: '';
+    display: inline-block;
+    height: 15px;
+    margin: 0 8px 0 0;
+    vertical-align: top;
+    width: 16px;
+}
+
+#chapter-warning .dismiss:hover:before,
+#chapter-warning .dismiss.active:before {
+    background-position: -16px 0;
+}
+
+#chapter-warning button {
+    border-radius: 3px;
+    border: 1px solid #b00f00;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    line-height: 1;
+    min-width: 190px;
+    outline: none;
+    padding: 8px 16px;
+}
+
+#chapter-warning .continue {
+    background: #fff;
+    color: #dd1100;
+    margin: 0 15px 0 0;
+}
+
+#chapter-warning .continue:hover,
+#chapter-warning .continue:active,
+#chapter-warning .continue.active {
+    background: #fe0000;
+    color: #fff;
+}
+
+#chapter-warning .nextchapter {
+    background: #dd1100;
+    color: #fff;
+}
+
+#chapter-warning .nextchapter:hover,
+#chapter-warning .nextchapter:active,
+#chapter-warning .nextchapter.active {
+    background: #fe0000;
+}

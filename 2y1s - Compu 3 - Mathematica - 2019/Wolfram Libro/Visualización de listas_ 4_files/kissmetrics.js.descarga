@@ -1,0 +1,275 @@
+/* Determines if or how Kissmetrics should be included on the page.
+
+   developer:   suef, marionm
+   ========================================================================== */
+
+/* Kissmetrics
+   ========================================================================== */
+
+// only track users that have accepted our privacy policy or don't require consent
+if (/.*(__cookie_consent=(1|2)).*/i.test(document.cookie)) {
+
+    // make sure the code is only run when included in our domains
+    if (window.location.hostname == 'www.wolfram.com'){
+        // declare the variables
+        
+        var km_token = 'de93ddd7a498cf841790cb0f91c486c3723c0836';
+        
+        var km_referrer = document.referrer;
+
+        var _kmq = _kmq || [];
+        var _kmk = _kmk || km_token;
+
+        var ipAddress = '181.163.134.219';
+
+        // get a clean url
+        var km_url = wriKissNormalizeUrl(window.location.href);
+
+        if(km_referrer == '') {
+            km_referrer = km_url;
+        }
+
+        //load the kissmetrics resources
+        wriKissInclude('//i.kissmetrics.com/i.js');
+        wriKissInclude('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+
+        //push the basic page tracking
+        _kmq.push(['set', {'Referrer': km_referrer}]);
+        _kmq.push(['record', 'Viewed page ' + km_url]);
+        _kmq.push(['set', {'IP Address': ipAddress}]);
+
+        // add the click event listner
+        if (document.addEventListener){
+            document.addEventListener('click', wriKissClickHandler, false);
+        }else{
+            document.attachEvent('onclick', wriKissClickHandler);
+        }
+    }
+
+    // include the kissmetrics scripts
+    function wriKissInclude(u){
+        setTimeout(function(){
+          var d = document, f = d.getElementsByTagName('script')[0],
+          s = d.createElement('script');
+          s.type = 'text/javascript'; s.async = true; s.src = u;
+          f.parentNode.insertBefore(s, f);
+        }, 1);
+    }
+
+    // this function handles all click events on links
+    function wriKissClickHandler(e){
+        var e = window.e || e;
+
+        if (e.target.tagName !== 'A'){
+            return;
+        }
+
+        // get the clicked element so it can be examined
+        var el = e.target;
+
+        // change the url of cross site links
+        // URL appended
+        if(wriKissHasClass(el, 'km-cross-domain-link')){
+            el.href = wriKissAddParameters(el.href, {'kmi':KM.i()});
+        }
+
+        // check to see if the link click needs to be tracked
+        if(wriKissHasClass(el, 'km-track-click')){
+            var eventName = '#' + el.id;
+
+            //check for custom event name
+            var customEventName = el.getAttribute("data-km-event");
+            if(customEventName){
+                eventName = customEventName;
+            }
+
+            _kmq.push(['record', 'Clicked on ' + eventName + ' at ' + km_url]);
+        }
+
+        // check to see if the link click needs to be tracked
+        // URL not appended
+        if(wriKissHasClass(el, 'km-track-click-no-url')){
+            var eventName = '#' + el.id;
+
+            //check for custom event name
+            var customEventName = el.getAttribute("data-km-event");
+            if(customEventName){
+                eventName = customEventName;
+            }
+
+            _kmq.push(['record', 'Clicked on ' + eventName]);
+        }
+    }
+
+    // this function is used to parse a url and return any part of it
+    function wriKissParseUrl(url, part){
+        var parser = document.createElement('a');
+        var searchObject = {};
+        var queries;
+        var split;
+        var i;
+        var variable;
+        var value;
+
+        parser.href = url;
+
+        // break out the variables into an object
+        queries = parser.search.replace(/^\?/, '').split('&');
+        for(i = 0; i < queries.length; i++){
+            // split each one
+            split = queries[i].split('=');
+            variable = decodeURIComponent(split[0]);
+            value = decodeURIComponent(split[1]);
+
+            //save the variable
+            if(typeof searchObject[variable] === 'undefined'){
+                searchObject[variable] = value;
+            }else{
+                // deal with duplicate variable names
+                if( Object.prototype.toString.call(searchObject[variable]) === '[object Array]'){
+                    searchObject[variable].push(value);
+                }else{
+                    searchObject[variable] = [searchObject[variable], value];
+                }
+            }
+        }
+        parser.searchObject = searchObject;
+
+        // get and add the filename
+        parser.filename = parser.pathname.substring(parser.pathname.lastIndexOf('/')+1);
+
+        //save the path minus the filename
+        parser.path = parser.pathname.substring(0, parser.pathname.lastIndexOf("/") + 1);
+
+        if(typeof part === "undefined"){
+            var kmPathName = parser.pathname;
+            var kmPath = parser.path;
+            if(parser.pathname.substring(0,1) !== "/") {
+                kmPathName = "/"+parser.pathname;
+            }
+            if(parser.path.substring(0,1) !== "/") {
+                kmPath = "/"+parser.path;
+            }
+            return {
+                protocol: parser.protocol,
+                host: parser.host,
+                hostname: parser.hostname,
+                port: parser.port,
+                pathname: kmPathName,
+                path: kmPath,
+                filename: parser.filename,
+                search: parser.search,
+                searchObject: parser.searchObject,
+                hash: parser.hash
+            };
+        }else{
+            return parser[part];
+        }
+    }
+
+    // this function is used to add query string parameters to an existing url
+    function wriKissAddParameters(url, params){
+        var tempUrl = wriKissParseUrl(url);
+        var queryObj = tempUrl.searchObject;
+
+        //update the query object
+        for(var key in params){
+            if (params.hasOwnProperty(key)){
+                var value = params[key];
+
+                //save the variable
+                if(typeof queryObj[key] === 'undefined'){
+                    queryObj[key] = value;
+                }else{
+                    // deal with duplicate pre existing variables
+                    if(Object.prototype.toString.call(queryObj[key]) === '[object Array]'){
+                        // the pre existing key is an array
+
+                        if(Object.prototype.toString.call(value) === '[object Array]'){
+                            // the value to add is an array
+                            queryObj[key] = queryObj[key].concat(value);
+                        }else{
+                            // the value to add is a single value
+                            queryObj[key].push(value);
+                        }
+                    }else{
+                        // the pre exisitng key is a single value
+
+                        queryObj[key] = [queryObj[key]];
+                        if(Object.prototype.toString.call(value) === '[object Array]'){
+                            // the value to add is an array
+                            queryObj[key] = queryObj[key].concat(value);
+                        }else{
+                            // the value to add is a single value
+                            queryObj[key].push(value);
+                        }
+                    }
+                }
+            }
+        }
+
+        tempUrl.searchObject = queryObj;
+
+        //create the new query string
+        var query = [];
+        for(var key in queryObj){
+            if (queryObj.hasOwnProperty(key)){
+                var value = queryObj[key];
+                if(Object.prototype.toString.call(value) === '[object Array]'){
+                    for(i = 0; i < value.length; i++){
+                        query.push(encodeURIComponent(key) + "=" + encodeURIComponent(value[i]));
+                    }
+                }else{
+                    query.push(encodeURIComponent(key) + "=" + encodeURIComponent(value));
+                }
+            }
+        }
+        tempUrl.search = query.join("&");
+
+        return tempUrl.protocol + '//' + tempUrl.host + tempUrl.pathname + '?' + tempUrl.search + tempUrl.hash;
+    }
+
+    // this function cleans up urls by removing the protocol, www. if it exists,
+    // and references to index files
+    function wriKissNormalizeUrl(url){
+        var outUrl = 'http://';
+        var tempUrl = wriKissParseUrl(url);
+
+        // strip off the special www case if needed
+        if(tempUrl.hostname.indexOf('www.') === 0){
+            //the host is the special www case so strip it
+            outUrl += tempUrl.hostname.substring(4);
+        }else{
+            outUrl += tempUrl.hostname;
+        }
+
+        // strip off the special indexs files cases
+        if(tempUrl.filename.indexOf('index.') === 0){
+            // it's an index file so strip it
+            outUrl += tempUrl.path;
+        }else{
+            //check if the filename is lang specific
+            var file = tempUrl.filename;
+            file = file.replace(/\.([a-z]{2})\./, '.');
+            if(file == tempUrl.filename){
+                outUrl += tempUrl.pathname;
+            }else{
+                outUrl += tempUrl.path + file;
+            }
+        }
+
+        return outUrl;
+    }
+
+    // this is a simplified copy of jquery hasClass
+    function wriKissHasClass(el, theClass){
+        var className = " " + theClass + " ";
+
+        if((" " + el.className + " ").replace(/[\n\t\r]/g, " ").indexOf(className) > -1){
+            return true;
+        }
+
+        return false;
+    }
+
+}

@@ -1,0 +1,228 @@
+body {
+    min-height: 100%;
+    min-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+}
+.trade {
+    color: #707070;
+    font-size: 11px;
+    position: relative;
+    top: -10px;
+    vertical-align: middle;
+}
+
+.header, .nav, .wrapper {
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-size: 1em;
+    line-height: 1.5em;
+    color: #5f5f5f;
+}
+
+.inner h1 {
+    font-size: 2em;
+    font-weight: 400;
+    color: #4c4c4c;
+    clear: both;
+    padding: 20px 0 0 0;
+    margin: 0;
+}
+.inner h2 {
+    color: #d00101;
+    border-top: 1px solid #d4d4d4;
+    padding: 18px 0 0 0;
+    font-size: 1.5em;
+    font-weight: 300;
+    margin: 30px 0 0 0;
+}
+.inner .secondary-title {
+    font-size: 1.2em;
+    color: #d70003;
+    font-weight: 600;
+    margin: 0;
+}
+a {
+    color: #e50000;
+    text-decoration: none;
+}
+a:hover {
+    color: #f57300;
+}
+.inner ul, .nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.nav li {
+    margin: 0;
+    padding: 0;
+}
+.inner ul li {
+    background: url('/language/images/bullet.png') no-repeat left 13px;
+    padding: 3px 0 3px 12px;
+    line-height: 1.4em;
+}
+a img { border: 0; }
+
+.inner {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.inner p, .inner li {
+    font-size: 1.1em;
+    margin: 5px 0;
+}
+
+.header {
+    background: #424242;
+    background: -moz-linear-gradient(top,  #424242 0%, #151515 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#424242), color-stop(100%,#151515));
+    background: -webkit-linear-gradient(top,  #424242 0%,#151515 100%);
+    background: -o-linear-gradient(top,  #424242 0%,#151515 100%);
+    background: -ms-linear-gradient(top,  #424242 0%,#151515 100%);
+    background: linear-gradient(to bottom,  #424242 0%,#151515 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#424242', endColorstr='#151515',GradientType=0 );
+    height: 148px;
+    text-align: left;
+}
+.header a {
+    width: 960px;
+    height: 148px;
+    line-height: 148px;
+    margin: 0 auto;
+    display: block;
+    color: #fff;
+    font-size: 3em;
+}
+.header img {
+    vertical-align: middle;
+    margin: 0 10px 0 0;
+    display: inline;
+}
+.nav {
+    background: #c50000;
+    margin: 0 0 0 -30px;
+}
+.nav ul {
+    width: 960px;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+}
+.nav li {
+    display: inline-block;
+    background: transparent;
+    padding: 0;
+}
+.nav a {
+    padding: 10px 15px;
+    color: #fff;
+    display: inline-block;
+}
+.nav a:hover {
+    background: #ac0000;
+}
+.divide {
+    border-left: 1px solid #e17979;
+    height: 25px;
+    vertical-align: middle;
+    display: inline-block;
+    margin: -5px 0 0 0;
+}
+.inner {
+    padding: 45px 0 100px 0;
+}
+.inner p.big-intro, .inner div.big-intro {
+    font-size: 1.375em;
+    font-weight: 300;
+    line-height: 1.6em;
+    color: #E97418;
+    width: 760px;
+    margin: 30px 0 45px;
+}
+.separator {
+    margin: 0 20px;
+    border-right: 1px solid #dadada;
+    height: 1em;
+    display: inline-block;
+    vertical-align: middle;
+}
+.chevron {
+    color: #ff7300;
+}
+.copyright {
+    border-top: 1px solid #cbcbcb;
+    padding: 5px 0 0 0;
+    margin: 30px 0 0;
+    color: #999;
+    font-size: 0.75em;
+}
+.row {
+    margin: 0 0 0 -3%;
+    clear: both;
+    width: 103%;
+    overflow: hidden;
+}
+.half {
+    width: 47%;
+    margin: 0 0 0 3%;
+    float: left;
+    overflow: hidden;
+}
+.third {
+    width: 30%;
+    margin: 0 0 0 3%;
+    float: left;
+}
+#home .home, #principles .principles, #code-gallery .code-gallery, #products-and-ecosystem
+.products-and-ecosystem, #documentation .documentation, #community .community, #uses .uses, #for-experts .for-experts, #faq .faq  {
+    background: #ac0000;
+}
+.red {
+    color: #e50000 !important;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+.inner h2 span {
+    position: absolute;
+    top: -80px;
+}
+
+
+/* Thickbox
+----------------------------------*/
+#TB_title {
+    height: 0 !important;
+    background: transparent !important;
+    display: block;
+}
+#TB_ajaxWindowTitle {
+    padding: 0 !important;
+}
+
+#TB_closeAjaxWindow {
+    background: url('/language/images/close.png') !important;
+    width: 28px !important;
+    height: 28px !important;
+    position: absolute !important;
+    top: -20px !important;
+    right: -20px !important;
+}
+#TB_closeWindowButton {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+#TB_window {
+    border: 0 !important;
+    box-shadow: 0 0 20px #222;
+    overflow: visible;
+    max-height: 531px;
+}
+#TB_iframeContent {
+    overflow: hidden;
+}
+#TB_window iframe {
+    margin-top: -1px;
+}

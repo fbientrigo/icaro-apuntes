@@ -1,0 +1,491 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     20984,        483]
+NotebookOptionsPosition[     19475,        454]
+NotebookOutlinePosition[     19809,        469]
+CellTagsIndexPosition[     19766,        466]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", 
+  RowBox[{"Lanzamiento", " ", "de", " ", "proyectil"}], "*)"}]], "Input",
+ CellChangeTimes->{{3.768040525568838*^9, 
+  3.7680405317647943`*^9}},ExpressionUUID->"cbf90ccd-46c7-4633-94d8-\
+cc017ae5c972"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"psol", "=", 
+  RowBox[{"With", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"g", "=", "9.81"}], ",", 
+      RowBox[{"k", "=", "0"}], ",", 
+      RowBox[{"v0", "=", "10"}], ",", 
+      RowBox[{"\[Theta]0", "=", 
+       RowBox[{"35", "\[Degree]"}]}]}], "}"}], ",", 
+    RowBox[{"DSolve", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{
+         RowBox[{
+          RowBox[{"m", "''"}], "[", "t", "]"}], "\[Equal]", 
+         RowBox[{
+          RowBox[{"-", "k"}], " ", 
+          RowBox[{"Sqrt", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{
+              RowBox[{"m", "'"}], "[", "t", "]"}], "^", "2"}], "+", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"n", "'"}], "[", "t", "]"}], "^", "2"}]}], "]"}], "*", 
+          RowBox[{
+           RowBox[{"m", "'"}], "[", "t", "]"}]}]}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"n", "''"}], "[", "t", "]"}], "==", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"-", "k"}], " ", 
+           RowBox[{"Sqrt", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{
+               RowBox[{"m", "'"}], "[", "t", "]"}], "^", "2"}], "+", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"n", "'"}], "[", "t", "]"}], "^", "2"}]}], "]"}], "*", 
+           
+           RowBox[{
+            RowBox[{"n", "'"}], "[", "t", "]"}]}], "-", "g"}]}], ",", 
+        RowBox[{
+         RowBox[{"n", "[", "0", "]"}], "==", "0"}], ",", 
+        RowBox[{
+         RowBox[{"m", "[", "0", "]"}], "==", "0"}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"n", "'"}], "[", "0", "]"}], "==", 
+         RowBox[{"v0", " ", 
+          RowBox[{"Sin", "[", "\[Theta]0", "]"}]}]}], ",", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"m", "'"}], "[", "0", "]"}], "=", 
+         RowBox[{"v0", " ", 
+          RowBox[{"Cos", "[", "\[Theta]0", "]"}]}]}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"m", "[", "t", "]"}], ",", 
+        RowBox[{"n", "[", "t", "]"}]}], "}"}], ",", "t"}], "]"}]}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.768040581395752*^9, 3.768040628721723*^9}, {
+  3.768040659072464*^9, 3.768040700968238*^9}},
+ CellLabel->
+  "In[166]:=",ExpressionUUID->"0514b519-d936-4130-8bb1-1fe5e98e64b8"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DSolve","deqn",
+   "\"Equation or list of equations expected instead of \
+\\!\\(\\*RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]\\) in the \
+first argument \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{SuperscriptBox[\\\"m\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{SuperscriptBox[\\\"n\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{\\\"-\\\", \\\"9.81`\\\"}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"n\\\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \
+\\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"m\\\", \
+\\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{SuperscriptBox[\\\"n\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Sin\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]}], \
+\\\",\\\", RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]}], \
+\\\"}\\\"}]\\).\"",2,166,97,29198213266495358577,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.768040701452866*^9},
+ CellLabel->
+  "Durante la evaluaci\[OAcute]n de \
+In[166]:=",ExpressionUUID->"9902999f-447a-4f8c-930b-803bebd5f49f"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DSolve","deqn",
+   "\"Equation or list of equations expected instead of \
+\\!\\(\\*RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]\\) in the \
+first argument \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{SuperscriptBox[\\\"m\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{SuperscriptBox[\\\"n\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{\\\"-\\\", \\\"9.81`\\\"}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"n\\\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \
+\\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"m\\\", \
+\\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{SuperscriptBox[\\\"n\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Sin\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]}], \
+\\\",\\\", RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]}], \
+\\\"}\\\"}]\\).\"",2,166,98,29198213266495358577,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.768040701460404*^9},
+ CellLabel->
+  "Durante la evaluaci\[OAcute]n de \
+In[166]:=",ExpressionUUID->"30d5ec43-a21e-4687-a038-c0cd96145883"],
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["m", "\[Prime]\[Prime]",
+        MultilineFunction->None], "[", "t", "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["n", "\[Prime]\[Prime]",
+        MultilineFunction->None], "[", "t", "]"}], "\[Equal]", 
+      RowBox[{"-", "9.81`"}]}], ",", 
+     RowBox[{
+      RowBox[{"n", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"m", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{
+       SuperscriptBox["n", "\[Prime]",
+        MultilineFunction->None], "[", "0", "]"}], "\[Equal]", 
+      RowBox[{"10", " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"35", " ", "\[Degree]"}], "]"}]}]}], ",", 
+     RowBox[{"10", " ", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"35", " ", "\[Degree]"}], "]"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"m", "[", "t", "]"}], ",", 
+     RowBox[{"n", "[", "t", "]"}]}], "}"}], ",", "t"}], "]"}]], "Output",
+ CellChangeTimes->{3.768040629178989*^9, 3.76804070146729*^9},
+ CellLabel->
+  "Out[166]=",ExpressionUUID->"1389b8dd-00df-417f-8ccc-70f4f54e0611"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DSolve","deqn",
+   "\"Equation or list of equations expected instead of \
+\\!\\(\\*RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]\\) in the \
+first argument \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{SuperscriptBox[\\\"m\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{SuperscriptBox[\\\"n\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{\\\"-\\\", \\\"9.81`\\\"}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"n\\\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \
+\\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"m\\\", \
+\\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{SuperscriptBox[\\\"n\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Sin\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]}], \
+\\\",\\\", RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]}], \
+\\\"}\\\"}]\\).\"",2,165,96,29198213266495358577,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.768040535716508*^9, 3.768040557863681*^9}, 
+   3.768040629170657*^9},
+ CellLabel->
+  "Durante la evaluaci\[OAcute]n de \
+In[165]:=",ExpressionUUID->"90e05696-ecb5-4394-98b6-0bbf5cde467a"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DSolve","deqn",
+   "\"Equation or list of equations expected instead of \
+\\!\\(\\*RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]\\) in the \
+first argument \\!\\(\\*RowBox[{\\\"{\\\", \
+RowBox[{RowBox[{RowBox[{SuperscriptBox[\\\"m\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{SuperscriptBox[\\\"n\\\", \\\"\[Prime]\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{\\\"-\\\", \\\"9.81`\\\"}]}], \\\",\\\", \
+RowBox[{RowBox[{\\\"n\\\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \
+\\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"m\\\", \
+\\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{SuperscriptBox[\\\"n\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Sin\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]}], \
+\\\",\\\", RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]}], \
+\\\"}\\\"}]\\).\"",2,165,95,29198213266495358577,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.768040535716508*^9, 3.768040557863681*^9}, 
+   3.7680406291625023`*^9},
+ CellLabel->
+  "Durante la evaluaci\[OAcute]n de \
+In[165]:=",ExpressionUUID->"ecf70455-7eae-4499-a8fb-2e3734ebd315"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DSolve","deqn",
+   "\:f3b5Equation or list of equations expected instead of \!\(10\\\\\\ \
+Cos[35\\\\\\ \[Degree]]\) in the first argument \!\({\(-k\)\\\\\\ \
+\*SuperscriptBox[\\\"x\\\", \
+\\\"\[Prime]\\\",MultilineFunction->None][t]\\\\\\ \
+\*SqrtBox[RowBox[{SuperscriptBox[RowBox[{SuperscriptBox[\\\"x\\\", \\\"\
+\[Prime]\\\",MultilineFunction->None], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \
+\\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{SuperscriptBox[\\\"y\\\", \\\"\
+\[Prime]\\\",MultilineFunction->None], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \
+\\\"2\\\"]}]] \[Equal] 0, \(-g\) - k\\\\\\ \*SuperscriptBox[\\\"y\\\", \\\"\
+\[Prime]\\\",MultilineFunction->None][t]\\\\\\ \
+\*SqrtBox[RowBox[{SuperscriptBox[RowBox[{SuperscriptBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\
+\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\")\\\"}],Derivative],MultilineFunction->None], \
+\\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\
+\"}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
+SuperscriptBox[RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \
+\\\")\\\"}],Derivative],MultilineFunction->None], \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"2\\\"]}]] \[Equal] \(-9.81`\), y[0] \[Equal] 0, x[0] \[Equal] 0, v0\\\\\\ \
+Sin[\[Theta]0] \[Equal] 10\\\\\\ Sin[35\\\\\\ \[Degree]], 10\\\\\\ Cos[35\\\\\
+\\ \[Degree]]}\).\:f3b5",2,163,92,29198213266495358577,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ GeneratedCell->False,
+ CellAutoOverwrite->False,
+ CellChangeTimes->{{3.768040535716508*^9, 
+  3.768040557863681*^9}},ExpressionUUID->"7d605542-07dd-46c3-8551-\
+37ab932fea78"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "DSolve","deqn",
+   "\"Equation or list of equations expected instead of \
+\\!\\(\\*RowBox[{\\\"10\\\", \\\" \\\", RowBox[{\\\"Cos\\\", \\\"[\\\", \
+RowBox[{\\\"35\\\", \\\" \\\", \\\"\[Degree]\\\"}], \\\"]\\\"}]}]\\) in the \
+first argument \\!\\(\\*RowBox[{\\\"{\\\", RowBox[{RowBox[{RowBox[{RowBox[{\\\
+\"-\\\", \\\"k\\\"}], \\\" \\\", RowBox[{SuperscriptBox[\\\"x\\\", \\\"\
+\[Prime]\\\", Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \
+\\\"]\\\"}], \\\" \\\", \
+SqrtBox[RowBox[{SuperscriptBox[RowBox[{SuperscriptBox[\\\"x\\\", \\\"\[Prime]\
+\\\", Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \
+\\\"2\\\"], \\\"+\\\", SuperscriptBox[RowBox[{SuperscriptBox[\\\"y\\\", \\\"\
+\[Prime]\\\", Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \
+\\\"]\\\"}], \\\"2\\\"]}]]}], \\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{RowBox[{\\\"-\\\", \\\"g\\\"}], \\\"-\\\", RowBox[{\\\"k\\\", \
+\\\" \\\", RowBox[{SuperscriptBox[\\\"y\\\", \\\"\[Prime]\\\", \
+Rule[MultilineFunction, None]], \\\"[\\\", \\\"t\\\", \\\"]\\\"}], \\\" \\\", \
+SqrtBox[RowBox[{SuperscriptBox[RowBox[{SuperscriptBox[RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\
+\"(\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \
+\\\"\[RightSkeleton]\\\"}], \\\")\\\"}], Derivative], Rule[MultilineFunction, \
+None]], \\\"[\\\", RowBox[{\\\"\[LeftSkeleton]\\\", \\\"1\\\", \\\"\
+\[RightSkeleton]\\\"}], \\\"]\\\"}], \\\"2\\\"], \\\"+\\\", \
+SuperscriptBox[RowBox[{SuperscriptBox[RowBox[{\\\"\[LeftSkeleton]\\\", \
+\\\"1\\\", \\\"\[RightSkeleton]\\\"}], TagBox[RowBox[{\\\"(\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\")\\\"}], \
+Derivative], Rule[MultilineFunction, None]], \\\"[\\\", RowBox[{\\\"\
+\[LeftSkeleton]\\\", \\\"1\\\", \\\"\[RightSkeleton]\\\"}], \\\"]\\\"}], \
+\\\"2\\\"]}]]}]}], \\\"\[Equal]\\\", RowBox[{\\\"-\\\", \\\"9.81`\\\"}]}], \\\
+\",\\\", RowBox[{RowBox[{\\\"y\\\", \\\"[\\\", \\\"0\\\", \\\"]\\\"}], \\\"\
+\[Equal]\\\", \\\"0\\\"}], \\\",\\\", RowBox[{RowBox[{\\\"x\\\", \\\"[\\\", \
+\\\"0\\\", \\\"]\\\"}], \\\"\[Equal]\\\", \\\"0\\\"}], \\\",\\\", \
+RowBox[{RowBox[{\\\"v0\\\", \\\" \\\", RowBox[{\\\"Sin\\\", \\\"[\\\", \\\"\
+\[Theta]0\\\", \\\"]\\\"}]}], \\\"\[Equal]\\\", RowBox[{\\\"10\\\", \\\" \
+\\\", RowBox[{\\\"Sin\\\", \\\"[\\\", RowBox[{\\\"35\\\", \\\" \\\", \\\"\
+\[Degree]\\\"}], \\\"]\\\"}]}]}], \\\",\\\", RowBox[{\\\"10\\\", \\\" \\\", \
+RowBox[{\\\"Cos\\\", \\\"[\\\", RowBox[{\\\"35\\\", \\\" \\\", \
+\\\"\[Degree]\\\"}], \\\"]\\\"}]}]}], \\\"}\\\"}]\\).\"",2,163,93,
+   29198213266495358577,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7680405357268333`*^9},
+ CellLabel->
+  "Durante la evaluaci\[OAcute]n de \
+In[163]:=",ExpressionUUID->"d6888ce6-3283-44dc-aad2-f659e380a285"],
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "k"}], " ", 
+       RowBox[{
+        SuperscriptBox["x", "\[Prime]",
+         MultilineFunction->None], "[", "t", "]"}], " ", 
+       SqrtBox[
+        RowBox[{
+         SuperscriptBox[
+          RowBox[{
+           SuperscriptBox["x", "\[Prime]",
+            MultilineFunction->None], "[", "t", "]"}], "2"], "+", 
+         SuperscriptBox[
+          RowBox[{
+           SuperscriptBox["y", "\[Prime]",
+            MultilineFunction->None], "[", "t", "]"}], "2"]}]]}], "\[Equal]", 
+      "0"}], ",", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"-", "g"}], "-", 
+       RowBox[{"k", " ", 
+        RowBox[{
+         SuperscriptBox["y", "\[Prime]",
+          MultilineFunction->None], "[", "t", "]"}], " ", 
+        SqrtBox[
+         RowBox[{
+          SuperscriptBox[
+           RowBox[{
+            SuperscriptBox["x", "\[Prime]",
+             MultilineFunction->None], "[", "t", "]"}], "2"], "+", 
+          SuperscriptBox[
+           RowBox[{
+            SuperscriptBox["y", "\[Prime]",
+             MultilineFunction->None], "[", "y", "]"}], "2"]}]]}]}], 
+      "\[Equal]", 
+      RowBox[{"-", "9.81`"}]}], ",", 
+     RowBox[{
+      RowBox[{"y", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"x", "[", "0", "]"}], "\[Equal]", "0"}], ",", 
+     RowBox[{
+      RowBox[{"v0", " ", 
+       RowBox[{"Sin", "[", "\[Theta]0", "]"}]}], "\[Equal]", 
+      RowBox[{"10", " ", 
+       RowBox[{"Sin", "[", 
+        RowBox[{"35", " ", "\[Degree]"}], "]"}]}]}], ",", 
+     RowBox[{"10", " ", 
+      RowBox[{"Cos", "[", 
+       RowBox[{"35", " ", "\[Degree]"}], "]"}]}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"x", "[", "t", "]"}], ",", 
+     RowBox[{"y", "[", "t", "]"}]}], "}"}], ",", "t"}], "]"}]], "Output",
+ CellChangeTimes->{3.768040535735433*^9},
+ CellLabel->
+  "Out[163]=",ExpressionUUID->"31029618-530f-4ab7-a824-c61aa4e9ac9a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"x", "''"}], "[", "t", "]"}], "\[Equal]", 
+    RowBox[{"x", "[", "t", "]"}]}], ",", 
+   RowBox[{"x", "[", "t", "]"}], ",", "t"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7680405594098043`*^9, 3.768040575446404*^9}},
+ CellLabel->
+  "In[164]:=",ExpressionUUID->"0aa7b5ec-9864-4d51-88e8-a9f055a8ecd7"],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Solve","ifun",
+   "\"Inverse functions are being used by \
+\\!\\(\\*RowBox[{\\\"Solve\\\"}]\\), so some solutions may not be found; use \
+Reduce for complete solution information.\"",2,164,94,29198213266495358577,
+   "Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{3.7680406015870247`*^9},
+ CellLabel->
+  "Durante la evaluaci\[OAcute]n de \
+In[164]:=",ExpressionUUID->"d4e86563-bfc5-482d-a54f-7b809f24625d"],
+
+Cell[BoxData[
+ RowBox[{"DSolve", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", "k"}], " ", 
+     RowBox[{
+      SuperscriptBox["x", "\[Prime]",
+       MultilineFunction->None], "[", "t", "]"}], " ", 
+     SqrtBox[
+      RowBox[{
+       SuperscriptBox[
+        RowBox[{
+         SuperscriptBox["x", "\[Prime]",
+          MultilineFunction->None], "[", "t", "]"}], "2"], "+", 
+       SuperscriptBox[
+        RowBox[{
+         SuperscriptBox["y", "\[Prime]",
+          MultilineFunction->None], "[", "t", "]"}], "2"]}]]}], "\[Equal]", 
+    RowBox[{"x", "[", "t", "]"}]}], ",", 
+   RowBox[{"x", "[", "t", "]"}], ",", "t"}], "]"}]], "Output",
+ CellChangeTimes->{3.768040621619911*^9},
+ CellLabel->
+  "Out[164]=",ExpressionUUID->"9cab062b-7107-47af-8016-a1f4b55898da"]
+}, Open  ]]
+},
+WindowSize->{1301, 744},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"12.0 para Linux x86 (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 231, 5, 31, "Input",ExpressionUUID->"cbf90ccd-46c7-4633-94d8-cc017ae5c972"],
+Cell[CellGroupData[{
+Cell[814, 29, 2339, 69, 136, "Input",ExpressionUUID->"0514b519-d936-4130-8bb1-1fe5e98e64b8"],
+Cell[3156, 100, 1607, 27, 23, "Message",ExpressionUUID->"9902999f-447a-4f8c-930b-803bebd5f49f"],
+Cell[4766, 129, 1607, 27, 23, "Message",ExpressionUUID->"30d5ec43-a21e-4687-a038-c0cd96145883"],
+Cell[6376, 158, 1212, 34, 71, "Output",ExpressionUUID->"1389b8dd-00df-417f-8ccc-70f4f54e0611"],
+Cell[7591, 194, 1707, 30, 23, "Message",ExpressionUUID->"90e05696-ecb5-4394-98b6-0bbf5cde467a"],
+Cell[9301, 226, 1709, 30, 23, "Message",ExpressionUUID->"ecf70455-7eae-4499-a8fb-2e3734ebd315"],
+Cell[11013, 258, 1914, 32, 71, "Message",ExpressionUUID->"7d605542-07dd-46c3-8551-37ab932fea78"],
+Cell[12930, 292, 2867, 44, 71, "Message",ExpressionUUID->"d6888ce6-3283-44dc-aad2-f659e380a285"],
+Cell[15800, 338, 1994, 60, 50, "Output",ExpressionUUID->"31029618-530f-4ab7-a824-c61aa4e9ac9a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17831, 403, 385, 10, 50, "Input",ExpressionUUID->"0aa7b5ec-9864-4d51-88e8-a9f055a8ecd7"],
+Cell[18219, 415, 461, 11, 23, "Message",ExpressionUUID->"d4e86563-bfc5-482d-a54f-7b809f24625d"],
+Cell[18683, 428, 776, 23, 50, "Output",ExpressionUUID->"9cab062b-7107-47af-8016-a1f4b55898da"]
+}, Open  ]]
+}
+]
+*)
+

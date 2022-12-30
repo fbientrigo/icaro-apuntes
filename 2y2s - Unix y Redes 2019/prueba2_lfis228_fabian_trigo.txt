@@ -1,0 +1,160 @@
+Prueba 2 - Fabian Trigo
+Lo que sera escrito en el terminal viene dado por
+$ sudo algo
+Todo lo demas se debe considerar como comentarios
+
+// Pregunta 1
+Al ser un disco de 2TB se encuentra justo en el limite de fdisk
+(nunca es exactamente 2TB ya que los manufacturantes miden megas, gigas en forma de potenica de 10 y no como potencia de 2, binario, que es como se hace en informatica) por ello es bastante probable que logremos hacerlo con fdisk
+
+Primero entramos en modo super user para no tener que escribir todo el tiempo sudo
+$ sudo su
+ o $ su
+
+Para encontrar el nombre del disco duro procedemos con
+$ fdisk -l | grep sd
+y buscar el espacio que calce con 2 TB
+
+Si se desea encontrar por medio del espacio
+$ fdisk l- | grep G
+Y buscamos cualquier valor por sobre 2040 GB
+
+Luego teniendo el nombre y lugar del disco, digamos
+"/dev/sdb" corremos fdisk con ese disco
+$ fdisk /dev/sdb
+Lo cual nos metera en el menu de fdisk
+$ n
+$ p 
+>> Numero de particion: $ 1
+>> First Cylinder (default 1): $1
+Dejamos la particion al comienzo del disco
+>> Las Cylinder or +size:
+
+Nos preguntara por el tamano escribimos
+Particion primaria sera creada, 2 TB -> 2048 GB en binario
+(asumimos un disco perfecto de 2048 GB)
+2032 GB sera el tamano de la primera particion para tener 16 GB extra
+Entonces 2032 GB * 1024 MB/GB = 2080768 MB expresado en Megas
+
+Entonces la opcion
+Las Cylinder or +size: $ +2080768M
+
+La particion sera creada, ahora revisaremos la lista de particiones con p
+$ p
+Nos dara la lista de particiones, fdisk suele asignar el tipo de la particion como Linux
+de igual forma, la haremos booteable
+$ a #define una particion como booteable
+$ 1 #elegimos nuestra nueva particion
+
+Ahora creamos la segunda particion
+$ n #nueva particion
+>> Primaria (p) or Extendida (e) $ p
+>> Numero particion: $ 2
+>> First Cylinder $ <Enter> # para default, es la posicion del comienzo
+>> Last Cylinder $ <Enter> # para default, la pos. del final
+
+Revisamos con $ p
+Y ahora convertimos la particion 2 a swap
+$ t #esto cambia el tipo de particion
+>> Numero particion: $2
+>> Hex code: $ 82 #para Linux swap
+
+Finalmente
+$ w #para guardar.
+
+//Pregunta 2
+Para formatear la primera particion, Linux usamos el mkfs y le daremos el sistema ext4 es la opcion mas segura
+$ mkfs.ext4 /dev/sdb1 #para formatear primera particion
+$ mkswap /dev/sdb2 #para dejarla lista como swap
+$ swapon /dev/sdb2 #para activarla como swap
+
+//Pregunta 3
+Nuestra particion esta ahora mismo en /dev/sdb1
+Crearemos una carpeta para montarla, investigando es comun darle el nombre mnt
+$ sudo mkdir /mnt/nuevaparticion
+y montamos nuestra particion
+$ mount -t ext4 -v /dev/sdb1 /mnt/nuevaparticion
+La opcion -t es para definir el tipo de la particion, en este caso es ext4 como definimos antes
+La opcion -v es verbose, para que nos avise lo que hace o suceda
+
+Una vez la dejamos montada alli, pasamos a copiar el directorio de home
+$ rsync --partial -vhaxHAX /home/ /mnt/nuevaparticion & >copia_home.log 2>&1
+Vamos elemento por elemento:
+	rsync es la herramiento de sincronizacion
+		
+	--partial: crea un archivo temporal del archivo que no ha acabado de sincronizarse, en caso de detener el proceso, lo podemos recuperar
+
+	-vhaxHax
+		-v : Verbose, para que de salida a todo lo que hace
+		-h : Human Readable, nos da las tazas de transferencias y tamanos de archivos en unidades legibles por humanos, de no estar tendremos la informacion en bytes y bytes/segundo, lo cual se vuelve horrible cuando vamos a tamanos grandes
+		-a : Archive, archiva los archivos y directorios mientras sincroniza
+		-x : No crusa los limites del sistema de archivos (nos salvara de algun error)
+		-H : Preserva hard links, esto es un archivo link, o link file que apunta hacia el inode de un archivo (index node, es informacion dentro de un sistema unix que contiene detalles sobre cada archivo, como nodos, propietarios, etc..)
+		-A : Preserva la Lista de Control de Acceso, o ACL (son usadas por el sistema para restringir apropiadamente los permisos de los usuarios)
+		-X : "Copia" los atributos para que sean como el origen (lo que hace es copiarlos normalmente y luego cambiarlos)
+
+	&
+	Este simbolo le indica al sistema que corra el proceso en background (no se convierte en un demonio ya que sigue siendo child de bash)
+
+	>copia_home.log #redirige la salida a ese archivo
+	
+	2>&1 redirige los errores a la salida estandar (la cual viendo arriba va ahcai copia_home.log)
+
+Ahora toca desmontar la particion (recuerdese que tenemos su, de no ser asi utilice sudo)
+$ umount /dev/sdb1 
+
+//Pregunta 4
+Ahora al reiniciar el PC debe de montarse automaticamente, el responsable de ello es un archivo, "fstab"
+Primero debemos de conocer el UUI del dispositivo
+$ blkid
+Tendra una salida tipo
+/dev/sdb1: UUID="998311e3-5fb6-4872-a882-39960b73a018" Type="ext4"
+TYPE se refiere al tipo como NTFS, ext4,.. ext4 nos indicara la particion de Linux que creamos
+
+Ahora modificar fstab
+$ sudo nano -Bw /etc/fstab
+	-B : Crea un backup o respaldo del archivo original
+una vez dentro del archivo al final;
+incluya uno de los siguientes comandos, el comantiro viene despues de # y sirve para saber que es, si lo vemos en el futuro
+1)
+	# Montar particion 1 de disco de 2 Teras
+	/dev/sdb1 /mnt/nuevaparticion ext4 defaults 0 0
+2)
+	# Montar particion1 de disco de 2 Teras, con UUID
+	UUID=998311e3-5fb6-4872-a882-39960b73a018 /mnt/nuevaparticion ext4 defaults 0 0
+
+Ahora de haber elegido 1) o 2), guarde y salga
+
+Ahora intentemos ver si esta correcto, montandolo
+$ sudo mount /dev/sdb1 -v
+Notece que no incluimos donde esta montado el disco, lo que pasa es que fstab tiene la direccion de este
+-v Verbose nos dira todo lo que suceda, nos deberia decir que salio todo bien
+
+//Pregunta 5
+
+Para revisar las particiones y el espacio restante
+$ df -h | grep ^/dev
+Para filtrar y solo dejar dev
+asi tambien vemos si esta montado, lo cual nos permite revisar los archivos
+$ ls /mnt/nuevaparticion #nos mostrara los archivos de home si todo salio bien
+
+
+//Pregunta 6
+Sin kill:
+En el caso de quedarse pegado, recordemos que lo dejamos en el background, con el comando
+$ fg #traemos el ultimo proceso que metimos al background al foreground, osea frente a nosotros
+Usamos
+$ {Ctrl} + {C} para suspender
+Y recordemos nuestra opcion
+$ rsync --partial
+Esto nos permite, en el caso de interrumpir, poder volver y continuar sin corromper ficheros:
+$ rsync --append -vhaxHAX /home/ /mnt/nuevaparticion & >copia_home.log 2>&1
+para continuar donde lo dejamos, notece que las opciones deben ser las mismas
+
+Con kill:
+$ ps T #nos muestra los procesos con su PID (process ID)
+Ahora dos opcines
+1)	
+	$ kill %[ID del proceso sacado] #envia SIGTERM, terminar
+2)	
+	$ kill 9%[ID] #envia SIGKILL, lo termina abruptamente

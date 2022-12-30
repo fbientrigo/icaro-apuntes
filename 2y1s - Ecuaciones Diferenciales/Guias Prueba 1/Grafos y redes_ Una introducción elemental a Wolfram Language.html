@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<!-- saved from url=(0094)https://www.wolfram.com/language/elementary-introduction/2nd-ed/21-graphs-and-networks.es.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>Grafos y redes: Una introducción elemental a Wolfram Language</title>
+<meta name="description" content="Learn to represent connections with Wolfram Language graphs and networks. Compute with and analyze graphs. Written by Stephen Wolfram.">
+
+<!-- gl-head-includes.es.html -->
+
+    
+    <meta prefix="og: http://ogp.me/ns#" property="og:image" content="http://www.wolfram.com/share.png">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:secure_url" content="https://www.wolfram.com/share.png">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:width" content="1200">
+    <meta prefix="og: http://ogp.me/ns#" property="og:image:height" content="1200">
+    
+    <link rel="stylesheet" href="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/global.css">
+    <link rel="stylesheet" href="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/gl-styles.es.css">
+    <script type="text/javascript" async="" src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/de93ddd7a498cf841790cb0f91c486c3723c0836.1.js.descarga"></script><script type="text/javascript" async="" src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/i.js.descarga"></script><script async="" src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/analytics.js.descarga"></script><script async="" src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/wal.js.descarga"></script><script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/cookie-consent.js.descarga"></script>
+    <script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/walLoad.js.descarga"></script>
+    <script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/jquery.min.js.descarga"></script>
+    <script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/jquery-migrate-1.2.1.min.js.descarga"></script>
+    <script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/hoverIntent.min.js.descarga"></script>
+    <script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/gl-head-scripts.es.js.descarga"></script>
+    <script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/analytics.js(1).descarga"></script>
+
+<!--/gl-head-includes.es.html -->
+
+<link rel="stylesheet" type="text/css" href="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/global(1).css">
+<link rel="stylesheet" type="text/css" href="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/eiwl.es.css">
+<link rel="stylesheet" type="text/css" href="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/clipboard.es.css">
+<link rel="stylesheet" type="text/css" href="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/chapter-cookie.es.css">
+<link rel="stylesheet" type="text/css" href="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/eiwl-check-answer-lightbox.css">
+<script type="text/javascript" src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/eiwl.es.js.descarga"></script>
+<script type="text/javascript" src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/eiwl-input-popup.js.descarga"></script>
+<script type="text/javascript" src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/eiwl-check-answer-lightbox.js.descarga"></script>
+<script type="text/javascript" src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/clipboard.es.js.descarga"></script>
+<script type="text/javascript">baselang='21-graphs-and-networks.es';</script>
+ 
+</head>
+<body id="eiwl" class="eiwl gl-header-always-compact-nofooter">
+
+<!-- gl-header.es.html -->
+
+<div id="gl-outer-wrapper" class="gl-es cf">
+    <div id="gl-header" class="gl-header-fixed" style="position: relative; left: 0px;">
+        <div id="gl-header-top">
+            <ul class="cf">
+                <li><a href="http://www.wolframalpha.com/?source=nav">WolframAlpha.com</a></li>
+                <li><a href="https://www.wolframcloud.com/?source=nav">WolframCloud.com</a></li>
+                <li><a href="http://www.wolfram.com/resources/?source=nav">Todos los sitios y recursos públicos...</a></li>
+            </ul>
+        </div>
+        <div id="gl-header-bottom" class="cf">
+            <div id="gl-logo">
+               <a href="http://www.wolfram.com/?source=nav" class="cf">
+                    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/gl-logo-spikey.es.png" width="48" height="50" alt="" id="gl-logo-spikey">
+                    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/gl-logo-wolfram.es.png" width="160" height="22" alt="Wolfram" id="gl-logo-wolfram">
+                    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/gl-logo-computation-meets-knowledge.es.png" width="160" height="7" alt="Computation Meets Knowledge" id="gl-logo-slogan">
+                </a>
+            </div>
+            <ul id="gl-menu" class="cf">
+
+                <li id="gl-menu-products" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/products/?source=nav">Productos y servicios<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper cf">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><a href="http://www.wolfram.com/wolfram-one/?source=nav"><i class="gl-icon gl-r2-c11"></i>Wolfram|One</a></li>
+                                <li><a href="http://www.wolfram.com/mathematica/?source=nav"><i class="gl-icon gl-r1-c2"></i>Mathematica</a></li>
+                                <li><a href="http://www.wolfram.com/development-platform/?source=nav"><i class="gl-icon gl-r1-c1"></i>Development Platform</a></li>
+                                <li><a href="http://www.wolfram.com/programming-lab/?source=nav"><i class="gl-icon gl-r1-c10"></i>Programming Lab</a></li>
+                                <li><a href="http://www.wolfram.com/data-science-platform/?source=nav"><i class="gl-icon gl-r1-c4"></i>Data Science Platform</a></li>
+                                <li><a href="http://www.wolfram.com/finance-platform/?source=nav"><i class="gl-icon gl-r1-c5"></i>Finance Platform</a></li>
+                                <li><a href="http://www.wolfram.com/system-modeler/?source=nav"><i class="gl-icon gl-r1-c6"></i>SystemModeler</a></li>
+                            </ul>
+                            <ul class="gl-col gl-col2">
+                                <li class="gl-hover gl-lines">
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/enterprise-private-cloud/?source=nav"><i class="gl-icon gl-r1-c12"></i>Enterprise Private Cloud</a></li>
+                                        <li><a href="http://www.wolfram.com/mathematica-enterprise-edition/?source=nav"><i class="gl-icon gl-r1-c13"></i>Enterprise Mathematica</a></li>
+                                        <li><a href="http://products.wolframalpha.com/appliance/?source=nav"><i class="gl-icon gl-r1-c14"></i>Wolfram|Alpha Appliance</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c7"></i>Soluciones empresariales
+                                    <ul>
+                                        <li><a href="http://www.wolframsolutions.com/?source=nav">Consultorías corporativas</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Servicios técnicos</a></li>
+                                        <li><a href="http://products.wolframalpha.com/business/?source=nav">Soluciones empresariales de Wolfram|Alpha</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><a href="http://www.wolfram.com/education/?source=nav"><i class="gl-icon gl-r3-c2"></i>Productos para la educación</a></li>
+                                <li class="gl-hover"><a href="http://www.wolframalpha.com/?source=nav"><i class="gl-icon gl-r1-c7"></i>Wolfram|Alpha</a>
+                                    <ul>
+                                        <li><a href="http://www.wolframalpha.com/pro/?source=nav">Wolfram|Alpha Pro</a></li>
+                                        <li><a href="http://www.wolframalpha.com/pro/problem-generator/?source=nav">Generador de problemas</a></li>
+                                        <li><a href="http://products.wolframalpha.com/api/?source=nav">API</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><a href="https://datadrop.wolframcloud.com/?source=nav"><i class="gl-icon gl-r2-c10"></i>Data Drop</a></li>
+                                <li class="gl-hover"><a href="https://datarepository.wolframcloud.com/?source=nav"><i class="gl-icon gl-r3-c8"></i>Data Repository</a></li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><i class="gl-icon gl-r1-c8"></i>Aplicaciones para celulares
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/player-app/?source=nav">Wolfram Player</a></li>
+                                        <li><a href="http://www.wolfram.com/cloud-app/?source=nav" target="_blank">Applicación de Wolfram Cloud</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav">Wolfram|Alpha para celulares</a></li>
+                                        <li><a href="http://products.wolframalpha.com/mobile/?source=nav#wapowered">Aplicaciones potenciadas por Wolfram|Alpha</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r1-c9"></i>Servicios
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Soporte a proyectos por pago</a></li>
+                                        <li><a href="http://www.wolfram.com/training/?source=nav">Capacitación</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/products/?source=nav">Todos los productos y servicios »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-products -->
+
+                <li id="gl-menu-technologies" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/technologies/?source=nav">Tecnologías<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <div class="gl-col gl-col1">
+                                <a href="http://www.wolfram.com/language/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c1"></i>Wolfram Language</span>
+                                    <span>Revolucionario lenguaje de programación basado en el conocimiento.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/cloud/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c2"></i>Wolfram Cloud</span>
+                                    <span>Infraestructura central para los productos y servicios de la nube Wolfram.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/wolfram-science/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c8"></i>Wolfram Science</span>
+                                    <span>Tecnología que permite el acceso a la ciencia del universo computacional.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col2">
+                                <a href="http://www.wolfram.com/notebooks/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c3"></i>Cuadernos Wolfram</span>
+                                    <span>El entorno preeminente para cualquier flujo de trabajo técnico.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/engine/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c4"></i>Wolfram Engine</span>
+                                    <span>Motor de software que implementa el Wolfram Language.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/natural-language-understanding/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c9"></i>Wolfram Natural Language Understanding System</span>
+                                    <span>Lenguaje natural basado en el conocimiento y ampliamente implementado.</span>
+                                </a>
+                            </div>
+                            <div class="gl-col gl-col3">
+                                <a href="http://www.wolfram.com/data-framework/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c5"></i>Wolfram Data Framework</span>
+                                    <span>Marco semántico para datos del mundo real.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/universal-deployment-system/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c6"></i>Wolfram Universal Deployment System</span>
+                                    <span>Implementación instantánea a través de la nube, escritorio, celular y más.</span>
+                                </a>
+                                <a href="http://www.wolfram.com/knowledgebase/?source=nav" class="gl-hover">
+                                    <span><i class="gl-icon gl-r2-c7"></i>Wolfram Knowledgebase</span>
+                                    <span>Conocimiento computable curado potenciando a Wolfram|Alpha.</span>
+                                </a>
+                            </div>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/technologies/?source=nav">Todas las tecnologías »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-technologies -->
+
+                <li id="gl-menu-solutions" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/solutions/?source=nav">Soluciones<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><i class="gl-icon gl-r3-c1"></i>Ingeniería, I&amp;D
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/aerospace-engineering/?source=nav">Aeroespacial y defensa</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemical-engineering/?source=nav">Ingeniería química</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/control-systems/?source=nav">Sistemas de control</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electrical-engineering/?source=nav">Ingeniería eléctrica</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/image-processing/?source=nav">Procesamiento de imágenes</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/industrial-engineering/?source=nav">Ingeniería industrial</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/mechanical-engineering/?source=nav">Ingeniería mecánica</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/operations-research/?source=nav">Investigación de operaciones</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-rtall gl-r3-c4"></i>Finanzas, estadística y análisis de negocios
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/actuarial-sciences/?source=nav">Ciencias actuariales</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/bioinformatics/?source=nav">Bioinformática</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/data-science/?source=nav">Ciencia de datos</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/econometrics/?source=nav">Econometría</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/financial-risk-management/?source=nav">Administración de riesgos financieros</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/statistics/?source=nav">Estadística</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3">
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c2"></i>Educación
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/education/?source=nav">Todas las soluciones para la educación</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c6"></i>Tendiencias
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/featureset/machine-learning/?source=nav">Aprendizaje automático</a></li>
+                                        <li><a href="http://www.mpdatascience.com/?source=nav">Ciencia de datos multiparadigma</a></li>
+                                        <li><a href="http://www.wolfram.com/internet-of-things/?source=nav">Internet de las cosas</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/hpc/?source=nav">Computación de alto rendimiento</a></li>
+                                        <li><a href="http://www.wolfram.com/hackathons/?source=nav">Hackathones</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col4">
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c3"></i>Web y software
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/electronic-publishing/?source=nav">Autoría y publicación</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/interface-development/?source=nav">Desarrollo de interfaz</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/software-engineering/?source=nav">Desarrollo web</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-hover"><i class="gl-icon gl-r3-c5"></i>Ciencias
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/astronomy/?source=nav">Astronomía</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/biological-sciences/?source=nav">Biología</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/industry/chemistry/?source=nav">Química</a></li>
+                                        <li><a href="http://www.wolfram.com/solutions/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/solutions/?source=nav">Todas las soluciones »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-solutions -->
+
+                <li id="gl-menu-support" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/support/?source=nav">Soporte y aprendizaje<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover cf">
+                                <li class="gl-col1"><i class="gl-icon gl-r4-c1"></i>Aprendizaje
+                                    <ul>
+                                        <li><a href="http://reference.wolfram.com/language/?source=nav">Documentación de Wolfram Language</a></li>
+                                        <li><a href="http://www.wolfram.com/language/fast-introduction-for-programmers/?source=nav">Introducción rápida para programadores</a></li>
+                                        <li><a href="http://www.wolfram.com/training/?source=nav">Capacitación</a></li>
+                                        <li><a href="http://www.wolfram.com/broadcast/?source=nav">Videos y screencasts</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-col2">&nbsp;
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/language/elementary-introduction/?source=nav">Libro introductorio de Wolfram Language</a></li>
+                                        <li><a href="http://www.wolfram.com/training/special-event/?source=nav">Seminarios virtuales</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                        <li><a href="http://www.wolfram.com/books/?source=nav">Libros</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-icon gl-r4-c2"></i>¿Necesita ayuda?
+                                    <ul>
+                                        <li><a href="http://support.wolfram.com/kb/?source=nav">Preguntas frecuentes de soporte</a></li>
+                                        <li><a href="http://community.wolfram.com/?source=nav">Comunidad Wolfram</a></li>
+                                        <li><a href="http://www.wolfram.com/support/contact/?source=nav">Contacte a soporte</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover">
+                                <li><i class="gl-icon gl-r4-c4"></i>Soporte Premium
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/mathematica/pricing/premier-service.php?source=nav">Premier Service</a></li>
+                                        <li><a href="http://www.wolfram.com/support/technical-services/?source=nav">Servicios técnicos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/support/?source=nav">Todo soporte y aprendizaje »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-support -->
+
+                <li id="gl-menu-company" class="gl-menu-tab">
+                    <a href="http://www.wolfram.com/company/?source=nav">Compañía<i class="gl-icon gl-r6-c2"></i></a>
+                    <ul class="gl-submenu">
+                        <li class="gl-col-wrapper">
+                            <ul class="gl-col gl-col1 gl-hover">
+                                <li><i class="gl-icon gl-r5-c1"></i>Acerca de
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/background.html?source=nav">Historia de la compañía</a></li>
+                                        <li><a href="http://blog.wolfram.com/?source=nav">Wolfram Blog</a></li>
+                                        <li><a href="http://company.wolfram.com/announcements/?source=nav">Noticias</a></li>
+                                        <li><a href="http://company.wolfram.com/events/?source=nav">Eventos</a></li>
+                                        <li><a href="http://www.wolfram.com/company/contact/?source=nav">Contáctenos</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col2 gl-hover">
+                                <li><i class="gl-icon gl-r5-c2"></i>Trabaje con nosotros
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Profesiones en Wolfram</a></li>
+                                        <li><a href="http://www.wolfram.com/company/careers/?source=nav">Pasantías</a></li>
+                                        <li><a href="http://community.wolfram.com/content?curTag=jobs&amp;source=nav">Otros trabajos con Wolfram Language</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="gl-col gl-col3 gl-hover cf">
+                                <li class="gl-col3"><i class="gl-icon gl-r5-c3"></i>Iniciativas
+                                    <ul>
+                                        <li><a href="http://www.wolframfoundation.org/?source=nav">Fundación Wolfram</a></li>
+                                        <li><a href="http://mathworld.wolfram.com/?source=nav" target="_blank">MathWorld</a></li>
+                                        <li><a href="http://www.computerbasedmath.org/?source=nav">Computer-Based Math</a></li>
+                                        <li><a href="http://www.wolframscience.com/?source=nav"><em>A New Kind of Science</em></a></li>
+                                        <li><a href="http://www.wolfram.com/hackathons/?source=nav">Tecnología Wolfram para hackathones</a></li>
+                                        <li><a href="http://www.wolfram.com/company/careers/ambassador/?source=nav">Programa de estudiantes embajadores</a></li>
+                                    </ul>
+                                </li>
+                                <li class="gl-col4">&nbsp;
+                                    <ul>
+                                        <li><a href="http://www.wolfram.com/startups/?source=nav">Wolfram para emprendimientos</a></li>
+                                        <li><a href="http://demonstrations.wolfram.com/?source=nav">Proyecto de demostraciones</a></li>
+                                        <li><a href="http://www.wolfram.com/events/technology-conference/innovator-award/?source=nav">Premios Wolfram a la innovación</a></li>
+                                        <li><a href="http://www.wolfram.com/raspberry-pi/?source=nav">Wolfram + Raspberry Pi</a></li>
+                                        <li><a href="http://education.wolfram.com/summer/?source=nav">Programas de verano</a></li>
+                                        <li><a href="http://www.wolfram.com/resources/?source=nav"><em>Más...</em></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li><!--/.gl-col-wrapper -->
+                        <li class="gl-col-footer">
+                            <a href="http://www.wolfram.com/company/?source=nav">Toda la compañía »</a>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-company -->
+
+                <li id="gl-menu-divider"></li>
+                <li id="gl-menu-search" class="gl-menu-tab">
+                    <div class="gl-menu-tab-link"><i class="gl-icon gl-r6-c1"></i>Buscar</div>
+                    <ul class="gl-submenu">
+                        <li id="gl-search-wrapper" class="cf">
+                            <form action="https://search.wolfram.com/" method="get" accept-charset="utf-8">
+                                <div>
+                                    <input type="text" name="query" value="What are you looking for?" autocomplete="off" id="gl-search">
+                                </div>
+                            </form>
+                        </li>
+                    </ul><!--/.gl-submenu -->
+                </li><!--/#gl-menu-search -->
+
+            </ul><!--/#gl-menu -->
+        </div><!--/#gl-header-bottom -->
+    </div><!--/#gl-header -->
+    <div id="gl-header-bg" class="gl-header-fixed"><span><!-- --></span></div>
+    <div id="gl-header-offset" class="gl-header-fixed"><span><!-- --></span></div>
+    <div id="gl-inner-wrapper">
+
+<!--/gl-header.es.html -->
+
+<header>
+	<div class="header-inner">
+		<span class="header-image"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/index.es.html" id="EIWL-WEB-2nd-ed-main-index-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/elementary-introduction-header.es.png" alt="An Elementary Introduction to the Wolfram Language"></a></span>
+		<span class="prevnext"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/20-options.es.html" id="EIWL-WEB-2nd-ed-prev-section-header-21-graphs-and-networks.es" class="km-track-click-no-url"><span><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/top-previous-arrow.png" width="12" height="20" alt=""></span></a><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/22-machine-learning.es.html" id="EIWL-WEB-2nd-ed-next-section-header-21-graphs-and-networks.es" class="km-track-click-no-url"><span><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/top-next-arrow.png" width="13" height="21" alt=""></span></a></span>
+	</div>
+</header>
+<div class="sidebarwrapper">
+ <div class="sidebarHamburger" id="sidebarHamburger">
+  <a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/21-graphs-and-networks.es.html#" id="showSidebar"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/hamburger.png" width="45" height="28"></a>
+ </div>
+ <div class="sidebar" id="sidebar">
+  <div class="sidebar-close-button">
+   <a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/21-graphs-and-networks.es.html#" id="hide-sidebar-button"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-icon.png" width="13" height="13"></a>
+  </div>
+  <nav id="nav" class="pageNav"><ul>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/preface.es.html" id="EIWL-WEB-sidebar-preface">Prefacio</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/what-is-the-wolfram-language.es.html" id="EIWL-WEB-sidebar-what-is-the-wolfram-language">¿Qué es Wolfram Language?</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/practicalities-of-using-the-wolfram-language.es.html" id="EIWL-WEB-sidebar-practicalities-of-using-the-wolfram-language">Aspectos prácticos en el uso de Wolfram Language</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/other-resources.es.html" id="EIWL-WEB-sidebar-other-resources">Otros recursos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/translation-notes.es.html" id="EIWL-WEB-sidebar-translation-notes">Sobre la traducción al español</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/01-starting-out-elementary-arithmetic.es.html" id="EIWL-WEB-sidebar-01-starting-out-elementary-arithmetic"><span class="tocSectionNumber">1</span>Inicio: aritmética elemental</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/02-introducing-functions.es.html" id="EIWL-WEB-sidebar-02-introducing-functions"><span class="tocSectionNumber">2</span>Introducción a las funciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/03-first-look-at-lists.es.html" id="EIWL-WEB-sidebar-03-first-look-at-lists"><span class="tocSectionNumber">3</span>Un primer vistazo a las listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/04-displaying-lists.es.html" id="EIWL-WEB-sidebar-04-displaying-lists"><span class="tocSectionNumber">4</span>Visualización de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/05-operations-on-lists.es.html" id="EIWL-WEB-sidebar-05-operations-on-lists"><span class="tocSectionNumber">5</span>Operaciones con listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/06-making-tables.es.html" id="EIWL-WEB-sidebar-06-making-tables"><span class="tocSectionNumber">6</span>Construcción de tablas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/07-colors-and-styles.es.html" id="EIWL-WEB-sidebar-07-colors-and-styles"><span class="tocSectionNumber">7</span>Colores y estilos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/08-basic-graphics-objects.es.html" id="EIWL-WEB-sidebar-08-basic-graphics-objects"><span class="tocSectionNumber">8</span>Objetos gráficos elementales</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/09-interactive-manipulation.es.html" id="EIWL-WEB-sidebar-09-interactive-manipulation"><span class="tocSectionNumber">9</span>Manipulación interactiva</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/10-images.es.html" id="EIWL-WEB-sidebar-10-images"><span class="tocSectionNumber">10</span>Imágenes</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/11-strings-and-text.es.html" id="EIWL-WEB-sidebar-11-strings-and-text"><span class="tocSectionNumber">11</span>Cadenas de caracteres y texto</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/12-sound.es.html" id="EIWL-WEB-sidebar-12-sound"><span class="tocSectionNumber">12</span>Sonido</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/13-arrays-or-lists-of-lists.es.html" id="EIWL-WEB-sidebar-13-arrays-or-lists-of-lists"><span class="tocSectionNumber">13</span>Arreglos o listas de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/14-coordinates-and-graphics.es.html" id="EIWL-WEB-sidebar-14-coordinates-and-graphics"><span class="tocSectionNumber">14</span>Coordenadas y gráficos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/15-the-scope-of-the-wolfram-language.es.html" id="EIWL-WEB-sidebar-15-the-scope-of-the-wolfram-language"><span class="tocSectionNumber">15</span>El alcance de Wolfram Language</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/16-real-world-data.es.html" id="EIWL-WEB-sidebar-16-real-world-data"><span class="tocSectionNumber">16</span>Datos del mundo real</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/17-units.es.html" id="EIWL-WEB-sidebar-17-units"><span class="tocSectionNumber">17</span>Unidades</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/18-geocomputation.es.html" id="EIWL-WEB-sidebar-18-geocomputation"><span class="tocSectionNumber">18</span>Geocomputación</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/19-dates-and-times.es.html" id="EIWL-WEB-sidebar-19-dates-and-times"><span class="tocSectionNumber">19</span>Fechas y horas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/20-options.es.html" id="EIWL-WEB-sidebar-20-options"><span class="tocSectionNumber">20</span>Opciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink selected" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/21-graphs-and-networks.es.html" id="selected"><span class="tocSectionNumber">21</span>Grafos y redes</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/22-machine-learning.es.html" id="EIWL-WEB-sidebar-22-machine-learning"><span class="tocSectionNumber">22</span>Aprendizaje automático</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/23-more-about-numbers.es.html" id="EIWL-WEB-sidebar-23-more-about-numbers"><span class="tocSectionNumber">23</span>Más sobre números</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/24-more-forms-of-visualization.es.html" id="EIWL-WEB-sidebar-24-more-forms-of-visualization"><span class="tocSectionNumber">24</span>Más formas de visualización</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/25-ways-to-apply-functions.es.html" id="EIWL-WEB-sidebar-25-ways-to-apply-functions"><span class="tocSectionNumber">25</span>Maneras de aplicar funciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/26-pure-anonymous-functions.es.html" id="EIWL-WEB-sidebar-26-pure-anonymous-functions"><span class="tocSectionNumber">26</span>Funciones puras anónimas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/27-applying-functions-repeatedly.es.html" id="EIWL-WEB-sidebar-27-applying-functions-repeatedly"><span class="tocSectionNumber">27</span>Aplicación repetida de funciones </a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/28-tests-and-conditionals.es.html" id="EIWL-WEB-sidebar-28-tests-and-conditionals"><span class="tocSectionNumber">28</span>Pruebas y condicionales</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/29-more-about-pure-functions.es.html" id="EIWL-WEB-sidebar-29-more-about-pure-functions"><span class="tocSectionNumber">29</span>Más sobre las funciones puras</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/30-rearranging-lists.es.html" id="EIWL-WEB-sidebar-30-rearranging-lists"><span class="tocSectionNumber">30</span>Reorganización de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/31-parts-of-lists.es.html" id="EIWL-WEB-sidebar-31-parts-of-lists"><span class="tocSectionNumber">31</span>Partes de listas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/32-patterns.es.html" id="EIWL-WEB-sidebar-32-patterns"><span class="tocSectionNumber">32</span>Patrones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/33-expressions-and-their-structure.es.html" id="EIWL-WEB-sidebar-33-expressions-and-their-structure"><span class="tocSectionNumber">33</span>Expresiones y su estructura</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/34-associations.es.html" id="EIWL-WEB-sidebar-34-associations"><span class="tocSectionNumber">34</span>Asociaciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/35-natural-language-understanding.es.html" id="EIWL-WEB-sidebar-35-natural-language-understanding"><span class="tocSectionNumber">35</span>Comprensión del lenguaje natural</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/36-creating-websites-and-apps.es.html" id="EIWL-WEB-sidebar-36-creating-websites-and-apps"><span class="tocSectionNumber">36</span>Construcción de sitios web y aplicaciones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/37-layout-and-display.es.html" id="EIWL-WEB-sidebar-37-layout-and-display"><span class="tocSectionNumber">37</span>Composición y visualización</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/38-assigning-names-to-things.es.html" id="EIWL-WEB-sidebar-38-assigning-names-to-things"><span class="tocSectionNumber">38</span>Asignación de nombres a cosas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/39-immediate-and-delayed-values.es.html" id="EIWL-WEB-sidebar-39-immediate-and-delayed-values"><span class="tocSectionNumber">39</span>Valores inmediatos y diferidos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/40-defining-your-own-functions.es.html" id="EIWL-WEB-sidebar-40-defining-your-own-functions"><span class="tocSectionNumber">40</span>Funciones definidas por el usuario</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/41-more-about-patterns.es.html" id="EIWL-WEB-sidebar-41-more-about-patterns"><span class="tocSectionNumber">41</span>Más información sobre los patrones</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/42-string-patterns-and-templates.es.html" id="EIWL-WEB-sidebar-42-string-patterns-and-templates"><span class="tocSectionNumber">42</span>Cadenas de caracteres y plantillas </a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/43-storing-things.es.html" id="EIWL-WEB-sidebar-43-storing-things"><span class="tocSectionNumber">43</span>Cómo guardar cosas</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/44-importing-and-exporting.es.html" id="EIWL-WEB-sidebar-44-importing-and-exporting"><span class="tocSectionNumber">44</span>Importar y exportar</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/45-datasets.es.html" id="EIWL-WEB-sidebar-45-datasets"><span class="tocSectionNumber">45</span>Conjuntos de datos</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/46-writing-good-code.es.html" id="EIWL-WEB-sidebar-46-writing-good-code"><span class="tocSectionNumber">46</span>Cómo escribir código de buena calidad</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocChapterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/47-debugging-your-code.es.html" id="EIWL-WEB-sidebar-47-debugging-your-code"><span class="tocSectionNumber">47</span>Depuración de código</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/what-we-havent-discussed.es.html" id="EIWL-WEB-sidebar-what-we-havent-discussed">Lo que no se vio en el libro</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/being-a-programmer.es.html" id="EIWL-WEB-sidebar-being-a-programmer">Epílogo: ser un programador</a>
+    </li>
+    <li>
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/answers-to-exercises.es.html" id="EIWL-WEB-sidebar-answers-to-exercises">Respuestas a los ejercicios</a>
+    </li>
+    <li id="book-index">
+     <a class="km-track-click-no-url tocFrontmatterLink" href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/book-index.es.html" id="EIWL-WEB-sidebar-book-index">Índice</a>
+    </li>
+    <li class="goToPageClass">
+     <form action="javascript:pageURL();" autocomplete="off"><span class="goToPageText">Jump to Book Page:</span><input id="goToPageInput" type="text" size="6" onkeypress="handle(event)"></form>
+    </li>
+   </ul></nav>
+ </div>
+</div>
+
+<section>
+	<div class="section-inner">
+		<div class="wrapper mainOuter">
+			<div class="mainContent">
+		<div>
+ <a id="p-115">
+ <table class="SectionTitleTable">
+  <tbody><tr><td id="SectionNumber"><span class="SectionNumber">21</span></td><td id="Section"><span class="Section">Grafos y redes</span></td></tr>
+ </tbody></table>
+ </a><div class="bodytext"><a id="p-115"></a><a id="i-1">Un grafo es una forma de mostrar conexiones entre cosas, por ejemplo, c<span class="special-character OAcute">ó</span>mo est<span class="special-character AAcute">á</span>n conectadas las p<span class="special-character AAcute">á</span>ginas web, o c<span class="special-character OAcute">ó</span>mo se forma una red social entre personas. </a></div><a id="i-1">
+ </a><div class="bodytext"><a id="i-1">Para comenzar, tomemos un ejemplo sencillo, donde 1 se conecta con 2, 2 con 3 y 3 con 4. Cada conexi<span class="special-character OAcute">ó</span>n se representa mediante <span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a> (que se escribe en un teclado como <span class="InlineCode">-&gt;</span>).</div>
+ <div class="CodeCaption">Un grafo de conexiones muy sencillo: </div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[1]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_1-i.es.png" height="20" width="174" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_1-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_1_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[1]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-1-o.es.png" width="240" height="19" id="21-graphs-and-networks-io-1-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption"><a id="i-2">Se etiquetan todos los <span class="special-character OpenCurlyDoubleQuote">“</span>v<span class="special-character EAcute">é</span>rtices<span class="special-character CloseCurlyDoubleQuote">”</span> autom<span class="special-character AAcute">á</span>ticamente:</a></div><a id="i-2">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[2]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_2-i.es.png" height="20" width="300" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_2-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_2_out" class="IFL"><span class="close">✕</span><pre id="io_2_out_text" class="text">Graph[{1 -&gt; 2,2 -&gt; 3,3 -&gt; 4},VertexLabels -&gt; All]   </pre></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[2]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-2-o.es.png" width="240" height="24" id="21-graphs-and-networks-io-2-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-2"></a><a id="i-3">Si ahora se a<span class="special-character NTilde">ñ</span>ade una conexi<span class="special-character OAcute">ó</span>n m<span class="special-character AAcute">á</span>s: el 4 con el 1, se tiene un bucle. </a></div><a id="i-3">
+ </a><div class="CodeCaption"><a id="i-3"></a><a id="i-4">Se a<span class="special-character NTilde">ñ</span>ade otra conexi<span class="special-character OAcute">ó</span>n, formando un bucle:</a></div><a id="i-4">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[3]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_3-i.es.png" height="20" width="340" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_3-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_3_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[3]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-3-o.es.png" width="197" height="204" id="21-graphs-and-networks-io-3-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Se a<span class="special-character NTilde">ñ</span>aden dos conexiones m<span class="special-character AAcute">á</span>s, incluyendo una que conecta el 2 consigo mismo:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[4]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_4-i.es.png" height="20" width="421" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_4-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_4_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[4]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-4-o.es.png" width="315" height="140" id="21-graphs-and-networks-io-4-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-4"></a><a id="LastCellOfAPage">A medida que se a<span class="special-character NTilde">ñ</span>aden conexiones, Wolfram Language escoge maneras diferentes de colocar los v<span class="special-character EAcute">é</span>rtices o nodos del grafo. Sin embargo, lo que realmente importa para su significado, es c<span class="special-character OAcute">ó</span>mo est<span class="special-character AAcute">á</span>n conectados los v<span class="special-character EAcute">é</span>rtices. Si no se especifica otra cosa, Wolfram Language tratar<span class="special-character AAcute">á</span> de acomodar las cosas de tal modo que queden lo menos enredadas y m<span class="special-character AAcute">á</span>s f<span class="special-character AAcute">á</span>ciles de entender que sea posible.</a></div><a id="LastCellOfAPage">
+ </a><div class="bodytext"><a id="LastCellOfAPage"></a><a id="p-116"></a><a id="i-5">Pero hay opciones para especificar otras formas de disponer las cosas. Por ejemplo, aqu<span class="special-character IAcute">í</span> se tiene el mismo grafo anterior, con las mismas conexiones, pero la disposici<span class="special-character OAcute">ó</span>n de los v<span class="special-character EAcute">é</span>rtices es diferente.</a></div><a id="i-5">
+ </a><div class="CodeCaption"><a id="i-5"></a><a id="i-6">Una disposici<span class="special-character OAcute">ó</span>n diferente para el mismo grafo (para comprobarlo, se revisan las conexiones):</a></div><a id="i-6">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[5]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_5-i.es.png" height="44" width="421" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_5-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_5_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[5]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-5-o.es.png" width="232" height="192" id="21-graphs-and-networks-io-5-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-6"></a><a id="i-7">Se pueden hacer procesos de c<span class="special-character OAcute">ó</span>mputo en el grafo, tal como, por ejemplo, encontrar el camino m<span class="special-character AAcute">á</span>s corto que vaya de 4 a 2, siempre en la direcci<span class="special-character OAcute">ó</span>n de las flechas.</a></div><a id="i-7">
+ <div class="CodeCaption">El camino m<span class="special-character AAcute">á</span>s corto de 4 a 2 en el grafo pasa por 1:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[6]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_6-i.es.png" height="20" width="449" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_6-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_6_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[6]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-6-o.es.png" width="46" height="19" id="21-graphs-and-networks-io-6-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="bodytext">Considere otro grafo. Ahora se tienen 3 nodos, con conexi<span class="special-character OAcute">ó</span>n entre cada uno de ellos. </div>
+ <div class="CodeCaption">Primero, se crea un arreglo con todas las conexiones posibles entre 3 objetos:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[7]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_7-i.es.png" height="20" width="148" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_7-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_7_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[7]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-7-o.es.png" width="385" height="19" id="21-graphs-and-networks-io-7-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-7"></a><a id="i-8">Aqu<span class="special-character IAcute">í</span> el resultado es una lista de listas, y lo que requiere </a><a href="http://reference.wolfram.com/language/ref/Graph.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Graph</a> es una sola lista con las conexiones. Y esto se puede obtener usando <a href="http://reference.wolfram.com/language/ref/Flatten.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Flatten</a> para <span class="special-character OpenCurlyDoubleQuote">“</span>aplanar<span class="special-character CloseCurlyDoubleQuote">”</span> las sublistas.</div>
+ <div class="CodeCaption"><a href="http://reference.wolfram.com/language/ref/Flatten.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Flatten</a> <span class="special-character OpenCurlyDoubleQuote">“</span>aplana<span class="special-character CloseCurlyDoubleQuote">”</span> todas las sublistas, dondequiera que estas se encuentren:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[8]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_8-i.es.png" height="20" width="212" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_8-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_8_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[8]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-8-o.es.png" width="117" height="19" id="21-graphs-and-networks-io-8-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption">Del arreglo, se obtiene una lista <span class="special-character OpenCurlyDoubleQuote">“</span>aplanada<span class="special-character CloseCurlyDoubleQuote">”</span> de las conexiones:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[9]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_9-i.es.png" height="20" width="203" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_9-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_9_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[9]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-9-o.es.png" width="358" height="19" id="21-graphs-and-networks-io-9-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="CodeCaption"><a id="p-117">Se muestra el grafo de estas conexiones:</a></div><a id="p-117">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[10]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_10-i.es.png" height="20" width="377" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_10-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_10_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[10]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-10-o.es.png" width="220" height="195" id="21-graphs-and-networks-io-10-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="CodeCaption"><a id="p-117"></a><a id="i-9">Genere el grafo completamente conexo con 6 nodos:</a></div><a id="i-9">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[11]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_11-i.es.png" height="20" width="252" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_11-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_11_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[11]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-11-o.es.png" width="215" height="185" id="21-graphs-and-networks-io-11-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-9"></a><a id="i-10">En ocasiones, la <span class="special-character OpenCurlyDoubleQuote">“</span>direcci<span class="special-character OAcute">ó</span>n<span class="special-character CloseCurlyDoubleQuote">”</span> de una conexi<span class="special-character OAcute">ó</span>n no importa, as<span class="special-character IAcute">í</span> que se pueden desechar las flechas. </a></div><a id="i-10">
+ </a><div class="CodeCaption"><a id="i-10"></a><a id="i-11">La versi<span class="special-character OAcute">ó</span>n <span class="special-character OpenCurlyDoubleQuote">“</span>no dirigida<span class="special-character CloseCurlyDoubleQuote">”</span> del grafo es:</a></div><a id="i-11">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[12]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_12-i.es.png" height="20" width="324" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_12-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_12_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[12]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-12-o.es.png" width="220" height="197" id="21-graphs-and-networks-io-12-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-11"></a><a id="p-118"></a><a id="i-12">Ahora se construye un grafo con conexiones aleatorias. He aqu<span class="special-character IAcute">í</span> un ejemplo con 20 conexiones entre nodos elegidos al azar.</a></div><a id="i-12">
+ <div class="CodeCaption">Construya un grafo con 20 conexiones entre nodos elegidos al azar y numerados del 0 al 10:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[13]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_13-i.es.png" height="20" width="512" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_13-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_13_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[13]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-13-o.es.png" width="315" height="215" id="21-graphs-and-networks-io-13-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="bodytext">Se obtendr<span class="special-character AAcute">á</span> un grafo diferente si se generan diferentes n<span class="special-character UAcute">ú</span>meros al azar. He aqu<span class="special-character IAcute">í</span> 6 grafos.</div>
+ <div class="CodeCaption">Seis grafos generados aleatoriamente son:</div>
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[14]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_14-i.es.png" height="20" width="446" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_14-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_14_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[14]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-14-o.es.png" width="575" height="332" id="21-graphs-and-networks-io-14-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ </a><div class="bodytext"><a id="i-12"></a><a id="p-119"></a><a id="i-13">Hay muchos an<span class="special-character AAcute">á</span>lisis que pueden llevarse a cabo con los grafos. Por ejemplo, se puede descomponer un grafo en <span class="special-character OpenCurlyDoubleQuote">“</span>comunidades<span class="special-character CloseCurlyDoubleQuote">”</span>, es decir, en grupos de nodos que est<span class="special-character AAcute">á</span>n m<span class="special-character AAcute">á</span>s conectados entre ellos que con el resto del grafo. Se har<span class="special-character AAcute">á</span> ahora esto con un grafo aleatorio. </a></div><a id="i-13">
+ </a><div class="CodeCaption"><a id="i-13"></a><a id="i-14">Cree una gr<span class="special-character AAcute">á</span>fica que agrupe <span class="special-character OpenCurlyDoubleQuote">“</span>comunidades<span class="special-character CloseCurlyDoubleQuote">”</span> de nodos:</a></div><a id="i-14">
+ <div class="IO">
+  <table class="InCell">
+   <tbody><tr><td class="lab">In[15]:=</td><td class="Input"><div class="copyable-input">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io_15-i.es.png" height="174" width="472" alt="Click for copyable input" id="EIWL-WEB-2nd-ed-show-copy-input-io_15-21-graphs-and-networks.es" class="km-track-click-no-url">
+     </div><div id="io_15_out" class="IFL"></div></td></tr>
+  </tbody></table>
+  <table class="OCell">
+   <tbody><tr><td class="lab">Out[15]=</td><td class="Output"><div class="wideimage">
+      <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/21-graphs-and-networks-io-15-o.es.png" width="315" height="208" id="21-graphs-and-networks-io-15-o" alt="">
+     </div></td></tr>
+  </tbody></table>
+ </div>
+ <div class="bodytext">El resultado es un grafo con exactamente las mismas conexiones que el original, pero con los nodos acomodados de manera que se ilustre la <span class="special-character OpenCurlyDoubleQuote">“</span>estructura de comunidades<span class="special-character CloseCurlyDoubleQuote">”</span> del grafo. </div>
+ </a><div class="VocabularySection"><a id="i-14"></a><a id="Vocabulary">Vocabulario</a></div><a id="Vocabulary">
+ </a><div class="VocabularyTable"><a id="Vocabulary">
+  </a><a id="LastCellOfAPage">
+  <table>
+   <colgroup><col>
+   <col>
+   <col>
+   </colgroup><tbody><tr class="lineAbove" style=""><td><a href="http://reference.wolfram.com/language/ref/Graph.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Graph</a>[{<span class="CodeVariableLrg">i</span><span class="special-character Rule"></span><span class="CodeVariableLrg">j</span>, <span class="GrayPointSix">...</span>}]</td><td> </td><td><span class="VocabularyText">un grafo o red de conexiones </span></td></tr>
+   <tr class="topBorder " style=""><td><a href="http://reference.wolfram.com/language/ref/UndirectedGraph.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">UndirectedGraph</a>[{<span class="CodeVariableLrg">i</span><span class="special-character Rule"></span><span class="CodeVariableLrg">j</span>, <span class="GrayPointSix">...</span>}]</td><td> </td><td><span class="VocabularyText">un grafo sin direcciones en las conexiones </span></td></tr>
+   <tr class="topBorder " style=""><td><a href="http://reference.wolfram.com/language/ref/VertexLabels.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">VertexLabels</a></td><td> </td><td><span class="VocabularyText">una opci<span class="special-character OAcute">ó</span>n para especificar etiquetas de v<span class="special-character EAcute">é</span>rtices (e.g. <a href="http://reference.wolfram.com/language/ref/All.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">All</a>) </span></td></tr>
+   <tr class="topBorder " style=""><td><a href="http://reference.wolfram.com/language/ref/FindShortestPath.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">FindShortestPath</a>[<span class="CodeVariableLrg">graph</span>,<span class="CodeVariableLrg">a</span>,<span class="CodeVariableLrg">b</span>]</td><td> </td><td><span class="VocabularyText">encuentra el camino m<span class="special-character AAcute">á</span>s corto entre un nodo y otro </span></td></tr>
+   <tr class="topBorder " style=""><td><a href="http://reference.wolfram.com/language/ref/CommunityGraphPlot.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">CommunityGraphPlot</a>[<span class="CodeVariableLrg">list</span>]</td><td> </td><td><span class="VocabularyText">presenta un grafo de modo tal que muestre las <span class="special-character OpenCurlyDoubleQuote">“</span>comunidades<span class="special-character CloseCurlyDoubleQuote">”</span> </span></td></tr>
+   <tr class="" style=""><td><a href="http://reference.wolfram.com/language/ref/Flatten.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Flatten</a>[<span class="CodeVariableLrg">list</span>]</td><td> </td><td><span class="VocabularyText">aplana las sublistas de una lista </span></td></tr>
+  </tbody></table>
+ </a></div><a id="LastCellOfAPage">
+ </a><div class="ExerciseSection" id="ExerciseSection"><a id="LastCellOfAPage"></a><a id="p-120"></a><a id="Exercises">Ejercicios</a><div class="NewCheckYourAnswers"><a id="Exercises">
+   </a><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-new-check-your-exercises-in-cloud-21-graphs-and-networks.es">NUEVO: Verifique sus respuestas en Wolfram Cloud</a>
+  </div></div>
+ <div class="Exercise" id="21.1"><span class="ExerciseNumber">21.1</span>Construya un grafo consistente en un bucle de tres nodos.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.1&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.1-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.1&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.1-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.1-out.png" class="ExerciseBoxOutputImage" width="251" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.1-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.2"><span class="ExerciseNumber">21.2</span>Produzca un grafo con 4 nodos donde todos los nodos est<span class="special-character EAcute">é</span>n conectados.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.2&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.2-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.2&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.2-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.2-out.png" class="ExerciseBoxOutputImage" width="260" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.2-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.3"><span class="ExerciseNumber">21.3</span>Construya una tabla de grafos no dirigidos con entre 2 y 10 nodos, donde todos los nodos est<span class="special-character EAcute">é</span>n conectados.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.3&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.3-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.3&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.3-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.3-out.png" class="ExerciseBoxOutputImage" width="506" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.3-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.4"><span class="ExerciseNumber">21.4</span>Use <a href="http://reference.wolfram.com/language/ref/Table.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Table</a> y <a href="http://reference.wolfram.com/language/ref/Flatten.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Flatten</a> para obtener <span class="InlineCode">{1, 2, 1, 2, 1, 2}</span>.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.4&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.4-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.4&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.4-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.4-out.png" class="ExerciseBoxOutputImage" width="80" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.4-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.5"><span class="ExerciseNumber">21.5</span>Muestre una gr<span class="special-character AAcute">á</span>fica con puntos unidos del resultado de concatenar todos los d<span class="special-character IAcute">í</span>gitos de los enteros del 1 al 100 (i.e. ..., 8, 9, 1, 0, 1, 1, 1, 2, ...).&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.5&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.5-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.5&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.5-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.5-out.png" class="ExerciseBoxOutputImage" width="400" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.5-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.6"><span class="ExerciseNumber">21.6</span>Presente un grafo con 50 nodos, donde cada nodo i conecte con el nodo <span class="InlineCode">i+1</span>.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.6&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.6-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.6&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.6-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.6-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.6-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.7"><span class="ExerciseNumber">21.7</span>Muestre un grafo con 4 nodos, donde cada conexi<span class="special-character OAcute">ó</span>n conecte i con <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Max.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Max</a>[i, j]</span>.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.7&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.7-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.7&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.7-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.7-out.png" class="ExerciseBoxOutputImage" width="228" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.7-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.8"><span class="ExerciseNumber">21.8</span>Presente un grafo donde cada conexi<span class="special-character OAcute">ó</span>n conecte i con <span class="InlineCode">j-i</span>, donde tanto i como j var<span class="special-character IAcute">í</span>en de 1 a 5.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.8&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.8-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.8&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.8-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.8-out.png" class="ExerciseBoxOutputImage" width="518" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.8-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.9"><span class="ExerciseNumber">21.9</span>Genere un grafo con 100 nodos, donde cada uno conecte con otro escogido al azar.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.9&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.9-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.9&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.9-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.9-out.png" class="ExerciseBoxOutputImage" width="542" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.9-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.10"><span class="ExerciseNumber">21.10</span>Genere un grafo con 100 nodos, donde cada nodo conecte con dos nodos escogidos al azar.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.10&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.10-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.10&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.10-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.10-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.10-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="21.11"><span class="ExerciseNumber">21.11</span>Para el grafo <span class="InlineCode">{1<a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a>2, 2<a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a>3, 3<a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a>4, 4<a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a>1, 3<a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a>1, 2<a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a>2}</span>, forme un arreglo donde aparezcan los caminos m<span class="special-character AAcute">á</span>s cortos entre cada par de nodos, de modo que el nodo inicial marque la fila del arreglo y el final marque la columna.&nbsp;<a href="javascript:OpenCloseExercises(&#39;21.11&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-21.11-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;21.11&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-21.11-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-21.11-out.png" class="ExerciseBoxOutputImage" width="220" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-21.11-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x21.1"><span class="ExerciseWebNumber">+21.1</span>Presente un grafo con 4 nodos donde todos los nodos est<span class="special-character EAcute">é</span>n conectados, mostrando el resultado en un dibujo radial.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x21.1&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x21.1-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x21.1&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x21.1-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-x21.1-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x21.1-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x21.2"><span class="ExerciseWebNumber">+21.2</span>Genere un grafo donde un solo nodo est<span class="special-character EAcute">é</span> conectado con otros 10.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x21.2&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x21.2-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x21.2&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x21.2-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-x21.2-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x21.2-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x21.3"><span class="ExerciseWebNumber">+21.3</span>Use <a href="http://reference.wolfram.com/language/ref/Flatten.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Flatten</a> para generar una tabla de los n<span class="special-character UAcute">ú</span>meros 1 al 50, donde los pares est<span class="special-character EAcute">é</span>n en color rojo.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x21.3&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x21.3-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x21.3&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x21.3-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-x21.3-out.png" class="ExerciseBoxOutputImage" width="491" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x21.3-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x21.4"><span class="ExerciseWebNumber">+21.4</span>Use <a href="http://reference.wolfram.com/language/ref/ImageData.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">ImageData</a>, <a href="http://reference.wolfram.com/language/ref/Flatten.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Flatten</a> y <a href="http://reference.wolfram.com/language/ref/Total.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Total</a> para encontrar el n<span class="special-character UAcute">ú</span>mero de p<span class="special-character IAcute">í</span>xeles en blanco de <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Binarize.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Binarize</a></span><span class="InlineCode">[</span><span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Rasterize.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Rasterize</a></span><span class="InlineCode">["W"]]</span>.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x21.4&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x21.4-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x21.4&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x21.4-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-x21.4-out.png" class="ExerciseBoxOutputImage" width="21" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x21.4-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x21.5"><span class="ExerciseWebNumber">+21.5</span>Use <a href="http://reference.wolfram.com/language/ref/Flatten.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Flatten</a>, <a href="http://reference.wolfram.com/language/ref/IntegerDigits.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">IntegerDigits</a> y <a href="http://reference.wolfram.com/language/ref/Total.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Total</a> para encontrar la suma de todos los d<span class="special-character IAcute">í</span>gitos de los n<span class="special-character UAcute">ú</span>meros enteros hasta el 1000.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x21.5&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x21.5-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x21.5&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x21.5-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-x21.5-out.png" class="ExerciseBoxOutputImage" width="36" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x21.5-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x21.6"><span class="ExerciseWebNumber">+21.6</span>Genere un grafo con 200 conexiones, cada una entre nodos cuyos n<span class="special-character UAcute">ú</span>meros se elijan al azar entre 0 y 100.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x21.6&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x21.6-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x21.6&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x21.6-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-x21.6-out.png" class="ExerciseBoxOutputImage" width="240" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x21.6-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="Exercise" id="x21.7"><span class="ExerciseWebNumber">+21.7</span>Genere una gr<span class="special-character AAcute">á</span>fica que muestre las comunidades en un grafo aleatorio con nodos numerados del 0 al 100, y que tenga 200 conexiones.&nbsp;<a href="javascript:OpenCloseExercises(&#39;x21.7&#39;);" class="km-track-click-no-url ExerciseOpenCloseButton" id="EIWL-WEB-2nd-ed-show-exercise-x21.7-21-graphs-and-networks.es">»</a></div>
+ <div class="ExerciseInputBox">
+  <div class="closePopup">
+   <a href="javascript:OpenCloseExercises(&#39;x21.7&#39;);" id="EIWL-WEB-2nd-ed-close-exercise-x21.7-21-graphs-and-networks.es" class="km-track-click-no-url"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/x-static-icon.png" class="ExerciseBoxCloseImage" alt=" "></a>
+  </div>
+  <div class="ExerciseInputBoxHeading">
+   <div class="ExerciseBoxExpectedOutput">Muestra de salida esperada:</div>
+   <table class="ExerciseExpectedOutputTable">
+    <tbody><tr><td class="ExerciseExpectedOutputCellLabel">Out[]=</td><td><div class="ExerciseBoxExpectedOutputImg">
+       <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/answers-to-exercises-x21.7-out.png" class="ExerciseBoxOutputImage" width="450" alt=" ">
+      </div></td></tr>
+   </tbody></table>
+   <div class="ExerciseGoToWolframCloud" id="ExerciseGoToWolframCloud">
+    <img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/open-exercise-in-cloud.png" class="ExerciseGoToWolframCloudImage" alt=" ">
+    <span class="ExerciseGoToWolframCloudSpan"><a href="https://lab.wolframcloud.com/app/view/openEIWL?parentFilePath=elementary-introduction/21-graphs-and-networks-exercises.nb#sidebar=eiwl/21-graphs-and-networks" class="km-track-click-no-url ExerciseCloudLink" target="_blank" id="EIWL-WEB-2nd-ed-goto-cloud-link-in-exercise-x21.7-21-graphs-and-networks.es">Responda y verifique su solución</a></span>
+   </div>
+  </div>
+ </div>
+ <div class="QASection"><a id="QAndA">Preguntas y respuestas</a></div><a id="QAndA">
+ <div class="Question"><span class="special-character DownQuestion">¿</span>Qu<span class="special-character EAcute">é</span> diferencia hay entre un <span class="special-character OpenCurlyDoubleQuote">“</span>grafo<span class="special-character CloseCurlyDoubleQuote">”</span> y una <span class="special-character OpenCurlyDoubleQuote">“</span>red<span class="special-character CloseCurlyDoubleQuote">”</span>?</div>
+ <div class="Answer">No hay diferencia. Son simplemente palabras diferentes para la misma cosa, aunque <span class="special-character OpenCurlyDoubleQuote">“</span>grafo<span class="special-character CloseCurlyDoubleQuote">”</span> suele usarse m<span class="special-character AAcute">á</span>s en matem<span class="special-character AAcute">á</span>ticas, mientras que <span class="special-character OpenCurlyDoubleQuote">“</span>red<span class="special-character CloseCurlyDoubleQuote">”</span> es m<span class="special-character AAcute">á</span>s com<span class="special-character UAcute">ú</span>n en otras <span class="special-character AAcute">á</span>reas m<span class="special-character AAcute">á</span>s aplicadas.</div>
+ </a><div class="Question"><a id="QAndA"></a><a id="i-15"><span class="special-character DownQuestion">¿</span>Qu<span class="special-character EAcute">é</span> son los v<span class="special-character EAcute">é</span>rtices y las aristas de un grafo?</a></div><a id="i-15">
+ <div class="Answer">En un grafo, los v<span class="special-character EAcute">é</span>rtices son sus puntos o nodos. Las aristas son las conexiones. Los grafos han surgido en tantos campos diferentes que existe una amplia variedad de nombres para la misma cosa.</div>
+ </a><div class="Question"><a id="i-15"><span class="special-character DownQuestion">¿</span>C<span class="special-character OAcute">ó</span>mo se entiende <span class="InlineCode">i</span></a><a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a>j?</div>
+ <div class="Answer"><a id="i-16">Significa <span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/Rule.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Rule</a>[i, j]. Las reglas se usan en muchas partes de Wolfram Language, tales como la especificaci<span class="special-character OAcute">ó</span>n de opciones.</div>
+ <div class="Question"><a id="i-17"><span class="special-character DownQuestion">¿</span>Se puede obtener el grafo de amigos en Facebook?</a></div><a id="i-17">
+ </a><div class="Answer"><a id="i-17">S<span class="special-character IAcute">í</span>. Use <span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/SocialMediaData.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">SocialMediaData</a>["Facebook", "FriendNetwork"]. Note que solamente estar<span class="special-character AAcute">á</span>n incluidos los amigos que as<span class="special-character IAcute">í</span> se hayan manifestado en Facebook. (Vea la <a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/44-importing-and-exporting.es.html#SocialMediaData" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-21-graphs-and-networks.es" target="_blank">Secci<span class="special-character OAcute">ó</span>n 44</a>).</div>
+ <div class="Question"><span class="special-character DownQuestion">¿</span>De qu<span class="special-character EAcute">é</span> tama<span class="special-character NTilde">ñ</span>o puede ser un grafo en Wolfram Language?</div>
+ <div class="Answer">La limitaci<span class="special-character OAcute">ó</span>n principal es la cantidad de memoria de la computadora que se use. Grafos con decenas o centenares de miles de nodos no plantean ning<span class="special-character UAcute">ú</span>n problema. </div>
+ <div class="Question"><span class="special-character DownQuestion">¿</span>Se pueden especificar propiedades para nodos y aristas?</div>
+ <div class="Answer"><a id="LastCellOfAPage"></a><a id="i-18">S<span class="special-character IAcute">í</span>. Pueden proporcionarse a </a><a href="http://reference.wolfram.com/language/ref/Graph.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Graph</a> listas de nodos y aristas que incluyan cosas tales como <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Property.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Property</a>[<span class="CodeVariable">nodo</span>, <a href="http://reference.wolfram.com/language/ref/VertexStyle.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">VertexStyle</a><a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a><a href="http://reference.wolfram.com/language/ref/Red.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Red</a>]</span> o <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/Property.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Property</a>[<span class="CodeVariable">arista</span>,  <a href="http://reference.wolfram.com/language/ref/EdgeWeight.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">EdgeWeight</a><a href="http://reference.wolfram.com/language/ref/Rule.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character Rule"></span></a>20]</span>. Pueden darse tambi<span class="special-character EAcute">é</span>n opciones globales a <a href="http://reference.wolfram.com/language/ref/Graph.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">Graph</a>.</div>
+ <div class="TechNoteGroup">
+  <div class="TechNoteSection"><a id="p-121"></a><a id="TechNotes">Notas t<span class="special-character EAcute">é</span>cnicas</a></div><a id="TechNotes">
+  </a><ul class="TechNoteList"><a id="TechNotes">
+   <li class="TechNote">Los grafos, al igual que las cadenas de caracteres, im<span class="special-character AAcute">á</span>genes, gr<span class="special-character AAcute">á</span>ficas, etc., son objetos de primera clase en Wolfram Language.</li>
+   </a><li class="TechNote"><a id="TechNotes">Se pueden ingresar aristas no dirigidas en un grafo usando <span class="InlineCode">&lt;-&gt;</span>, que aparece como </a><a href="http://reference.wolfram.com/language/ref/XMLElement[span,%20%7Bclass%20-%3E%20special-character%20UndirectedEdge%7D,%20%7BXML%60RawXML[&amp;.html#62420;]}]" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank"><span class="special-character UndirectedEdge"></span></a>.</li>
+   <li class="TechNote"><a id="i-19"><span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/CompleteGraph.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">CompleteGraph</a>[<span class="CodeVariable">n</span>] da el grafo completamente conexo con <em>n</em> nodos. Entre otros tipos de grafos especiales se encuentran <a href="http://reference.wolfram.com/language/ref/KaryTree.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">KaryTree</a>, <a href="http://reference.wolfram.com/language/ref/ButterflyGraph.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">ButterflyGraph</a>, <a href="http://reference.wolfram.com/language/ref/HypercubeGraph.html" class="link km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">HypercubeGraph</a>, etc. </li>
+   <li class="TechNote"><a id="i-20">Hay muchas maneras de construir grafos aleatorios (conexiones aleatorias, n<span class="special-character UAcute">ú</span>meros aleatorios de conexiones, redes libres de escala, etc.). <span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/RandomGraph.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">RandomGraph</a>[{100, 200}] produce un grafo aleatorio con 100 nodos y 200 aristas.</li>
+   <li class="TechNote"><a id="i-21"><span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/AdjacencyMatrix.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">AdjacencyMatrix</a>[<span class="CodeVariable">grafo</span>] da la matriz de adyacencia de un grafo. <span class="InlineCode"><a href="http://reference.wolfram.com/language/ref/AdjacencyGraph.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">AdjacencyGraph</a>[<span class="CodeVariable">matriz</span>]</span> construye un grafo a partir de una matriz de adyacencia.</li>
+   <li class="TechNote"><a id="i-22"><span class="InlineCode"></span></a><a href="http://reference.wolfram.com/language/ref/PlanarGraph.html" class="codelink km-track-click-no-url" id="EIWL-WEB-2nd-ed-function-link-21-graphs-and-networks.es" target="_blank">PlanarGraph</a>[<span class="CodeVariable">grafo</span>] intenta rearreglar un grafo de tal manera que no haya cruzamientos de aristas, si as<span class="special-character IAcute">í</span> fuera posible.</li>
+  </ul>
+ </div>
+ <div class="MoreExploreGroup">
+  <div class="MoreExploreSection"><a id="MoreToExplore">Para explorar m<span class="special-character AAcute">á</span>s</a></div><a id="MoreToExplore">
+  </a><div class="MoreExploreList"><a id="MoreToExplore">
+   </a><div class="MoreExplore"><a id="MoreToExplore">
+    </a><a id="LastCellOfAPage">
+    </a><a href="http://reference.wolfram.com/language/guide/GraphsAndNetworks.html" class="hyperlink km-track-click-no-url" id="EIWL-WEB-2nd-ed-external-link-21-graphs-and-networks.es" target="_blank">Gu<span class="special-character IAcute">í</span>a para grafos y redes en Wolfram Language<span class="special-character NonBreakingSpace">&nbsp;</span><span class="special-character RightGuillemet">»</span></a>
+   </div>
+  </div>
+ </div>
+</div>
+			<div class="FooterCopyright"><div id="_language-picker" class="margin-t-1__600"> <i class="_icon-r7-c2"></i> <select id="_language-picker-select"> <option disabled="" selected="">Español</option> <option value=".en">English</option> </select> </div>Copyright 2019</div></div>
+		
+			<div class="bottomSpacerCell">&nbsp;<div id="FooterCopyright" class="FooterCopyright" style="margin-left: 120px;"><div id="_language-picker" class="margin-t-1__600"> <i class="_icon-r7-c2"></i> <select id="_language-picker-select"> <option disabled="" selected="">Español</option> <option value=".en">English</option> </select> </div>Copyright 2019</div></div>
+		</div>
+	</div>
+</section>
+	<div class="GoToCloudVersion" id="GoToCloudVersion"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/21-graphs-and-networks.es-cloud.html" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-switch-to-cloud-embed-21-graphs-and-networks.es"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/switch-to-cloud.png" alt=""></a></div>
+	<div class="GoToHTMLVersion" id="GoToHTMLVersion"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/21-graphs-and-networks.es.html" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-switch-to-html-21-graphs-and-networks.es"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/switch-to-html.png" alt=""></a></div>
+	<a href="javascript:nbdownload(&#39;EIWL2-21-graphs-and-networks.nb&#39;);" class="km-track-click-no-url" id="EIWL-WEB-2nd-ed-download-notebook-21-graphs-and-networks.es"><div class="DownloadNotebook" id="DownloadNotebook"><span class="DownloadNotebookText">Download Notebook Version</span></div></a>
+	<a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/20-options.es.html" id="EIWL-WEB-2nd-ed-prev-section-footer-21-graphs-and-networks.es" class="km-track-click-no-url"><div class="previousFooter"></div></a>
+	<a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/22-machine-learning.es.html" id="EIWL-WEB-2nd-ed-next-section-footer-21-graphs-and-networks.es" class="km-track-click-no-url"><div class="nextFooter" style="display: block;">Siguiente <div>›</div></div></a>
+
+
+<!-- gl-footer-includes.es.html -->
+
+    </div><!--/#gl-inner-wrapper -->
+    <noscript><div id="gl-noscript"><div><i><!-- --></i>Habilite JavaScript para interactuar con el contenido y enviar formularios en las p&aacute;ginas web de Wolfram. <a href="http://www.enable-javascript.com/" target="_blank">Aprenda c&oacute;mo&nbsp;&raquo;</a></div></div></noscript>
+</div><!--/#gl-outer-wrapper -->
+
+<span id="gl-footer-lang"></span><span id="gl-footer-lang-links"><a href="https://www.wolfram.com/language/elementary-introduction/2nd-ed/21-graphs-and-networks.en.html?footer=lang"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/gl-lang-en.png" alt="en"></a> </span>
+<script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/gl-footer-scripts.es.js.descarga"></script>
+
+<!--/gl-footer-includes.es.html -->
+
+
+<script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/kissmetrics.js.descarga"></script>
+<script src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/chapter-cookie.es.js.descarga"></script>
+
+
+<div class="SecondEditionTitle">SEGUNDA EDICIÓN</div><div class="WaysToView" id="show-otherviews-button"><div class="WayToViewText"><span>Otras formas de ver</span><div class="down-arrow-div"><img src="./Grafos y redes_ Una introducción elemental a Wolfram Language_files/down-arrow.png"></div><ul id="MenuWayToView" class="WaysToViewMenus" style="display: none;"><li id="InteractiveViewMenu" class="InteractiveViewMenu">Páginas interactivas</li><li id="OnlineCourseMenu" class="OnlineCourseMenu">Curso en línea&nbsp;»</li><li id="WPLOnlineMenu" class="WPLOnlineMenu">Wolfram Programming Lab&nbsp;»</li></ul></div></div></body></html>

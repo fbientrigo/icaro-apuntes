@@ -1,0 +1,47 @@
+Prueba de Terminal de Linux
+  Fabian Trigo
+
+1) Describir conceptos
+  Linux: Sistema Operativo de codigo abierto en el cual varias personas
+  aportan a mejorarlo
+  usuario: Es aquella entidad que utiliza el servicio electronico,
+  aquel que le da ordenes al Terminal
+  cat: Es un comando para leer archivos de texto dentro del Terminal de Linux
+  vi: Es un editor de texto un tanto mas avanzado dentro del terminal,
+  el cual permite editar y crear archivos de texto.
+  rm -r: O su otra funcionalidad rmdir, rm viene de remove, es el comando para
+  borrar archivos, y con la opcion -r sirve para borrar carpetas contenedoras
+  de archivos.
+  head: Similar al comando de lectura de texto cat, sin embargo sirve para
+  ver las primeras lineas de texto de un archivo omitiendo las otras.
+  ls -a: ls proviniente de list, y la opcion -a de all, sirve para ver todos
+  los archivos incluyendo los ocultos dentro de un directorio.
+
+2) De cualquier directorio se puede llegar a home con el comando
+    $ cd ~
+
+3) Comandos para red de archivos:
+  $cd ~
+  $mkdir LFIS116
+  $mkdir Otros
+  $mkdir LFIS116/python
+  $mkdir LFIS116/LINUX
+  $mkdir Otros/ejercicios
+  $mkdir Otros/Tareas
+  $mkdir Otros/QUIZ
+  $mkdir Otros/Pruebas
+
+5,1)
+  $cp da* ../QUIZ
+  -> Casi, pero queremos copiar datos1.txt y texto1.txt. Así que tenemos que usar "cp *1.txt ../QUIZ"
+
+4)
+  $cat >> archivo.txt
+
+5.2)
+  $touch numeros_lineas.txt
+  $wc <directorio de file que queremos revisar> >> numeros_lineas.txt 
+  -> Hay que poner la opción "-l" a "wc" para contar líneas. Con ">" (en vez de ">>") podemos crear el archivo numero_lineas.txt, y no tenemos que usar "touch".
+
+6)grip <palabra a buscar> <directorio file>
+  -> El comando es "grep", no "grip".

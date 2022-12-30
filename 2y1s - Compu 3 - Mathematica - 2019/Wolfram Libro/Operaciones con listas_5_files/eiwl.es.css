@@ -1,0 +1,794 @@
+/* STYLES FOR EIWL BOOK */
+
+/* web fonts */ 
+@import url('fonts.css');
+@import url('special-characters.css');
+
+
+@media only screen and (min-width: 1141px) {
+    .eiwl { min-width: 1035px; }
+    .GoToCloudVersion { right: 55px; }
+    .GoToHTMLVersion { right: 55px; }
+    .DownloadNotebook { right: 80px; }
+    .WaysToView { right: 80px; }
+
+    .sidebarHamburger { display: none;}
+    .sidebar { display: block;}
+    .eiwl section { left: 270px; }
+    .mainOuter .mainContent { padding: 1px 30px 30px 130px; }
+    .wrapper { /*min-width: 300px; */ width: 770px;  }
+    .SectionTitleTable { margin: 60px 0 20px -80px; display:table;}
+    .SectionTitleTable td#SectionNumber { width: 70px;}
+}
+@media only screen and (max-width: 1140px) {
+    .eiwl { min-width: 1035px; }
+    .GoToCloudVersion { left: 870px; }
+    .GoToHTMLVersion { left: 870px; }
+    .DownloadNotebook { left: 870px; }
+    .WaysToView { left: 870px; }
+
+    .sidebarHamburger { display: none;}
+    .sidebar { display: block;}
+    .eiwl section { left: 270px; }
+    .mainOuter .mainContent { padding: 1px 30px 30px 130px; }
+    .wrapper { /*min-width: 300px; */ width: 770px;  }
+    .SectionTitleTable { margin: 60px 0 20px -80px; display:table;}
+    .SectionTitleTable td#SectionNumber { width: 70px; }
+}
+@media only screen and (max-width: 900px) {
+    .eiwl { min-width: 300px; }
+    .sidebarHamburger { display: block;}
+    .sidebar { display: none;}
+    .eiwl section { left: 0; }
+    .mainOuter .mainContent { padding: 1px 30px 30px 35px }
+    .wrapper { min-width: 300px; width: 100%; }
+    .SectionTitleTable { margin: 60px 0 20px 0px; display: block;}
+    .SectionTitleTable td#SectionNumber { width: auto;}
+}
+
+a.headlink:hover, a.hyperlink:hover, a.codelink:hover, a.detailslink:hover, a.crosslink:hover, a.link:hover { color:#E66907!important; }
+
+/* ALL 'A' tags black. Will change color via class below */
+a, a:link, a:visited, /* a:hover,*/  a:active { color:#666; text-decoration: none; outline: none; }
+a:link:hover, a:visited:hover, a:hover { text-decoration: none; color: #666; }
+
+/* LINKS */
+a.link:link, a.link:visited, a.link:active { color:#000; text-decoration: none; outline: none;  font-family: "Source Sans Pro", Arial, sans-serif;}
+a.headlink:link, a.headlink:visited, a.headlink:active { color:#666; text-decoration: none; outline: none;  font-family: "Source Sans Pro", Arial, sans-serif;}
+a.codelink:link, a.codelink:visited, a.codelink:active { color:#666; text-decoration: none; outline: none;  font-family: "Source Sans Pro", Arial, sans-serif; font-size: 16px;}
+a.hyperlink:link, a.hyperlink:visited, a.hyperlink:active { color:#666; text-decoration: none; outline: none; }
+a.detailslink:link, a.detailslink:visited, a.detailslink:active { color:#666; text-decoration: none; outline: none; }
+a.crosslink:link, a.crosslink:visited, a.crosslink:active { color:#666; text-decoration: none; outline: none; }
+
+/* a.link:hover, */
+a.headlink:hover, a.hyperlink:hover, a.codelink:hover, a.detailslink:hover, a.crosslink:hover { color:#E66907; }
+
+.TechNote .hyperlink span.RightGuillemet,
+.MoreExplore .hyperlink span.RightGuillemet { color:#E4B614;}
+
+
+.bodytext a.link:link, .bodytext a.link:visited, .bodytext a.link:active { font-size: 16px; /*font-weight: 600; */ color:#666; text-decoration: none; outline: none;  font-family: "Source Sans Pro", Arial, sans-serif;}
+.bodytext a.detailslink:link, .bodytext a.detailslink:visited, .bodytext a.detailslink:active { font-size: 16px; /*font-weight: 600; */ color:#666; text-decoration: none; outline: none;  font-family: "Source Sans Pro", Arial, sans-serif;}
+.Exercise a.link:link, .Exercise a.link:visited, .Exercise a.link:active { font-size: 15px; /*font-weight: 600; */ color:#666; text-decoration: none; outline: none;  font-family: "Source Sans Pro", Arial, sans-serif;}
+.VocabularyTable a.codelink:link, .VocabularyTable a.codelink:visited, .VocabularyTable a.codelink:active { font-size:14px; font-weight:600; color:#666; text-decoration: none; outline: none;  font-family: "Source Sans Pro", Arial, sans-serif;}
+.VocabularyTable3Column a.codelink:link, .VocabularyTable3Column a.codelink:visited, .VocabularyTable3Column a.codelink:active { font-size:14px; font-weight:600; /*color:#666;*/ text-decoration: none; outline: none;  font-family: "Source Sans Pro", Arial, sans-serif;}
+
+/* .bodytext a.link:hover, .bodytext a.headlink:hover, .bodytext a.hyperlink:hover, .bodytext a.codelink:hover, .bodytext a.detailslink:hover, .bodytext a.crosslink:hover { color:#E66907; } */
+.InlineCode a.codelink:hover { color:#E66907; }
+.MoreExplore a.hyperlink:hover { color:#E66907; }
+.Answer a.hyperlink:hover, .Answer a.detailslink:hover, .Answer a.link:hover { color:#E66907!important; }
+.Answer .InlineCode a.codelink:hover { color:#E66907; }
+.Answer .InlineCode a.codelink:link, .Answer .InlineCode a.codelink:visited, .Answer .InlineCode a.codelink:active { color:#666; }
+.Question .InlineCode a.codelink:hover { color:#E66907; }
+.Question .InlineCode a.codelink:link, .Question .InlineCode a.codelink:visited, .Question .InlineCode a.codelink:active { color:#666; }
+/* .TechNote a.link:hover, .Exercise a.link:hover, .bodytext a.link:hover { color:#E66907; } */
+.VocabularyTable a.codelink:hover, .VocabularyTable3Column a.codelink:hover { color:#E66907; }
+.CodeCaption a.link:link, .CodeCaption a.link:visited, .CodeCaption a.link:active { color:#666; }
+
+.wideimage { overflow-x: auto; max-width: 650px; min-width: 550px; }
+
+.eiwl {overflow-y: hidden; position: relative; /* min-width: 1035px; */}
+
+.eiwl nav {display:block; z-index:100;  }
+.eiwl header {display: block; min-width: 1140px;}
+
+.header-inner { padding: 18px 0 17px 20px; width: 100%; background: #F97B00; height: 38px; border-bottom: 4px solid #D55D05; }
+
+.eiwl nav {
+    width: 270px;
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: hidden;
+    top: 148px;
+    bottom: 0;
+    background-color: #f3f3f3;
+    word-spacing: .05em;
+}
+.eiwl nav ul {
+    margin: 0;
+//    padding: 0px 0 20px 0;;
+    padding: 0px 0 0 0;;
+}
+.eiwl nav ul li:nth-child(1) {
+    font-style: italic;
+}
+.eiwl nav ul li {
+    list-style-type: none;
+    background: transparent;
+    padding: 0 1px 0 0;
+    border: 1px solid #E1E1E1; 
+    border-bottom: none; 
+    border-right: 1px solid #d5d5d5; 
+    border-left: none; 
+    font-size: 13px;
+    font-weight: 600;
+    font-family: "Source Sans Pro", Arial, sans-serif; 
+}
+.eiwl nav ul li .tocFrontmatterLink {
+    font-weight: 400;
+}
+.eiwl nav ul li a:hover {
+    overflow: visible;
+}
+.eiwl nav ul li a, nav ul li a:link, nav ul li a:visited {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display:block;
+    color: #666; 
+/*	color: #4c4c4c; */
+    padding: 7px 0 7px 10px;
+/*    border: 1px solid #E1E1E1;
+    border-bottom: none;
+    border-right: 1px solid #d5d5d5;
+    border-left: none; */
+    width: 96%
+}
+.eiwl nav ul li a:hover {
+    background: #e6e6e6;
+    color: #DA6D10;
+}
+.eiwl nav ul li a.selected {
+    background: #F97B00;
+    color: white;
+    border: 1px solid #F97B00;
+}
+
+.FooterCopyright {
+    color: #919191;
+    font-size: 10px;
+    margin-top: 40px;
+    font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+}
+
+.nextFooter, .previousFooter {
+    display: none;
+    position: fixed;
+    right: 4%; /* 30px; */
+    bottom: 2.5%; /* top: 90%; */
+/*
+    width:102px;
+    height:29px;
+*/
+    z-index:100;
+    color: #999;
+    background: none;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 6px 24px;
+/*
+    background: url("/language/elementary-introduction/img/bottom-next-button.png") no-repeat top left;
+    background-size: 102px 29px;
+*/
+}
+.nextFooter div, .previousFooter div {
+    font-size: 33px;
+    font-weight: 300;
+    display: inline-block;
+    font-family: "Source Sans Pro", Arial, Helvetica, sans-serif;
+    vertical-align: text-bottom;
+}
+.nextFooter:hover, .previousFooter:hover {
+    border: 1px solid #DA6D10;
+    color: #DA6D10;
+/*
+    background: url("/language/elementary-introduction/img/bottom-next-button-hover.png") no-repeat top left;
+    background-size: 102px 29px;
+*/
+}
+
+.sidebarclose, .sidebar-close-button {    
+    width: 256px;
+    position: absolute;
+    padding: 7px 7px 5px 7px;
+    text-align: right;
+    background: #ddd;
+    z-index: 100;
+}
+
+.sidebarHamburger {
+/*    display:none; */
+    position: fixed;
+    left: 20px;
+    top: 140px;
+    z-index:1;
+}
+    
+.sidebarwrapper {
+}
+
+.GoToCloudVersion {
+    display:none;
+    position: fixed;
+    top: 118px;
+/*    right: 20px; */
+    z-index: 100;
+}
+
+.GoToHTMLVersion {
+    display:none;
+    position: fixed;
+    top: 118px;
+/*    right: 20px; */
+    z-index: 100;
+}
+
+.DownloadNotebook {
+    display:none;
+    position: fixed;
+    top: 119px;
+/*    right: 20px; */
+    z-index: 100;
+    background: #d84b00;
+    width: 190px;
+    height: 35px;
+    border-radius: 0 0 5px 5px;
+    text-align: center;
+}
+.DownloadNotebook:hover {
+    background: #f97b00;
+}
+
+.DownloadNotebookText {
+    display: none;
+    color: #ffffff;
+    font-size:13px;
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    line-height: 33px;
+}
+
+.show-otherviews-button {
+}
+
+.WaysToViewMenus {
+    display:none;
+}
+.InteractiveViewMenu, .OnlineCourseMenu, .WPLOnlineMenu {
+    font-size:14px;
+    font-weight:400;
+    color:#666;
+    height: 35px;
+    border: 1px solid #ddd;
+    background: #fff;
+    padding-left: 15px;
+    line-height: 36px;
+}
+.InteractiveViewMenu:hover, .OnlineCourseMenu:hover, .WPLOnlineMenu:hover {
+    background: #e6e6e6;
+}
+
+ul.WaysToViewMenus {
+    margin: 0;
+    width: 190px;
+    padding: 0;
+    background: #fff;
+    list-style: none;
+}
+.WaysToView  {
+    display:block;
+    position: fixed;
+    top: 119px;
+/*    right: 20px; */
+    z-index: 100;
+    background: #d84b00;
+    width: 190px;
+    height: 35px;
+    border-radius: 0 0 5px 5px;
+    text-align: center;
+}
+.WaysToView:hover {
+    background: #f97b00;
+}
+
+.WayToViewText {
+    color: #ffffff;
+    font-size:13px;
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    line-height: 33px;
+    text-align: left;
+    cursor:pointer;
+}
+
+.WayToViewText div {
+    padding:0 0 0 8px;
+    display:inline;
+}
+
+.WayToViewText span {
+    padding-left: 15px;
+    text-transform: uppercase;
+}
+
+
+.eiwl .cloudiframe {
+   margin: 20px 0 0 50px;
+}
+
+
+
+/* .eiwl nav ul li.goToPageClass { background:#ccc; color:#888; font-size:11px; background: #ddd; padding: 4px 0 4px 4px; } */
+.eiwl nav ul li.goToPageClass { display:none; bottom: 0; position: fixed; width: 235px; background:#ccc; color:#888; font-size:13px; background: #ddd; padding: 6px 0 10px 32px; }
+.goToPageText { color:#888; padding: 0 6px 0 4px; font-size:13px; }
+input#goToPageInput { margin: 0 10px 0 3px; /* color:#F97B00; */ font: 11px; }
+a#goToPageButton span { color:#F97B00; font-size: 14px; font-weight:bold; border: 1px solid #F97B00; border-radius: .3em; line-height: 10px; padding:0px 8px 0px 8px; }
+/* a#goToPageButton:link, a#goToPageButton:visited { color:#F97B00; } */
+/* a#goToPageButton:hover { color:#888; } */
+.eiwl nav ul li.goToPageClass a#goToPageButton { display:inline;  padding: 2px 0 2px 0; }
+li#book-index { padding-bottom: 25px; }
+
+.tocSectionNumber {padding-right: 5px; margin-right: 5px; display: inline-block; width: 13px; text-align: right; border-right: 2px solid #CCC; }
+
+.eiwl section { display: block; background-color: #fff; padding: 0px 0 60px 0; /* height: 100%;*/ z-index: 50; overflow-x: hidden; overflow-y: auto; min-width: 850px; 
+position: absolute;
+right: 0px;
+/* left: 270px; */
+bottom: 0;
+top: 120px;}
+
+/* Cover images */
+.coverTitle {text-align: center; margin:10px 0 0 0; padding:60px 0 20px 0; background:#F7941E; }
+.coverLogo {text-align: center; margin: 60px 0 40px 0; padding:0; }
+.coverAuthor {text-align: center; margin:40px 0 60px 0; padding:0; }
+
+
+/* main content wrapper */
+.outer-wrapper { margin:40px 0 40px 0px; }
+.wrapper { width: 770px; margin: 0 auto; }
+.wrapper.mainOuter { display:inline-block; /* padding-left:60px; */ }
+.mainOuter .mainContent { /* padding: 1px 30px 30px 130px;*/ background: #fff; z-index: 1;}
+.mainContent iframe {margin-left:-80px; }
+
+.show { display: block !important; }
+
+.section-inner { max-width: 960px; min-width: 1035px; position: relative; }
+.section-inner-inner { width: 90%; min-width: 1035px; display: inline-block; position: absolute; right: 0; }
+
+/* Input/Output */
+.IO {margin-left: -40px; margin-bottom: 24px; /* margin-top: 12px; */ margin-top: 6px;}
+.IO table.InCell { padding-top: 5px; padding-right:5px; padding-bottom: 5px; padding-left:0px; margin-left: 0; margin-top: 0; margin-bottom: 0px; border-spacing: 6px 0; border: 1px solid #fff; cursor:pointer; }
+.CodeCaption ~ table.InCell, .bodytext > table.InCell, .mainContent > div > a > table.InCell { margin-left: -40px !important; margin-left: -40; margin-top: 12px; margin-bottom: 20px; border-spacing: 6px 0; border: 1px solid #fff; }
+.OCell {margin-left: 0; margin-top: 3px; margin-bottom: 0; border-spacing: 6px 0;}
+.mainContent > div > table.InCell, .mainContent > div > table.OCell {margin-top: 12px; margin-left: -40px !important;}
+.Print, .Message {margin-left: 80px;}
+.Echo { font-size: 15px; margin: 3px 0 3px 65px;}
+.Echo:before { content: "\00bb"; color: #F00; padding-right: 10px; }
+
+td.lab, .celllabelTableForm, #tutorial table tr td.lab  { min-width: 60px; max-width: 60px; width: 67px !important; font: 8px/10px Verdana, Arial, sans-serif !important; color: #909090; text-align: right; vertical-align: middle; padding: 0px 0px 0px 0px !important; }
+td.lab a {color:#9A9A9A !important; }
+
+.CodeCaption { margin: 24px 0 6px 0; font-style: normal; font-size: 15px; color: #999; font-family: "Source Sans Pro", Arial, sans-serif; font-weight: 400;}
+.ExerciseSection, .MoreExploreSection, .TechNoteSection, .QASection, .VocabularySection { font-family: "Source Sans Pro", Arial, sans-serif;
+	font-size:20px; margin: 50px 0 12px 0; background-color: #FFFFFF; padding: 10px 10px 10px 0; color: #DD7600; font-style: italic; font-weight: 300; border-top: solid 4px #DA6D10;}
+.ExerciseSection a, .MoreExploreSection a, .TechNoteSection a, .QASection a, .VocabularySection a, .OtherResourcesSection a { color: #DD7600; }
+.ExerciseSection + .ExerciseNote { font-size: 13px; line-height: 16px;}
+.ExerciseSection + .ExerciseNote .InlineCode { font-size: 13px;}
+.ExerciseSection + .ExerciseNote .InlineCode a.codelink { font-size: 13px;}
+.ExerciseSection + .bodytext { font-size: 15px;}
+.ExerciseSection + .bodytext .InlineCode { font-size: 14px;}
+.ExerciseSection + .bodytext .InlineCode a.codelink { font-size: 14px;}
+.OtherResourcesSectionGroup {font:15px/19px "Source Sans Pro", Arial, sans-serif; }
+.OtherResourcesSectionGroup .bodytext {font:15px/19px "Source Sans Pro", Arial, sans-serif; margin:2px 0 0 0;}
+.OtherResourcesSectionGroup .bodytext a, .OtherResourcesSectionGroup .bodytext a:link, .OtherResourcesSectionGroup .bodytext a:visited, .OtherResourcesSectionGroup .bodytext a:hover {color:#E66907;}
+.OtherResourcesSectionGroup .Subsubsection {font:15px/19px "Source Sans Pro", Arial, sans-serif; font-weight:600;}
+
+/* SECTION */
+.Section {padding-bottom: 4px; margin: auto; font: 40px/42px "Source Sans Pro", Arial, sans-serif; color:#E66907; border-bottom: none; font-weight: 300;}
+.SectionNumber {font: 40px/42px "Source Sans Pro", Arial, sans-serif; color:#979797; font-weight: 300; border-right: 2px solid #DDDDDD; padding-right: 15px; display: inline-block; text-align:center; margin-right:10px; }
+.SectionTitleTable {width: 100%; /* margin:60px 0 20px -80px; */}
+.SectionTitleTable td#Section {border-bottom: none;}
+.SectionTitleTable td#SectionNumber {/*width: 70px;*/ text-align:right; vertical-align: top; }
+.SectionNoDingbat, .OtherResourcesSection {padding-bottom: 4px; margin:60px 0 20px 0px; font: 40px/42px "Source Sans Pro", Arial, sans-serif; color:#E66907; border-bottom: none; font-weight: 300;}
+.SectionNoDingbat a, .OtherResourcesSection a { color:#E66907; }
+/* .OtherResourcesSectionGroup a, .OtherResourcesSectionGroup a:link, .OtherResourcesSectionGroup a:visited {color:#666;} */
+/* .OtherResourcesSectionGroup a:hover { color: #E66907;} */
+
+/* EXERCISES */
+.Exercise { color:#666;; margin: 20px 80px 5px 30px; text-indent: 0px; position: relative; font: 15px/19px "Source Sans Pro", Verdana, Arial, sans-serif; }
+.ExerciseNote { margin: 9px 50px 12px 0; font: 18px/26px Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif; }
+
+.ExerciseGroup div.IO {display: none;}
+.ExerciseInputBox { overflow-x: auto; border: 1px solid #666; padding: 10px; display: none; }
+.ExerciseInputBox textarea { width: 300px; vertical-align:top;}
+.ExerciseInputBox .closePopup { line-height: 0; text-align: right; width: auto; font: 10px/0px"Source Sans Pro", Arial, sans-serif; font-weight: bold; }
+.ExerciseInputBox .closePopup a { color: #000000; }
+.ExerciseInputBox .closePopup a:hover { color: #df6600; }
+.ExerciseCheckButton { padding: 2px 8px; margin-left:10px; border: 1px solid #555; vertical-align:top; display:inline-block;}
+.ExerciseOpenCloseButton { color: #E4B614; font-weight: bold; padding-left:4px;}
+.ExerciseOpenCloseButton, .ExerciseOpenCloseButton:link, .ExerciseOpenCloseButton:visited { color: #E4B614; font-weight: bold; padding-left: 4px; }
+.guillemetLink:link, .guillemetLink:visited, .guillemetLink:hover { color: #E4B614; }
+.ExerciseCheckResult { color: #000; /* border: 1px solid #555;*/ padding: 2px 8px; margin-left: 10px; vertical-align: top; display: inline-block; }
+.ExerciseNumber { font-weight: 400; font-size:14px; color: #BE5C29; padding-right: 10px; display: inline-block; width:40px; text-align:right; position: absolute; left: -49px; top: 3%; }
+.ExerciseWebNumber { font-weight: 400; font-size:14px; /*color: #004080;*/ color: #BE5C29; padding-right: 10px; display: inline-block; width:40px; text-align:right; position: absolute; left: -49px; top: 3%; }
+.ExerciseGoToWolframCloud { background: #d84b00; padding: 0 0px 0px 12px; border-radius: 3px; width: 250px; line-height: 33px; }
+.ExerciseGoToWolframCloud:hover { background: #f97b00; }
+.ExerciseGoToWolframCloudImage { vertical-align: text-bottom; }
+
+
+.ExerciseInputBoxHeading { max-width: 800px; padding: 4px 0 0px 8px; color:#E66907; font: 14px/16px "Source Sans Pro", Verdana, Arial, sans-serif; font-weight:bold;}
+.ExerciseInputBoxHeading img { /*max-width: 100%;*/ /* max-width: 680px;*/ max-width: 2000px; }
+.ExerciseGoToWolframCloudSpan a.ExerciseCloudLink { color: #fff;  }
+a.ExerciseCloudLink:hover { color: #fff; }
+.ExerciseInputBoxOutput img {display: none;}
+.ExerciseBoxOutputImage {display: block; }
+.ExerciseCloudLink, {color: #da6525; }
+.ExerciseInputBoxHeading a:link, .ExerciseInputBoxHeading a:hover, .ExerciseInputBoxHeading a:visited { /*color: #da6525;*/ }
+.ExerciseBoxExpectedOutput {color: #666; font-weight: 400; margin: 0 0 9px 0; }
+.ExerciseExpectedOutputCellLabel {color: #999; font-size:10px; }
+.ExerciseExpectedOutputTable { margin-bottom: 12px; }
+.NewCheckYourAnswers { font-size: 13px; float: right; background: #FFEFDB; font-weight: 400; font-style: normal; padding: 8px 12px 8px 12px; margin: -5px -10px 0 0; border-radius: 2px; color: #DD7600; }
+.NewCheckYourAnswers:hover { background: #f97b00; color:#ffffff; }
+.ExerciseGoToWolframCloudSpan {color:#ffffff; padding-left: 7px; }
+.ExerciseBoxCloseImage:hover { color:#f97b00; }
+.ExerciseOpenCloseGroup { color: #898989; }
+
+/* .ExerciseBullet { padding-right:7px; color: #777; font-size:9px; vertical-align:text-bottom; } */
+.ExerciseBullet { display: none; }
+.active { display: block; }
+
+.Answer {margin: 5px 50px 20px 0; color:#666; font: 15px/19px"Source Sans Pro", Arial, sans-serif; font-weight: 400; /*font-style: italic; */ }
+/* .Answer a:hover { color: #E66907; } */
+.Question {margin: 5px 0 5px 0; font: 15px/19px "Source Sans Pro", Arial, sans-serif; font-weight: 600;}
+.ResourcesSubsection { margin: 18px 50px 3px 0; font: 15px/19px "Source Sans Pro", Arial, sans-serif; font-weight: 600; color:#E66907; }
+.ResourcesSubsection a, .ResourcesSubsection a:hover { color: #E66907; }
+.ResourcesText { margin: 3px 50px 3px 0; font: 15px/19px "Source Sans Pro", Arial, sans-serif; font-weight: 400;}
+.ResourcesText a, .ResourcesText a:link, .ResourcesText a:visited { color: #5f5f5f; }
+.ResourcesText a:hover { color: #E66907; }
+
+.TechNote, .MoreExplore  {margin: 10px 50px 10px 0; font: 15px/19px "Source Sans Pro", Arial, sans-serif; }
+.MoreExploreShortURL {font: 15px/19px "Source Sans Pro", Arial, sans-serif; }
+.VocabularyTable, .VocabularyTable3Column {margin: 0; border-spacing:0px; font: 12px/14px "Source Sans Pro", Verdana, Arial, sans-serif; font-weight:400; color:#666; }
+.VocabularyTable table, .VocabularyTable3Column table {border-collapse:collapse; }
+.VocabularyTable table tbody tr td, .VocabularyTable3Column table tbody tr td {padding-right: 10px; border-bottom: 1px solid #aaa; border-top: 1px solid #aaa; height:28px; font-size:12px; }
+/* .VocabularyTable table tbody tr td .InlineCode, .VocabularyTable3Column table tbody tr td .InlineCode { color:#999; } */
+.VocabularyTable table tbody tr td:first-child {font-weight:600; color:#666;}
+.VocabularyText a, .VocabularyText a:link, .VocabularyText a:visited {color:#999; }
+.VocabularyTable a, .VocabularyTable a:link, .VocabularyTable a:visited {color:#999; }
+.VocabularyTable3Column a, .VocabularyTable3Column a:link, .VocabularyTable3Column a:visited {color:#999; }
+.VocabularyTable tr td img, .VocabularyTable3Column tr td img {vertical-align: middle;}
+
+/* Key Events */
+/*
+.KeyEvent {font-size: 10px; font-style:normal; padding: 1px 3px; font-family: Verdana, sans-serif; background-color: #F5F5F5; border: 1pt #E1E3E3 solid;}
+.KeyEventDelimiter {color:#333; font-style:normal; padding:0 1px;}
+*/
+.KeyEvent {
+    background: #fff;
+    border-width: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    border-color: #d5d5d5;
+    display: inline;
+    padding: 0 .27rem;
+    margin: 0 .11rem;
+    vertical-align: middle;
+}
+.MenuName {
+    color: #63676B; 
+    font-size: .82rem;
+    font-family: 'Source Sans Pro', Arial, sans-serif;
+}
+
+/* Text */
+.bodytext { margin: 9px 50px 12px 0; font: 18px/26px Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif; }
+/*
+.bodytext a:link, .bodytext a:visited, .bodytext a:link {color:#666;}
+.bodytext a:hover {color:#E66907;}
+*/
+.Title {margin: 300px 25px 500px 0px; font: 36px/40px Verdana, Arial, sans-serif; font-weight:bold; }
+h3.Subsubsection, .Subsection, .AnswerKeySubsection {color: #E66907; margin: 45px 0 9px 0px; font: "Source Sans Pro", Arial, sans-serif;}
+.Subsection {color: #E66907; margin: 36px 0 24px 0px; font: 22px/24px "Source Sans Pro", Arial, sans-serif;}
+.Subsubsection {color: #E66907; margin: 25px 0 9px 0px; list-style-type: square; padding-left: 0; font: 22px/24px Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif;}
+.Subsubsection li span {position: relative; left: -5px; }
+
+.GrayPointSix { color: #999; }
+.Picture { margin: 20px 0 12px 0; }
+.IO div.Picture { margin: 20px 0 12px 40px; }
+
+.InlineCode {font-family: "Source Sans Pro", Arial, sans-serif; color:#5B5B5B; font-weight: 400;}
+div.bodytext .InlineCode a, div.bodytext .InlineCode a:link { /* color:#333333; */ font-size: 16px; text-decoration: none; outline: none; }
+/* .InlineCode a:visited { color:#999; text-decoration: none; outline: none; } */
+/* .InlineCode a:active, .InlineCode a:link:hover, .InlineCode a:visited:hover { text-decoration: none; color: #999;} */
+.Answer .InlineCode a, .Answer .InlineCode a:link{ font-size:15px; }
+.Question .InlineCode a, .Question .InlineCode a:link { font-size:15px; font-weight: 600; color:#8F4A01; text-decoration: none; outline: none; }
+.TechNote .InlineCode a, .TechNote .InlineCode a:link{ font-size:15px; color:#000; }
+.Answer a, .Question a, .TechNote a, .MoreExplore a {color:#5f5f5f;}
+.Answer a:link, .Question a:link, .TechNote a:link, .MoreExplore a:link {color:#5f5f5f;}
+.Answer a.link:link, .Question a.link:link, .TechNote a.link:link, .MoreExplore a.link:link {color:#5f5f5f;}
+.Answer a:visited, .Question a:visited, .TechNote a:visited, .MoreExplore a:visited {color:#5f5f5f;}
+.Answer a.link:visited, .Question a.link:visited, .TechNote a.link:visited, .MoreExplore a.link:visited {color:#5f5f5f;}
+.Answer a.link:hover, .Question a.link:hover, .TechNote a.link:hover, .MoreExplore a.link:hover {color:#E66907;}
+
+.IF { font-weight: 600; font-family: "Source Sans Pro", Arial, sans-serif; white-space: nowrap; font-style:normal; }
+.bodytext .IF {font-size: 17px;}
+.CodeCaption .IF, .CodeCaption .InlineCode {font-size: 16px; color:#999;}
+.CodeCaption a { color:#999};
+
+.Exercise .IF {font-size: 14px;}
+.IF a, .IF a:link, .IF a:hover, .IF a:visited {color:#666;}
+
+.BaskervilleItalic, .CodeVariable {font-family: 'Times New Roman', serif; font-style: italic; font-size: 15px; padding-left: .15em; padding-right: .15em; }
+.BaskervilleItalicLarger, .CodeVariableLrg {font-family: 'Times New Roman', serif; font-style: italic; font-size:16px; padding-left: .15em; padding-right: .15em; font-weight: 400; }
+.Question .CodeVariable, .Question .InlineCode { font-weight: 600;}
+
+.bodytext .InlineCode, .bodytext .InlineCodeText, .bodytext .InlineCodeTag, .bodytext .InlineWLCode {font-size: 17px;}
+.InlineCodeExercise {font-size: 15px; }
+.Exercise .InlineCode, .Exercise .InlineCodeText, .Exercise .InlineCodeTag, .Exercise .InlineWLCode {font-size: 15px;}
+.Question .InlineCode, .Question .InlineCodeText, .Question .InlineCodeTag, .Question .InlineWLCode {font-size: 15px;}
+.Answer .InlineCodeTag, .Answer .InlineWLCode {font-size: 15px;}
+.TechNote .InlineCode, .TechNote .InlineCodeText, .Answer .InlineCode {font-size: 15px; font-style: normal; font-weight: 400; }
+.TechNote .InlineCodeTag  {font-size: 13px;}
+.TechNote .InlineWLCode  {font-size: 14px;}
+.TechNote .InlineCodeTag {font: 15px/19px "Source Sans Pro", Verdana, Arial, sans-serif;}
+.InlineWLCode, .InlineCodeTag {font-size: 15px; font-family: "Source Sans Pro", Arial, sans-serif;}
+.bodytext .InlineWLCode, .bodytext .InlineCodeTag {font-size: 16px;}
+.MoreExploreList {margin: 10px 0 0 0; }
+.TechNoteList {margin: 10px 0 0 -20px; list-style-type:square; }
+
+
+.AnswerKeyExerciseInput { 
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 0px;
+    margin-left: -14px;
+    margin-top: 0;
+    margin-bottom: 0px;
+    border-spacing: 6px 0;
+    border: 1px solid #fff;
+    cursor: pointer;
+    display: inline-block;
+}
+.AnswerKeyExerciseInputImg { vertical-align: bottom; }
+.AnswerKeyExerciseOutput { display: block; }
+.AnswerKeyExerciseOutputImg { display: block; }
+.AnswerKeyExerciseWebNumber { font-weight: 400; font-size:14px; /*color: #004080;*/ color: #BE5C29; padding-right: 18px; display: inline-block; width:40px; text-align:right; position: relative; top: 3%; }
+.AnswerKeyExerciseNumber { font-weight: 400; font-size:14px; color: #BE5C29; padding-right: 10px; display: inline-block; width:40px; text-align:right; position: relative;  }
+
+.AnswerKeyNumberedSection {padding-bottom: 4px; margin: auto; font: 28px/30px "Source Sans Pro", Arial, sans-serif; color:#E66907; border-bottom: none; font-weight: 300;}
+.AnswerKeySectionNumber {font: 28px/30px "Source Sans Pro", Arial, sans-serif; color:#979797; font-weight: 300; border-right: 2px solid #DDDDDD; padding-right: 15px; display: inline-block; text-align:center; margin-right:10px; }
+.AnswerKeyNumberedSectionTable {width: 100%; margin:60px 0 20px -80px;}
+.AnswerKeyNumberedSectionTable td#AnswerKeySectionNumber {border-bottom: none;}
+.AnswerKeyNumberedSectionTable td#AnswerKeySectionNumber {width: 70px; text-align:right; vertical-align: top; }
+.AnswerKeyUnNumberedSection {padding-bottom: 4px; margin:60px 0 20px 0px; font: 28px/30px "Source Sans Pro", Arial, sans-serif; color:#E66907; border-bottom: none; font-weight: 300;}
+
+/* TOC */
+.TOC { min-width: 250px; vertical-align: top; display: inline-block; margin-right: 50px; height: 90%; overflow: auto; position: fixed; top: 20%; left: 0; }
+.TOCChapter {padding: 7px 0 7px 10px; background: #fff; border: 1px solid #E1E1E1; }
+a:hover div.TOCChapter { background: #DA6D10; color:white; }
+/* .TOCSection {padding: 3px 0 3px 10px; background: #eee; border: 1px solid #ddd;} */
+.TOCSection {display: none; }
+
+.Index, .IndexSubentry { font-family: "Source Sans Pro", Arial, sans-serif; font-weight: 400; font-size: 12px; text-indent: -22px; padding-left: 22px; }
+.Index a:link, .IndexSubentry a:link, .Index a:visited, .IndexSubentry a:visited { color:#D84B00; }
+.IndexLinkGuide a, .IndexLinkGuide a:link, .IndexLinkGuide a:visited { color:#D84B00; }
+.IndexLinkGuide a:hover { color:#F97B00; }
+.IndexSubsection { font-family: "Source Sans Pro", Arial, sans-serif; font-weight: 400; font-size: 24px; margin: 50px 0 18px 0;}
+.FunctionName { font-family: "Source Sans Pro", Arial, sans-serif; font-weight: 600; color: #5F5F5F; }
+.FunctionName a, .FunctionName a:link, .FunctionName a:visited { color: #5F5F5F; }
+article {
+  -webkit-columns: 3 160px;
+  -moz-columns: 3 160px;
+  columns: 3 160px;
+  -webkit-column-gap: 3em;
+  -moz-column-gap: 4em;
+  column-gap: 4em;
+}
+.IndexLinkGuide { margin: 0 0 60px 0; font-size:14px; letter-spacing: 8px; }
+.IndexLetterLink, .IndexLetterLink:link, .IndexLetterLink:hover, .IndexLetterLink:visited { color:#E66907; }
+.IndexLetterDivider {color:#fff; padding: 0 6px 0 0px; }
+
+/* PREVIOUS / NEXT */
+.next-chapter { margin-left: 0px; }
+.previous-chapter {margin-left: 50px; }
+.previous-chapter, .next-chapter {
+    vertical-align: top;
+    display: inline-block;
+    width: 10%;
+    min-width: 64px;
+    position: absolute;
+}
+.previous-chapter a, .next-chapter a {
+/*    top: 142px; */
+    bottom: 0;
+    height: 100%;
+    width: 5em;
+    position: fixed;
+}
+.previous-chapter span, .next-chapter span {
+	font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+    font-size: 6em;
+    display: block;
+    width: 0.7em;
+    line-height: 1.2em;
+    color: #a3a3a3;
+    text-align: center;
+    position: fixed;
+    top: 45%;
+    padding-bottom:10px;
+}
+.previous-chapter a:hover span, .next-chapter a:hover span {
+    background-color: #f36b00;
+    color: #fff;
+}
+.previous-chapter a:hover span.none {
+    background-color: #ddd;
+    color: #fff;
+}
+.next-chapter a {
+    margin-left: .5%;
+}
+
+.prevnext {
+	float: right;
+	font-size: 24px;
+	margin-right: 80px;
+	margin-top: 2px;
+        line-height: 42px;
+}
+.prevnext a:visited, .prevnextFooter a:visited, .prevnext a:link, .prevnextFooter a:link {
+/*	border: 1px solid #aaa; */
+	padding: 5px 20px;
+	color: #D55D05;
+}
+.prevnext a:link:hover, .prevnextFooter a:link:hover, .prevnext a:visited:hover, .prevnextFooter a:visited:hover {
+	color:#FFF;
+    background-color: #d55d05;
+}
+.prevnext a:first-child, .prevnextFooter a:first-child {
+	margin-right:3px;
+}
+.prevnextFooter {
+	font-size: 36px;
+	text-align: center;
+	margin-top: 60px;
+}
+
+
+.SecondEditionTitle {
+    position: absolute;
+    top: 84px;
+    left: 660px;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #FFF;
+    font-family: "Source Sans Pro", Arial, sans-serif;
+    font-weight: 200;
+    letter-spacing: 0.05em;
+    width: 170px;
+}
+
+
+/* Cover page */
+.indexPageBodyCopy { position: relative; height: 900px; width: 730px; margin: 30px 0; font: 16px/23px Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif; }
+.bodyCopyLeft {width: 500px; float: left;}
+.bodyCopyDivider {position: absolute; left: 68%; top: 0%; bottom: 30%; border-left: 1px solid #ccc; }
+.bodyCopyRight { width: 200px; height: 150px; float: right; margin-top: 30px;}
+.bodyCopyAmazonLink { font-style: italic; font-size: 12px; font-family: "Source Sans Pro", Arial, sans-serif; color:#666; width: 250px; padding-left: 30px;}
+.copydiv {/*background: #fff4e0; border: 1px solid #fae2a0; margin: 10px 90px 0 0; padding: 10px 24px 10px 24px; width: 410px;*/}
+#_language-picker {
+   margin: 64px 0 24px 0;
+}
+#_language-picker-select {
+    color: #666;
+    height: 32px;
+    line-height: 1;
+    margin: 0 0 0 .25rem;
+    min-width: 11.5em;
+    padding: 0 0 2px 0;
+    font: 15px/19px "Source Sans Pro", Arial, sans-serif;
+}
+#_language-picker i._icon-r7-c2 {
+    background-position: -76px -144px;
+    display: inline-block;
+    height: 14px;
+    min-width: 14px;
+    vertical-align: middle;
+    width: 14px;
+}
+i[class^='_icon'] {
+    background: url(/common/framework/img/icons.es.png) no-repeat;
+    background-size: 288px 160px;
+/*    display: block; */
+    font-size: 0;
+/*    height: 24px; */
+    line-height: 0;
+/*    min-width: 24px; */
+    overflow: hidden;
+/*    width: 24px; */
+}
+#_language-picker-form {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+
+
+
+
+/*
+.indexPageText:nth-child(1) {
+    padding: 10px 0 0 0;
+}
+*/
+.homeRule {border: 1px solid #ddd; width: 460px; margin: 25px 0 25px 0; }
+.indexPageText { font-size: 18px; font-weight: 300; line-height:1.47em; font-family: "Source Sans Pro", Arial, sans-serif; padding: 40px 0 0 0;}
+.indexPageText2 { font-size: 15px; font-weight: 300; line-height:1.47em; font-family: "Source Sans Pro", Arial, sans-serif; padding: 20px 0;}
+.indexBodyCopy { font-size: 13px; font-family: "Source Sans Pro", Arial, sans-serif; padding: 10px 0 10px 0; font-color: #606060; font-weight: 400;}
+
+/* copy input popups */
+.IFL { position: absolute; z-index: 2; width: 450px; margin-top: 5px; }
+.IFF { display: none; position: relative; background: #f3f3f3; border: 3px solid #c8c8c8; /* visibility:visible; */ font-size: 10px; line-height: 13px; color: #aaaaaa; }
+.IFF form, .IFF .mailLink { float: left; }
+.IFF form { width: 400px; margin: 12px 0 0 12px; padding: 0; }
+.IFF textarea { width: 394px; margin: 0; padding: 2px; font: 11px/14px Verdana, Arial, sans-serif; background: #fff; border: 1px solid #cccccc; }
+.IFF .mailLink { width: 40px; }
+.IFF .mailLink a { background: url('/language/elementary-introduction/img/input-mail.gif') no-repeat left center; padding-left: 15px; color: #aaaaaa; }
+.IFF .mailLink a:hover { background-image: url('/language/elementary-introduction/img/input-mail-over.gif'); color: #df6600; }
+.IFF .bottomStuff { margin: 12px; }
+.IFF .closePopup, .IFF .IFU { float: right; text-align: right; }
+.IFF .closePopup { width: auto; height: 15px; margin-right: 4px; font: 12px/15px Verdana, sans-serif; font-weight: bold; }
+.IFF .closePopup a { color: #000000; }
+.IFF .closePopup a:hover { color: #df6600; }
+.IFF .IFU { width: 360px; }
+
+td img {vertical-align: middle;}
+.InlineCode img {vertical-align: middle;}
+.TechNote img {vertical-align: middle;}
+.bodytext > img {vertical-align: middle; }
+.Exercise > img {vertical-align: middle; }
+
+.bottomSpacerCell { display: none; /* "margin-bottom: 200px;" */ }
+
+
+/* MICRO TWEAKS */
+.Picture #44-importing-and-exporting-pict-2, img#44-importing-and-exporting-pict-5, .Picture img#44importingandexportingpict5 {
+    margin: 0 0 12px 75px;
+}
+
+
+/* ################################################# */
+/* # GENERAL/RESET                                   */
+/* ################################################# */
+* { margin: 0; }
+html, body { height: 100%; background:#ffffff; }
+body, p, td, textarea, input { font: 12px/18px Verdana, Arial, sans-serif; }
+/*
+a, a:link, a:visited {color: #142899; }
+a:active, a:link:hover, a:visited:hover { color: #da6525; }
+*/
+a img { border: 0; outline: 0; }
+
+h1, h2, h3, h4, h5, h6, p { margin: 0; padding: 0; }
+p { font-family: Verdana, Arial, sans-serif; color: #494949; }
+h1, h2, h3, h4, h5, h6 { font-family: Arial !important; }
+h1 a:hover, h2 a:hover, h3 a:hover, h4 a:hover, h5 a:hover, h6 a:hover { color:#0E3EB9; }
+h1 { margin: 28px 25px 15px 0px; font: 26px/28px Arial,Verdana,  sans-serif; font-weight: bold; color: #232323; }
+h2 { font-size: 13px; line-height: 32px; font-weight: bold; font-family:Arial, Helvetica, sans-serif; }
+h2 a, h2 a:link, h2 a:visited {color: #1a1a1a; }
+h3 { font-size: 12px; line-height: 16px; font-weight: bold; color: #4e4e4e; }
+h3 a, h3 a:link, h3 a:visited, h3 a:hover { color: #E66907; }
+h4 { font-size: 12px; line-height: 15px; font-weight: bold; color: #666; }
+h4 a, h4 a:link, h4 a:visited { color: #666; }
+
+.clear { clear: both; }
+

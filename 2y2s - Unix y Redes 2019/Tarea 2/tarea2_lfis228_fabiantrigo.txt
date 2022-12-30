@@ -1,0 +1,172 @@
+Fabian Trigo
+
+// Init
+Segun las definiciones 
+Init es el padre de todos los procesos, se ejecuta por el kernel en el booteo de el sistema (inicio). Su rol principal es crear procesos a partir de un script guardado en el archivo /etc/inittab
+Controla procesos autonomes requeridos para cualquier sistema en particular.
+Corre como un demonio (son procesos que corren en segundo plano de forma automatica, ya hablaremos de ellos) normalmente corre con PID (ID del proceso, un numero que lo identifica) con valor 1
+
+Init se organiza por run-level (nivel de ejecucion, es una configuracion a nivel software que permite solo un grupo seleccionado de procesos correr) el cual esta indicado en /etc/inittab, existe de 0,1-6, S y s, 7-9:
+	0: Halt system (se llega a este nivel cuando existe un problema a nivel software o hardware. Halt quiere decir detener todo en la cpu, a diferencia de apagar que envia una peticion para que esto se haga)
+	1: Poner el sistema en sistema de un solo usuario, osea que no configura el soporte de red, ni permite logins de usuarios no root, ni configura los demonios. Este nivel de ejecucion permite reparar problemas o probar el sistema.
+	2: Nivel multiusuario sin soporte de red, permite otros usuarios aparte de root
+	3: Como inicia el sistema normalmente (sin GUI), multiusuario con soporte de red
+	4: Definido por el usuario
+	5: Multiusuario con graficos, similar al nivel 3 + display manager (encargado de los graficos, como GUI)
+	6: Se reinicia el sistema en este nivel
+
+Explicacion:
+Despues de que UNIX bootee, a menos de que el usuario especificara un runlevel, el sistema entrara en el runlevel por default necesario:
+	Servidores Linux sin GUI (Interfaz Grafica de Usuario) comienzan en runlevel 3 (ya que no requieren del display manager)
+	Servidores con GUI y sistemas UNIX de escritorio comienzan con runlevel 5 (incluyendo lo necesario para usar los graficos)
+	Cuando un sistema desea reiniciarse, pasa a runlevel 6
+Y como podemos ver, en caso de errores entrara a runlevels menores a 3
+
+Y las aplicaciones que comenzaran por init estan alojadas en la carpeta /etc/rc{x}.d/ donde {x} es el runlevel, osea que hay las siguientes carpetas: rc0.d, con programas que corren en runlevel 0; rc1.d, rc2.d, ...
+
+//SysV Init, Upstart y SystemD
+SysV init utiliza /etc/inittab, es basicamente el innit que acabamos de describir, con los niveles de ejecucion en respectivos /etc/rc{x}.d/
+Este sistema es lineal, carga un proceso a la vez, en caso de algun problema, tendremos un kernel panic!
+
+Systemd, compatible con SysV, incluye paralelizacion, osea que no carga uno despues de otro, manejo de sockets, trackeo de procesos,..
+Procesos demonios se categorizan en "cgroups" los cuales estan en categorias con recursos limitados.
+El projecto SystemD contiene Login (un demonio que se encarga del proceso de Login), como tambien el manejo de dispositivosn virtuales en /dev/; eventos cuando los dispositivos son conectados y desconectados; Un demonio para manejar conexiones, etc..
+Scripts de Boot estan en /etc/systemd/system/ y /lib/systemd/system/
+
+Ubuntu 12.04+ utiliza un sistema hibrido que incluye los runlevel de SysV, y scripts de SystemD en /lib/systemd/system/
+
+Sin embargo desde Ubuntu 16 comenzo a volverse norma SystemD, debido a su eficiencia
+
+//Demonios
+Todos los demonios son procesos, pero no todos los procesos son demonios
+Se le llama demonio, o Daemon en ingles, a un proceso en UNIX que corre en segundo plano sin ninguna interaccion con el usuario mas que por log files (archivos descriptivos que dan a conocer lo que se ha hecho). Se mueve de manera silenciosa y es invisible, por ello el nombre.
+
+//Incorporacion de este
+SysV: 
+	init corre /etc/inittab para saber en que nivel de ejecucion correr, por cada runlevel, una linea de /etc/inittab llama a /etc/rc{x}.d
+
+	Primero dejaremos el script donde nos sea util, en /etc/init.d/
+	entonces
+	$ sudo cp /usr/local/bin/midemoniod /etc/init.d/
+	Lo cual dejara el script midemoniod de la forma
+	/etc/init.d/midemoniod, asi lo referenciaremos desde ahora
+
+	Ahora que esta en el lugar correcto, permitamosle ser ejecutado
+	$ sudo chmod 755 /etc/init.d/midemoniod
+
+	Ahora debemos de agregar un link simbolico del sistema
+	Para activarlo
+	$ sudo update-rc.d midemoniod enable #especifico para debian
+	Lo cual creara un link de sistema en /etc/rc2.d, rc3.d, hasta rc5.d
+
+	Detener y comenzar el servicio
+	$ sudo service midemoniod stop
+	$ sudo service midemoniod start
+
+	Y reinicie la maquina
+	$ sudo reboot
+
+SystemD:
+	Primero, existen estos runlevels como SysV init pero por medio de carpetas, las cuales especifican que se inicia luego de que, podemos verlas asi
+	$ ls /etc/systemd/system/ | grep target
+	>>
+		bluetooth.target.wants
+		default.target.wants
+		final.target.wants
+		getty.target.wants
+		graphical.target.wants
+		multi-user.target.wants
+		network-online.target.wants
+		paths.target.wants
+		printer.target.wants
+		sockets.target.wants
+		spice-vdagentd.target.wants
+		sysinit.target.wants
+		timers.target.wants
+	scripts en network-online.target.wants/ se ejecutaran despues de iniciar la red
+
+	Veamos como estan los programas dentro
+	$ ls /etc/systemd/system/network-online.target.wants/
+	>>
+		networking.service  NetworkManager-wait-online.service
+	De querer agregar un nuevo servicio, hemos de tener un script funcional tipo midemoniod.service en esta carpeta
+	Suponiendo que /usr/local/bin/midemoniod sea un script systemd de init funcional:
+	$ sudo cp /usr/local/bin/midemoniod /etc/init.d/midemoniod.service
+
+	Le damos los permisos necesarios
+	$ sudo chmod 755 /etc/init.d/midemoniod.service
+
+	Usamos el comando systemctl para habilitarlo
+	$ sudo systemctl enable midemoniod.service
+
+	Dentro del script especifico midemoniod.service, de ser compatible con systemd debe tener un apartado de [Service], este debe contener una linea
+	$ Restar=always
+	Cosa de que pueda volver a correr en caso de crasheo
+
+	Ahora reiniciamos el demonio de systemd y reiniciamos nuestro servicio
+	$ sudo systemctl daemon-reload
+	$ sudo systemctl restart midemoniod.service
+
+	start y stop
+	$ sudo systemctl start midemoniod.service
+	$ sudo systemctl stop midemoniod.service
+
+Upstart:
+	Upstart usa un archivo de configuracion para controlar servicio. Los archivos se encuentran en /etc/init.
+	Poseen una lectura facil
+
+	Moveremos el script hasta alla, asumiendo que ya es funcional y le daremos los permisos de ejecucion
+	$ sudo cp /usr/local/bin/midemoniod /etc/init/midemonio.conf
+	$ sudo chmod 755 /etc/init/midemonio.conf
+
+	Entonces detendremos e iniciaremos el serivicio via
+	$ sudo initctl stop midemoniod
+	$ sudo initctl start midemoniod
+
+	Y reiniciamos la maquina
+	$ sudo reboot
+
+
+//Que debe contener el script en cada caso por ejemplo:
+
+Systemd:
+	/etc/init.d/midemoniod.service
+
+	Description=DESCRIPCION_DEL_SERVICIO
+
+	Wants=network.target
+	After=syslog.target network-online.target
+
+	[Service]
+	Type=simple
+	ExecStart=COMANDOS_AL_CARGAR
+	Restart=on-failure
+	RestartSec=10
+	KillMode=process
+
+	[Install]
+	WantedBy=multi-user.target
+
+Upstart:
+	/etc/init/midemoniod.conf:
+		...
+		description     "Tarea 2 Unix"
+		author          "Fabian Trigo <fabian.trigo@alumnos.uv.cl>"
+
+		start on runlevel 3 # se elige el nivel de ejecucion aqui
+		stop on starting rc RUNLEVEL=[016]
+
+		respawn
+		respawn limit 2 5
+
+
+
+//Linkografia:
+innit - 
+	*	https://www.tutorialspoint.com/init-process-on-unix-and-linux-systems
+	*	https://www.tutorialspoint.com/unix_commands/init.htm
+SystemD, SysV, Upstart:
+	*	http://www.yolinux.com/TUTORIALS/LinuxTutorialInitProcess.html
+Configurar servicio:
+	*	https://www.digitalocean.com/community/tutorials/how-to-configure-a-linux-service-to-start-automatically-after-a-crash-or-reboot-part-1-practical-examples#auto-start-checklist-for-upstart
+	*	https://www.unix.com/suse/110815-start-services-during-startup.html
