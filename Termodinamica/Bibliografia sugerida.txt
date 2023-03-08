@@ -1,0 +1,7 @@
+Sears, Salinger - Termodinámica, teoría cinética y termodinámica estadística
+Sears, Zemansky Young, Friedman - Fisica Universitaria con Física moderna
+H. B. Callen - Termodynamics and an introduction to thermostatistics
+Enrico Fermi - Termodinámica
+D. V. Schroeder - An introduction to Thermal Physics
+Feynman, Leighton & Sands - Lectures on Physics (vol. 1), capitulo 44 y 45 (complementar con los capítulos [39-43]).
+D. Kondepudi, I. Prigogine - Modern Thermodynamics: From heats engines to dissipative structures
