@@ -1,0 +1,250 @@
+
+BracketSolverLib2:=table():
+with(LinearAlgebra):interface(rtablesize=30):
+BracketSolverLib2[__MAX__]:=4:
+
+#=========================================================
+BracketSolverLib2[ExtractHypergeometricParameters]:=proc(Function_)
+ 
+ local aux_:
+ aux_:=select(has,Function_,[GAMMA,pochhammer]):
+ aux_:=select(has,aux_,[seq(k[i],i=1..__MAX__)]):
+ 
+ end:
+#=========================================================
+BracketSolverLib2[ExtractPreFactor]:=proc(Function_)
+
+ local aux1_,aux2_,i_:
+ aux1_:=remove(has,Function_,[GAMMA,pochhammer]):
+ aux2_:=select(has,Function_,[GAMMA,pochhammer]):
+ aux1_:=expand(aux1_)*aux2_:
+ for i_ from 1 to __MAX__
+      do
+      aux1_:=remove(has,aux1_,k[i_]):
+      end do:
+ aux1_:=simplify(aux1_,'symbolic'):
+ 
+ end proc:
+#=========================================================
+BracketSolverLib2[ExtractHypergeometricArguments]:=proc(Function_)
+
+ local aux_, i_, Aux_:
+
+ aux_:=remove(has,Function_,[GAMMA,pochhammer]):
+ aux_:=select(has,expand(aux_),[seq(k[i],i = 1..__MAX__)]);
+ Aux_:=select(has,expand(aux_),[seq(k[i]!,i = 1..__MAX__)]);
+ aux_:=remove(has,expand(aux_),[seq(k[i]!,i = 1..__MAX__)]);
+ for i_ to __MAX__
+      do 
+      Aux_:=simplify(select(has,aux_,{k[i_]})^(1/k[i_]),symbolic)^k[i_]*Aux_: 
+      od:
+
+ end:
+#=========================================================
+BracketSolverLib2[ConvertToHypergeometric]:=proc(Function_)
+
+ local aux_:
+ aux_:=traperror(convert(Function_,'hypergeom')):
+ if aux_=lasterror then Function_:
+ else aux_:
+ fi:
+ 
+ end:
+#=========================================================
+# Implemetation for Brackets technique 
+# BracketsSolver procedure 
+#=========================================================
+BracketSolverLib2[BracketSolver]:=proc(Sys_,vInitial_,Function_,solution_,HypergeomOption_)
+
+ local Multiplicity_,Nsum_,Nbrackets_,To:
+ Nsum_:=Dimension(vInitial_):
+ Nbrackets_:=nops(Sys_):
+ Multiplicity_:=Nsum_-Nbrackets_:
+ if (Multiplicity_=0) then solution_[0]:=Solution0(Sys_,vInitial_,Function_):print(To=solution_[0]):fi:
+ if (Multiplicity_=1) then Solution1(Sys_,vInitial_,Function_,solution_,HypergeomOption_):fi:
+ if (Multiplicity_=2) then Solution2(Sys_,vInitial_,Function_,solution_,HypergeomOption_):fi:
+ if (Multiplicity_=3) then Solution3(Sys_,vInitial_,Function_,solution_,HypergeomOption_):fi:
+ if (Multiplicity_=4) then Solution4(Sys_,vInitial_,Function_,solution_,HypergeomOption_):fi:
+ 
+ end:
+#=========================================================
+# Solution procedures
+#=========================================================
+BracketSolverLib2[Solution0]:=proc(Sys_,vIndex_,Function_)
+
+ local A_,b_,v_,i_,l_,funcional_:
+ funcional_:=Function_:
+ l_:=rtable_num_elems(vIndex_):
+ (A_,b_):= GenerateMatrix(Sys_,[seq(vIndex_[i_],i_=1..l_)]):
+ if (Determinant(A_)<>0) then 
+      v_:=LinearSolve(A_,b_):
+      for i_ from 1 to l_
+           do
+           funcional_:=GAMMA(-v_[i_])*subs(vIndex_[i_]=v_[i_],funcional_):
+           od:
+      funcional_:=(1/abs(Determinant(A_))*funcional_):
+fi:
+ 
+ end:
+#=========================================================
+BracketSolverLib2[Solution1]:=proc(Sys_,vInitial_,Function_,solution_,HypergeomOption_)
+
+ local i_,l_,vFinal_,Vaux1_,Vaux2_:
+ l_:=rtable_num_elems(vInitial_):
+ vFinal_:=Vector(l_-1):
+ for i_ from 1 by 1 to l_
+      do
+      Vaux1_:={i_}:
+      Vaux2_:={vInitial_[i_]}:
+      DependentIndexVector(vInitial_,vFinal_,Vaux1_):
+      LinearSolution(Sys_,vFinal_,Vaux1_,Vaux2_,Function_,solution_,HypergeomOption_):
+      od:
+ 
+ end:
+#=========================================================
+BracketSolverLib2[Solution2]:=proc(Sys_,vInitial_,Function_,solution_,HypergeomOption_)
+
+ local i1_,i2_,l_,vFinal_,Vaux1_,Vaux2_:
+ l_:=rtable_num_elems(vInitial_):
+ vFinal_:=Vector(l_-2):
+ for i1_ from 1 to l_
+      do
+      for i2_ from (i1_+1) to l_
+           do
+           Vaux1_:={i1_,i2_}:
+           Vaux2_:={vInitial_[i1_],vInitial_[i2_]}:
+           DependentIndexVector(vInitial_,vFinal_,Vaux1_):
+           LinearSolution(Sys_,vFinal_,Vaux1_,Vaux2_,Function_,solution_,HypergeomOption_);
+           od:
+      od:
+ 
+ end:
+#=========================================================
+BracketSolverLib2[Solution3]:=proc(Sys_,vInitial_,Function_,solution_,HypergeomOption_)
+
+ local i1_,i2_,i3_,l_,vFinal_,Vaux1_,Vaux2_:
+ l_:=rtable_num_elems(vInitial_):
+ vFinal_:=Vector(l_-3):
+ for i1_ from 1 to l_
+      do
+      for i2_ from (i1_+1) to l_
+           do
+           for i3_ from (i2_+1) to l_
+                do
+                Vaux1_:={i1_,i2_,i3_}:
+                Vaux2_:={vInitial_[i1_],vInitial_[i2_],vInitial_[i3_]}:
+                DependentIndexVector(vInitial_,vFinal_,Vaux1_):
+                LinearSolution(Sys_,vFinal_,Vaux1_,Vaux2_,Function_,solution_,HypergeomOption_);
+                od:
+           od:
+      od:
+ 
+ end:
+#=========================================================
+BracketSolverLib2[Solution4]:=proc(Sys_,vInitial_,Function_,solution_,HypergeomOption_)
+
+ local i1_,i2_,i3_,i4_,l_,vFinal_,Vaux1_,Vaux2_:
+ l_:=rtable_num_elems(vInitial_):
+ vFinal_:=Vector(l_-4):
+ for i1_ from 1 to l_
+      do
+      for i2_ from (i1_+1) to l_
+           do
+           for i3_ from (i2_+1) to l_
+                do
+                for i4_ from (i3_+1) to l_
+                     do
+                     Vaux1_:={i1_,i2_,i3_,i4_}:
+                     Vaux2_:={vInitial_[i1_],vInitial_[i2_],vInitial_[i3_],vInitial_[i4_]}:
+                     DependentIndexVector(vInitial_,vFinal_,Vaux1_):
+                     LinearSolution(Sys_,vFinal_,Vaux1_,Vaux2_,Function_,solution_,HypergeomOption_);
+                     od:
+                od:
+           od:
+      od:
+ 
+ end:
+#=========================================================
+# LinearSolution procedure
+#=========================================================
+BracketSolverLib2[LinearSolution]:=proc(Sys_,vIndex_,Index_,FreeIndex_,Function_,solution_,HypergeomOption_)
+
+ local A_,b_,v_,i_,j_,l_,funcional_,T,prefactor_,arguments_,sumand_,NumVar_:
+ NumVar_:=nops(FreeIndex_):
+ funcional_:=Function_:
+ l_:=rtable_num_elems(vIndex_):
+ (A_,b_) := GenerateMatrix(Sys_,[seq(vIndex_[i_],i_=1..l_)]):
+ if (Determinant(A_)<>0) then 
+      v_:=LinearSolve(A_,b_):
+      for i_ from 1 to l_
+           do
+           funcional_:=GAMMA(-v_[i_])*subs(vIndex_[i_]=v_[i_],funcional_):
+           od:
+      for j_ from 1 to NumVar_
+           do
+           funcional_:=(-1)^FreeIndex_[j_]/FreeIndex_[j_]!*funcional_:
+           od:
+      for j_ from 1 to NumVar_
+           do
+           funcional_:=subs(FreeIndex_[j_]=k[j_],funcional_):
+           od:
+      prefactor_:=ExtractPreFactor(funcional_):
+      arguments_:=ExtractHypergeometricArguments(funcional_):  
+      sumand_:=ExtractHypergeometricParameters(funcional_):
+      funcional_:=sumand_*arguments_:
+      for i_ from 1 to NumVar_
+           do
+           funcional_:=Sum(funcional_,k[i_]=0..infinity):
+           od:
+      funcional_:=prefactor_/abs(Determinant(A_))*funcional_:
+ 
+      for i_ from 1 to NumVar_
+           do
+           if HypergeomOption_<>0 then
+                funcional_:=ConvertToHypergeometric(funcional_):
+           fi:
+           od:
+      solution_[seq(Index_[i],i=1..NumVar_)]:=funcional_:
+      print(T[seq(Index_[i],i=1..NumVar_)]=funcional_):
+ fi:
+ 
+ end proc:
+#=========================================================
+# DependentIndexVector procedure
+#=========================================================
+BracketSolverLib2[DependentIndexVector]:=proc(vInitial_,vFinal_,Index_)
+
+ local i_,j_,k_,l_,aux_,NumVar_:
+  NumVar_:=nops(Index_):
+ l_:=rtable_num_elems(vInitial_):
+ j_:=1:
+ for i_ from 1 to l_
+      do
+      aux_:=1:
+      for k_ from 1 to NumVar_
+           do
+           if i_<>Index_[k_] then
+                aux_:=aux_*1:
+                else aux_:=aux_*0:
+           fi:
+           od:
+      if (aux_=1) then
+           vFinal_[j_]:=vInitial_[i_]:
+           j_:=j_+1:
+      fi:
+      od:
+ 
+ end:
+#=========================================================
+# Version package
+#=========================================================
+BracketSolverLib2[VersionLib]:=proc():
+ 
+ print("================================"):
+ print("BracketSolverLib package"):
+ print("Author : Ivan Gonzalez-Gonzalez"):
+ print("Version 1.0 - 21/May 2010"):
+ print("================================"):
+ 
+ end proc:
+#========================================================= 
