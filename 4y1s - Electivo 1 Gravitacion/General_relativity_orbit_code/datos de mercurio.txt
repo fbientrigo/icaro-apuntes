@@ -1,0 +1,7 @@
+la simulacion parte en el perihelio:
+
+velocidad inicial = 59.0 km/s
+distancia inicial sol mercurio: 46.0 \times 10^6 km
+
+
+m / Msol = 10^-8
