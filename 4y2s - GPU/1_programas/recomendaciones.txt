@@ -1,0 +1,1 @@
+También les recomiendo jugar con los "profilers" ncu y nsys para ver como se puede obtener información de los programas. Puedo responder a correos si tienen consultas.

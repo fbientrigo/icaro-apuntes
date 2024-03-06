@@ -1,0 +1,93 @@
+Ahora organizaremos tarjetas de estudio con codigo de programación,
+
+por ejemplo esta tarjeta muestra el ejemplo de uso de `cudaMalloc`:
+
+front:
+"""
+Explica el siguiente codigo:
+```
+#define N 10
+
+int main(){
+    ...
+    int* hostVar = (int *) malloc(N*sizeof(int));
+    int* devVar;
+    cudaMalloc((int**)&devVar, N*sizeof(int));
+    ...
+    cudaMemcpy(devVar, hostVar, N*sizeof(int), cudaMemcpyHostToDevice);
+    ...
+}
+```
+"""
+
+back:
+"""
+
+```
+#define N 10
+int main(){
+    ...
+   // definimos pointers, hostVar se encuentran en el host y dev alusion al device
+    int* hostVar = (int *) malloc(N*sizeof(int));
+    int* devVar;
+    // creamos espacio en el decide, N int's
+    cudaMalloc((int**)&devVar, N*sizeof(int));
+    ...
+  // luego el proceso de copiar del host al device, notese la sintaxis
+    cudaMemcpy(devVar, hostVar, N*sizeof(int), cudaMemcpyHostToDevice);
+    ...
+}
+```
+"""
+
+Ahora por ejemplo, una tarjeta sobre sintaxis:
+
+front:
+"""
+explica la sintaxis de `cudaMalloc`
+"""
+
+back:
+"""
+La función `cudaMalloc` se utiliza en CUDA (Compute Unified Device Architecture) para asignar memoria en el espacio de la GPU (Dispositivo CUDA). Su sintaxis es la siguiente:
+
+```c
+cudaError_t cudaMalloc(void** devPtr, size_t size);
+```
+
+Aquí está la explicación de los parámetros y la sintaxis de `cudaMalloc`:
+
+1. `cudaError_t`: Este es el tipo de valor de retorno de la función. `cudaError_t` es un tipo enumerado que indica si la función `cudaMalloc` se ejecutó correctamente o si ocurrió algún error. Puedes verificar este valor para manejar posibles errores durante la asignación de memoria en la GPU.
+
+2. `void** devPtr`: Este es un puntero doble (doble puntero) que apunta a la dirección de memoria en la que se almacenará el puntero a la memoria asignada en el dispositivo CUDA. En otras palabras, después de llamar a `cudaMalloc`, `devPtr` contendrá la dirección de memoria en la GPU donde se puede acceder a los datos recién asignados.
+
+3. `size_t size`: Este parámetro especifica la cantidad de memoria que se va a asignar en bytes. Debes proporcionar el tamaño en bytes de la memoria que necesitas en la GPU.
+
+A continuación, te muestro un ejemplo de cómo se usa `cudaMalloc` en un programa CUDA para asignar un bloque de memoria en la GPU:
+
+```c
+#include <cuda_runtime.h>
+
+int main() {
+    int* deviceData;  // Puntero para almacenar la dirección de memoria en el dispositivo CUDA.
+
+    size_t size = 100 * sizeof(int);  // Tamaño de la memoria que se asignará en bytes.
+
+    cudaError_t cudaStatus = cudaMalloc((void**)&deviceData, size);
+
+    if (cudaStatus != cudaSuccess) {
+        fprintf(stderr, "cudaMalloc failed: %s\n", cudaGetErrorString(cudaStatus));
+        return 1;
+    }
+
+    // Ahora, 'deviceData' apunta a la memoria asignada en la GPU y puedes realizar operaciones en ella.
+
+    // No olvides liberar la memoria cuando hayas terminado:
+    cudaFree(deviceData);
+
+    return 0;
+}
+```
+
+Es importante verificar el valor de retorno de `cudaMalloc` para asegurarse de que la asignación de memoria en la GPU se haya realizado con éxito y manejar cualquier error que pueda ocurrir durante el proceso. Además, siempre debes liberar la memoria en la GPU utilizando `cudaFree` cuando hayas terminado de usarla para evitar fugas de memoria.
+"""
