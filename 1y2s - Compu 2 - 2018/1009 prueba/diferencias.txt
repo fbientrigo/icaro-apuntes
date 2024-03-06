@@ -1,0 +1,11 @@
+Las diferencias entre los resultados se deben a como los metodos
+se aproximan al problema
+Mientras la regla del trapezoide creo figuras en base a la base
+de la funcion, eje x; la regla de simpson tomo una aproximacion
+de acercar curvas cuadraticas a mi funcion;
+en el caso de simpson llego a 7.599999 excelente resultado y aproximacion
+mientras que la del trapezoide por efecto de la baja cantidad de figuras
+acabo con numeros de más, 7.640000; si hacemos la integral en papel..
+es 7.6
+
+-fabian trigo|

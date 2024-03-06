@@ -1,0 +1,1 @@
+- Using Named Entity Recognition to create Obsidian Links

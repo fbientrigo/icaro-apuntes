@@ -1,0 +1,12 @@
+
+# Crear diccionarios dado una condicion
+new_dict = {author: "Expert" if freq > 10 else "Novice" for (author,freq) in authors_books_freq.items()}
+#Calculate the ratio of "Novice" to "Expert" 
+ratio = list(new_dict.values()).count('Novice')/list(new_dict.values()).count('Expert')
+print(f"The ratio of Novice to Expert is {ratio}")
+
+
+# O que bajo una condición se cree una lista
+entonces la condicion se deja al final
+
+out_list = [ freq for (author,freq) in authors_books_freq.items() if 'Charles' in author]
