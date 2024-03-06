@@ -1,0 +1,5 @@
+La Ley 0 de la Termodinámica establece que si dos sistemas están en equilibrio térmico con un tercer sistema, entonces ellos están en equilibrio térmico entre sí. En otras palabras, si dos objetos A y B están en equilibrio térmico, y B también está en equilibrio térmico con un tercer objeto C, entonces A y C también estarán en equilibrio térmico si se ponen en contacto.
+
+La Ley 0 es una ley fundamental de la termodinámica que se utiliza para definir la temperatura de manera consistente y se utiliza como base para las mediciones de temperatura. También es una ley importante en la construcción de escalas de temperatura, como la escala Celsius y la escala Kelvin.
+
+Aunque se la conoce como la "Ley 0", en realidad se la considera como una ley fundamental y no como una ley adicional a las otras tres leyes fundamentales de la termodinámica.

@@ -1,0 +1,12 @@
+PHYSICS 115A: THERMODYNAMICS
+Spring 2012
+
+
+Recommended Texts:
+Fundamentals of Statistical and Thermal Physics, by F. Rief, published by Waveland Press.
+Thermal Physics , by Charles Kittel and Herbert Kroemer, published by W. H. Freeman and Company
+
+
+Brief Course Outline:
+General Principles of Classical Thermodynamics: Chapters 1-8 of Callen (except sections 5.4, 6.6, 6.7 and 8.5)
+Phase Transitions and Critical Phenomena: Chapters 9 and 10 (except sections 9.6 and 9.7) of Callen.
