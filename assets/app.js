@@ -1,6 +1,7 @@
 (function () {
   const elBusqueda = document.getElementById("busqueda");
   const elFiltroCurso = document.getElementById("filtroCurso");
+  const elFiltroCategoria = document.getElementById("filtroCategoria");
   const elFiltroTipo = document.getElementById("filtroTipo");
   const elResultados = document.getElementById("resultados");
   const elContador = document.getElementById("contador");
@@ -34,18 +35,39 @@
       opt.textContent = tipo;
       elFiltroTipo.appendChild(opt);
     }
+    poblarCategorias();
+  }
+
+  function poblarCategorias() {
+    const cursoActual = elFiltroCurso.value;
+    const categoriaPrevia = elFiltroCategoria.value;
+    const base = cursoActual ? datos.items.filter((i) => i.curso === cursoActual) : datos.items;
+    const categorias = [...new Set(base.map((i) => i.categoria))].sort();
+
+    elFiltroCategoria.innerHTML = '<option value="">Todos los temas</option>';
+    for (const categoria of categorias) {
+      const opt = document.createElement("option");
+      opt.value = categoria;
+      opt.textContent = categoria;
+      elFiltroCategoria.appendChild(opt);
+    }
+    if (categorias.includes(categoriaPrevia)) {
+      elFiltroCategoria.value = categoriaPrevia;
+    }
   }
 
   function filtrar() {
     const termino = normalizar(elBusqueda.value.trim());
     const curso = elFiltroCurso.value;
+    const categoria = elFiltroCategoria.value;
     const tipo = elFiltroTipo.value;
 
     return datos.items.filter((item) => {
       if (curso && item.curso !== curso) return false;
+      if (categoria && item.categoria !== categoria) return false;
       if (tipo && item.tipo !== tipo) return false;
       if (!termino) return true;
-      const texto = normalizar(`${item.nombre} ${item.curso} ${item.carpeta} ${item.tipo}`);
+      const texto = normalizar(`${item.nombre} ${item.curso} ${item.categoria} ${item.carpeta} ${item.tipo}`);
       return termino.split(/\s+/).every((palabra) => texto.includes(palabra));
     });
   }
@@ -72,7 +94,7 @@
           <div class="meta">
             <span class="tag">${escaparHtml(item.tipo)}</span>
             <span>${escaparHtml(item.curso)}</span>
-            ${item.carpeta && item.carpeta !== item.curso ? `<span>${escaparHtml(item.carpeta)}</span>` : ""}
+            <span class="tag tag-categoria">${escaparHtml(item.categoria)}</span>
           </div>
         </a>`;
       elResultados.appendChild(li);
@@ -91,6 +113,10 @@
     });
 
   elBusqueda.addEventListener("input", render);
-  elFiltroCurso.addEventListener("change", render);
+  elFiltroCurso.addEventListener("change", () => {
+    poblarCategorias();
+    render();
+  });
+  elFiltroCategoria.addEventListener("change", render);
   elFiltroTipo.addEventListener("change", render);
 })();

@@ -42,7 +42,15 @@ def human_kind(ext):
     }.get(ext, ext.lstrip("."))
 
 
-def build_index():
+def cargar_overrides():
+    path = os.path.join(REPO_ROOT, "assets", "categorias_overrides.json")
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def build_index(overrides):
     items = []
     for dirpath, dirnames, filenames in os.walk(REPO_ROOT):
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS and not d.startswith(".")]
@@ -51,6 +59,7 @@ def build_index():
             rel_dir = ""
 
         top_level = rel_dir.split(os.sep)[0] if rel_dir else None
+        subcarpeta = rel_dir.split(os.sep)[1] if os.sep in rel_dir else None
 
         for filename in filenames:
             if filename in EXCLUDE_FILES:
@@ -60,13 +69,16 @@ def build_index():
                 continue
 
             rel_path = os.path.join(rel_dir, filename) if rel_dir else filename
+            rel_path = rel_path.replace(os.sep, "/")
+            categoria = overrides.get(rel_path) or subcarpeta or top_level or "General"
             items.append({
                 "curso": top_level or "Raiz",
                 "carpeta": rel_dir,
+                "categoria": categoria,
                 "nombre": os.path.splitext(filename)[0],
                 "archivo": filename,
                 "tipo": human_kind(ext),
-                "ruta": rel_path.replace(os.sep, "/"),
+                "ruta": rel_path,
             })
 
     items.sort(key=lambda i: (i["curso"], i["carpeta"], i["nombre"]))
@@ -74,7 +86,8 @@ def build_index():
 
 
 def main():
-    items = build_index()
+    overrides = cargar_overrides()
+    items = build_index(overrides)
     cursos = sorted({i["curso"] for i in items})
     out_path = os.path.join(REPO_ROOT, "assets", "material.json")
     with open(out_path, "w", encoding="utf-8") as f:
