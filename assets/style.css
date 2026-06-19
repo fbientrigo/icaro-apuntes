@@ -118,6 +118,12 @@ select {
   color: var(--texto-suave);
 }
 
+.tag-libre {
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--texto-suave);
+  border: 1px solid var(--borde);
+}
+
 .vacio {
   color: var(--texto-suave);
   padding: 2rem 0;

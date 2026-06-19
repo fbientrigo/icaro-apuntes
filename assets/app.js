@@ -67,7 +67,8 @@
       if (categoria && item.categoria !== categoria) return false;
       if (tipo && item.tipo !== tipo) return false;
       if (!termino) return true;
-      const texto = normalizar(`${item.nombre} ${item.curso} ${item.categoria} ${item.carpeta} ${item.tipo}`);
+      const tags = (item.tags || []).join(" ");
+      const texto = normalizar(`${item.nombre} ${item.curso} ${item.categoria} ${item.carpeta} ${item.tipo} ${tags}`);
       return termino.split(/\s+/).every((palabra) => texto.includes(palabra));
     });
   }
@@ -88,6 +89,9 @@
     for (const item of resultados) {
       const li = document.createElement("li");
       const href = encodeURI(item.ruta);
+      const tagsHtml = (item.tags || [])
+        .map((t) => `<span class="tag tag-libre">${escaparHtml(t)}</span>`)
+        .join("");
       li.innerHTML = `
         <a class="item" href="${href}" target="_blank" rel="noopener">
           <div class="nombre">${escaparHtml(item.nombre)}</div>
@@ -95,6 +99,7 @@
             <span class="tag">${escaparHtml(item.tipo)}</span>
             <span>${escaparHtml(item.curso)}</span>
             <span class="tag tag-categoria">${escaparHtml(item.categoria)}</span>
+            ${tagsHtml}
           </div>
         </a>`;
       elResultados.appendChild(li);

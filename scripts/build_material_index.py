@@ -50,7 +50,15 @@ def cargar_overrides():
     return {}
 
 
-def build_index(overrides):
+def cargar_tags_overrides():
+    path = os.path.join(REPO_ROOT, "assets", "tags_overrides.json")
+    if os.path.exists(path):
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    return {}
+
+
+def build_index(overrides, tags_overrides):
     items = []
     for dirpath, dirnames, filenames in os.walk(REPO_ROOT):
         dirnames[:] = [d for d in dirnames if d not in EXCLUDE_DIRS and not d.startswith(".")]
@@ -75,6 +83,7 @@ def build_index(overrides):
                 "curso": top_level or "Raiz",
                 "carpeta": rel_dir,
                 "categoria": categoria,
+                "tags": tags_overrides.get(rel_path, []),
                 "nombre": os.path.splitext(filename)[0],
                 "archivo": filename,
                 "tipo": human_kind(ext),
@@ -87,7 +96,8 @@ def build_index(overrides):
 
 def main():
     overrides = cargar_overrides()
-    items = build_index(overrides)
+    tags_overrides = cargar_tags_overrides()
+    items = build_index(overrides, tags_overrides)
     cursos = sorted({i["curso"] for i in items})
     out_path = os.path.join(REPO_ROOT, "assets", "material.json")
     with open(out_path, "w", encoding="utf-8") as f:
