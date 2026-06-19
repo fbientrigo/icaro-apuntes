@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apuntes Icaro - Buscador de Material de Estudio</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header>
+  <h1>Apuntes Icaro</h1>
+  <p class="subtitulo">Busca y explora apuntes, guias, pruebas y material de todos los cursos.</p>
+</header>
+
+<main>
+  <section class="controles">
+    <input type="search" id="busqueda" placeholder="Buscar por nombre, curso o tipo de archivo..." autofocus>
+    <select id="filtroCurso">
+      <option value="">Todos los cursos</option>
+    </select>
+    <select id="filtroTipo">
+      <option value="">Todos los tipos</option>
+    </select>
+  </section>
+
+  <p id="contador" class="contador"></p>
+
+  <ul id="resultados" class="resultados"></ul>
+</main>
+
+<footer>
+  <p>Indice generado automaticamente desde el repositorio. Para actualizarlo: <code>python3 scripts/build_material_index.py</code></p>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
