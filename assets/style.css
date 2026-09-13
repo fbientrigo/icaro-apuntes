@@ -77,6 +77,11 @@ select {
   gap: 0.5rem;
 }
 
+#resultados[hidden],
+#contador[hidden] {
+  display: none;
+}
+
 .item {
   display: block;
   padding: 0.85rem 1rem;
@@ -128,6 +133,67 @@ select {
   color: var(--texto-suave);
   padding: 2rem 0;
   text-align: center;
+}
+
+.boton-toggle {
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--borde);
+  background: var(--bg-card);
+  color: var(--acento);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.boton-toggle:hover {
+  border-color: var(--acento);
+}
+
+.boton-toggle[aria-pressed="true"] {
+  background: var(--acento);
+  color: var(--bg);
+}
+
+.vista-grafo {
+  margin-top: 0.5rem;
+}
+
+.grafo-controles {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--texto-suave);
+}
+
+.grafo-controles label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+}
+
+.grafo-controles .boton-toggle {
+  margin-left: auto;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+}
+
+.grafo-lienzo {
+  width: 100%;
+  min-height: 420px;
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  background: var(--bg-card);
+  overflow: hidden;
+}
+
+.grafo-info {
+  color: var(--texto-suave);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
 }
 
 footer {
