@@ -24,17 +24,35 @@
     <select id="filtroTipo">
       <option value="">Todos los tipos</option>
     </select>
+    <button id="toggleVista" class="boton-toggle" type="button" aria-pressed="false">
+      Modo grafo
+    </button>
   </section>
 
   <p id="contador" class="contador"></p>
 
   <ul id="resultados" class="resultados"></ul>
+
+  <section id="vistaGrafo" class="vista-grafo" hidden>
+    <div class="grafo-controles">
+      <label><input type="checkbox" class="grafo-filtro-tipo" value="curso" checked> Cursos</label>
+      <label><input type="checkbox" class="grafo-filtro-tipo" value="categoria" checked> Temas</label>
+      <label><input type="checkbox" class="grafo-filtro-tipo" value="tag" checked> Etiquetas</label>
+      <label><input type="checkbox" class="grafo-filtro-tipo" value="apunte"> Apuntes individuales</label>
+      <button id="grafoReset" class="boton-toggle" type="button">Restablecer vista</button>
+    </div>
+    <div id="grafoLienzo" class="grafo-lienzo"></div>
+    <p id="grafoInfo" class="grafo-info">Selecciona un nodo para ver detalles.</p>
+  </section>
 </main>
 
 <footer>
   <p>Indice generado automaticamente desde el repositorio. Para actualizarlo: <code>python3 scripts/build_material_index.py</code></p>
+  <p>Grafo de conexiones generado con <code>python3 scripts/build_graph_index.py</code></p>
 </footer>
 
 <script src="assets/app.js"></script>
+<script src="assets/vendor/force-graph.min.js" defer></script>
+<script src="assets/graph.js" defer></script>
 </body>
 </html>
