@@ -1,4 +1,7 @@
 # APUNTES ICARO
+
+https://fbientrigo.github.io/icaro-apuntes/
+
 Posee 2 modos, modo grafo y modo de lista, ambos con el foco de mejorar la capacidad de presentación de los apuntes.
 
 <img width="1317" height="1142" alt="image" src="https://github.com/user-attachments/assets/7f5eb823-53a9-4daa-85c0-8c68d3eee45e" />
